@@ -120,3 +120,136 @@ Once async work is complete, callbacks go to the task queue or microtask queue.
 The event loop checks if the call stack is empty and moves tasks accordingly.
 
 Microtasks run before macrotasks.
+
+
+Q.) What is a JavaScript Engine?
+
+Ans :-
+
+he JavaScript engine is the component that reads, parses, compiles, and executes JavaScript code. Understanding its architecture is crucial to mastering how JavaScript actually runs under the hood, especially when dealing with performance, memory, and async behavior.
+
+⚙️ What is a JavaScript Engine?
+A JavaScript Engine is a program (usually embedded in a web browser or runtime like Node.js) that executes JavaScript code.
+
+The most well-known engines include:
+
+V8 (used in Chrome, Node.js)
+
+SpiderMonkey (Firefox)
+
+JavaScriptCore (Safari)
+
+Chakra (Edge legacy)
+
+For this explanation, we'll focus on V8, as it's the most widely used and best-documented.
+
+🏗️ V8 JavaScript Engine Architecture
+The V8 engine consists of several major components:
+
+css
+Copy
+Edit
+┌──────────────────────┐
+│  JavaScript Source   │
+└────────┬─────────────┘
+         ▼
+┌──────────────────────┐
+│    Parser & Scanner  │ ◀── Tokenizes and parses the code into AST
+└────────┬─────────────┘
+         ▼
+┌──────────────────────┐
+│  Abstract Syntax Tree│ (AST)
+└────────┬─────────────┘
+         ▼
+┌──────────────────────┐
+│  Ignition (Interpreter) │
+└────────┬─────────────┘
+         ▼
+┌──────────────────────┐
+│  Bytecode Generation │
+└────────┬─────────────┘
+         ▼
+┌──────────────────────┐
+│   TurboFan (Compiler)│ ◀── Optimizes hot code to machine code
+└──────────────────────┘
+🔍 Breakdown of Components
+1. Parser + Scanner
+Scanner (Lexer): Converts raw code into tokens (keywords, operators, etc.).
+
+Parser: Takes those tokens and builds an Abstract Syntax Tree (AST).
+
+AST is a tree representation of the source code structure.
+
+2. Interpreter (Ignition)
+Converts the AST into bytecode, a lower-level representation.
+
+Bytecode is faster to execute than raw JS but slower than machine code.
+
+Executes code immediately, so startup is fast.
+
+🔹 Example: let x = 2 + 3 → Bytecode instructions like LoadLiteral, Add, Store
+
+3. Profiler
+Tracks how often functions run ("hot" code).
+
+Collects type feedback.
+
+Detects patterns worth optimizing.
+
+4. JIT Compiler (TurboFan)
+"Just-In-Time" compilation of hot functions.
+
+Compiles frequently-run bytecode to optimized machine code.
+
+Inlines functions, removes dead code, and applies other performance tricks.
+
+5. Garbage Collector
+Manages memory allocation and automatically frees up unused memory.
+
+Uses generational garbage collection:
+
+Young generation (short-lived objects)
+
+Old generation (long-lived objects)
+
+🔄 Execution Process Summary
+JavaScript source code is passed to the parser.
+
+Parser creates the AST.
+
+AST is interpreted by Ignition, which generates and runs bytecode.
+
+Profiler monitors the code execution.
+
+Frequently executed code is optimized by TurboFan into machine code.
+
+Machine code is executed directly by the CPU for peak performance.
+
+🧠 Why V8 Uses Both Interpreter and Compiler
+Ignition (Interpreter)	TurboFan (Compiler)
+Fast startup	Slower to start
+Less optimized	Highly optimized code
+Used for all code initially	Used for hot code only
+
+This combination is known as adaptive optimization.
+
+🗑️ Garbage Collection (GC)
+JavaScript engines also include Garbage Collectors to clean up memory:
+
+Detects objects no longer in use.
+
+Uses algorithms like mark-and-sweep.
+
+V8 uses generational GC to manage memory efficiently.
+
+⚡ Performance Tips (based on the engine)
+Avoid frequent object shape changes.
+
+Use consistent object keys and types.
+
+Minimize usage of eval() and with.
+
+Use async patterns efficiently — avoid blocking the main thread.
+
+Let the engine optimize — don’t fight it with overly clever code.
+
