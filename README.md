@@ -1,6 +1,6 @@
 Q.) what is event loop?
 
-Ans:- The JavaScript Event Loop is a core part of the JavaScript runtime that enables asynchronous behavior while still being single-threaded. To understand it thoroughly, we need to break it down into parts: the Call Stack, Web APIs, Callback Queue, and the Event Loop itself.
+Ans:- The JavaScript Event Loop is a core part of the JavaScript runtime that enables asynchronous behavior while still being single-threaded.
 
 🔁 What is the Event Loop?
 The event loop continuously monitors the call stack and the callback queue. It pushes tasks from the queue to the stack when the stack is empty, allowing asynchronous operations to execute in a non-blocking way.
@@ -13,15 +13,7 @@ The call stack is a data structure that records function calls.
 
 When a function is invoked, it is added to the stack; once done, it's popped off.
 
-Example:
 
-js
-Copy
-Edit
-function greet() {
-  console.log('Hello');
-}
-greet(); // 'greet' is pushed to the call stack and then popped
 2. Web APIs (or Browser APIs)
 When you use functions like setTimeout, fetch, or DOM events, they are offloaded to browser-provided APIs.
 
@@ -126,7 +118,7 @@ Q.) What is a JavaScript Engine?
 
 Ans :-
 
-he JavaScript engine is the component that reads, parses, compiles, and executes JavaScript code. Understanding its architecture is crucial to mastering how JavaScript actually runs under the hood, especially when dealing with performance, memory, and async behavior.
+The JavaScript engine is the component that reads, parses, compiles, and executes JavaScript code. 
 
 ⚙️ What is a JavaScript Engine?
 A JavaScript Engine is a program (usually embedded in a web browser or runtime like Node.js) that executes JavaScript code.
@@ -146,9 +138,7 @@ For this explanation, we'll focus on V8, as it's the most widely used and best-d
 🏗️ V8 JavaScript Engine Architecture
 The V8 engine consists of several major components:
 
-css
-Copy
-Edit
+
 ┌──────────────────────┐
 │  JavaScript Source   │
 └────────┬─────────────┘
