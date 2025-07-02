@@ -1016,7 +1016,54 @@ Ans:-
     Ex:- .Making HTTP requests
          .Accessing data
 
+Q. Difference b/w JSON and JavaScript object
+Ans :-
+    JavaScript object :- A JavaScript Object is a data structure in JavaScript used to store key-value pairs.
 
+        Ex:- const person = {
+                name: "John",
+                age: 30,
+                isAdmin: true,
+                greet: function () {
+                    console.log("Hello!");
+                }
+                };
+
+        .Can contain: functions, undefined, symbols, nested objects
+
+        .Fully usable in JavaScript runtime
+
+        .Not meant for data exchange, just for in-memory use
+
+    JSON :- JSON is a string-based data format used for storing and transferring data (especially between servers and web apps).
+
+        Ex:- 
+                {
+                "name": "John",
+                "age": 30,
+                "isAdmin": true
+                }
+
+        A string representation of data
+
+        Based on a subset of JavaScript object syntax
+
+        Does not allow: functions, comments, undefined, or symbols
+
+        Used with fetch, APIs, configuration files, etc.
+
+    .Conversion Between Them
+
+        Operation	             Method
+        Object → JSON	    JSON.stringify(obj)
+        JSON → Object	    JSON.parse(jsonString)
+
+        ex:- 
+
+            const obj = { name: "John", age: 30 };
+            const json = JSON.stringify(obj); // → '{"name":"John","age":30}'
+
+            const parsedObj = JSON.parse(json); // back to JS object
 
 
 
