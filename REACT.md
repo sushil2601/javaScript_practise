@@ -973,7 +973,48 @@ Ans :-
     The dispatch function allows you to handle asynchronous operations by dispatching actions inside function and handling those actions asynchronously.
 
 
-        
+Q. Explain createSlice and the configuration it takes?
+Ans :-
+    
+    .createSlice is a utility function provided by redux toolkit that simplifies the process of creating Redux Slices.
+
+    .A redux slice is a piece of the Redux store that includes a set of actions, a reducer and an initial state.
+
+    .It helps reduce boilerplate code associated with defining actions and the reducers for a specific slice of your Redux store.
+
+
+Q. Client-side routing 
+Ans:-
+    Client-side routing and navigation are managed on the client-side typically within web browser.
+
+    JavaScript framework and libraries such as Router are commonly used to implement client-side routing.
+
+    .fatser transition.
+    .SPA
+    .SEO challenges
+
+Q. Server-side routing
+Ans:-
+    Server-side routing manages routing and navigation on the server.
+
+    When a user requests a different url, the server generates and sends a new HTML page for the toute.
+
+    .Slower transition
+    .SEO friendly
+
+Q. SEO(Search Engine Optimization)
+Ans:-
+
+
+Q. Render props
+Ans:- 
+
+Q. Cross origin 
+Ans:-
+    The cross origin attributes in the script tag enables cross origin resources sharing for loading external JS files from different origin than hosting web page.
+
+    Ex:- .Making HTTP requests
+         .Accessing data
 
 
 
