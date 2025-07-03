@@ -143,7 +143,7 @@ Ans:-
 
     .Functional Component :-
 
-                ->A functional component is just a plain javaScript pure functions that accepts     props as an argument and return react element(JSX).
+                ->A functional component is just a plain javaScript pure functions that accepts    props as an argument and return react element(JSX).
 
                 ->It run from top to bottom and once the function is returned it can't be keep alive.
 
@@ -164,8 +164,6 @@ Ans:-
             .this.props can be used in child components to access properties/data passed from parent component.
 
             .this keyword is used to refer to the instance of the class.
-
-            .have lifecycle method and render methods.
 
 Q. SPA (Single Page Application).
 Ans :-
@@ -228,10 +226,6 @@ Ans:-
                 .improved performance.
                 .code reusability.
 
-Q. What is Babel?
-Ans :-
-        Babel in react is used to tranpile JSX in to javaScript which browser can understand.
-
 Q.Difference b/w declarative and imperative appraoch
 Ans:- 
         .Declarative appraoch:-  focus on describing the desired result without specifying the step-by-step process.
@@ -280,7 +274,7 @@ Q.Main files in react project.
 Ans :-
     index.html :- Single page for react application.
     App.js     :- Main Component or container or Root component.
-    index.js   :- Entry point for JavaScript.Render the main react component(App) into the root component.
+    index.js   :- Entry point for JavaScript. Render the main react component(App) into the root component.
 
 
 Q.How React App load and display the components in browser?
@@ -310,15 +304,24 @@ Ans :-
 Q. What are state,stateless,stateful and state management terms?
 Ans :- 
 
-    state :- refers to the current data fo the component.
+    state :- refers to the current data for the component.
 
-    Stateful and state management means,when a user performs some actions on the UI then the react application should be able to update nd re-render that data or state on the UI.
+    Stateful and state management means,when a user performs some actions on the UI then the react application should be able to update and re-render that data or state on the UI.
 
 Q. Props
 Ans:-
         .Props(Properties) are the way to pass data from a parent component to a child component.
         .Props are read-only and cannot be modified within the component.
         .one way communication from parent to child.
+
+Q. Satet
+Ans :-
+        State is a built-in React object used to store dynamic data that affects the rendering of a component.
+
+        state is local and managed within the component.
+
+        React provides the useState() hook to manage state in function components.
+
 
 Q. What are children props
 Ans :- 
@@ -336,7 +339,7 @@ Ans:-
 
 Q. What is public folder
 Ans:-
-    It contain static assets that are erved directly to the user's browser, such as images,fontsand the index.html file.
+    It contain static assets that are served directly to the user's browser, such as images,fontsand the index.html file.
 
 Q. What is src folder
 Ans:-
@@ -364,7 +367,7 @@ Ans :-
 
 Q. What is the role of return inside App.js?
 Ans :-
-    return is used to return the elements rom the function.
+    return is used to return the elements from the function.
 
 Q. can we have a function without a return inside App.js?
 Ans :-
@@ -610,7 +613,7 @@ Ans :-
 
     .Render after componentDidMount() to run side effects and then call render() method of updating phase again.
 
-    .componentDidMount() lifecycle methods in react is the part of mounting phase nd it is called after a component has been rendered to the DOM.
+    .componentDidMount() lifecycle methods in react is the part of mounting phase and it is called after a component has been rendered to the DOM.
 
 Q. What is the role of useContext() hooks?
 Ans:- 
@@ -736,7 +739,7 @@ Ans :-
 
     The Suspense component is used to display a fallback UI while the lazily loaded component is being fetched.
 
-Q. What are the prons and cons of code Splitting?
+Q. What are the pros and cons of code Splitting?
 Ans :- 
     Pros :-
             .Faster Initial Load Time.
@@ -768,9 +771,11 @@ Q. How do you inspect and analyze the generated chunks in a React application?
 Ans :-
     Use tools like Webpack Bundle Analyzer to analyze the size and composition of chunks.
 
-Q. What is aHigher-Order Component in React?
+Q. What is a Higher-Order Component in React?
 Ans :-
     A Higher-Order Component is a component which takes another component as an argument and adds extra features to that another component.
+
+    Ex:- ReactMemo
 
 Q. What are the 5 ways to style React components? Explain Inline Styles?
 Ans :-
@@ -860,11 +865,15 @@ Ans :-
 
 Q. useMemo
 
-Q . useCallback
+Q .useCallback
 
 Q. useRef
 
-Q. ReactMemo
+Q. ReactMemo :- 
+Ans :-
+    React.memo is a built-in HOC in React that wraps a functional component and memoizes its rendered output.
+
+    This means it will skip re-rendering if the props haven't changed.
 
 
 <!-- Redux -->
@@ -873,7 +882,7 @@ Q. Redux
 Ans :-
     Redux is an open-source JavaScript library used for state management.
 
-    Redux provides a centralized store that holds the entire state an application and allow components to access and update the state in a predictable manner.
+    Redux provides a centralized store that holds the entire state of an application and allow components to access and update the state in a predictable manner.
 
 Q. Redux Toolkit.
 Ans :- Redux Toolkit is the official, recommended way to write Redux logic. It simplifies store setup and reduces boilerplate.
