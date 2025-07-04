@@ -720,6 +720,10 @@ Q. How do you handle form validation in a controlled component?
 Ans :-
     By using conditional rendering based on the state and validate input values before updating the state.
 
+Q. Custom Hooks
+Ans :-
+    Custom hooks are user-defined functions that start with 'use' and allow you to reuse stateful logic across components.
+
 <!-- Code Splitting -->
 
 Q. What is code Splitting in React?
@@ -1074,7 +1078,11 @@ Ans :-
 
             const parsedObj = JSON.parse(json); // back to JS object
 
+Q. React DevTools
+Ans :-
+    React DevTools is a browser extension that allows you to inspect the react components tree, view props and state and debug React app efficiently.
 
+Q. 
 
 
 

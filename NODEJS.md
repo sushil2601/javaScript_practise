@@ -56,4 +56,76 @@ Ans :-
 
 Q. What is REST and RESTful API?
 Ans :-
-    .REST(Representational State Transfer) is an architectural style for designing network applications(R)
+    .REST(Representational State Transfer) is an architectural style for designing networked applications(REST is a set of guidelines for creating API's).
+
+    .RESTful API is a service which follow REST principles/guidelines.
+
+Q. What is differences b/w REST API and SOAP API?
+Ans :-
+
+    REST API                                                  SOAP API
+
+.Rest is an architectural style                   .SOAP(Simple Object Access Protocol) is a protocol
+
+.Uses HTTP or HTTPS.                              .Can use various protocols(HTTP,SMTP etc.)
+
+.Uses lightweight formats like JSON,XML           .uses XML
+
+.lightweight and faster                           .can be slower due to XML processing
+
+
+Q. What are HTTP Verbs and HTTP methods?
+Ans:- 
+    HTTP methods , also known as HTTP verbs, are a set of actions that a client can take on a resources.
+
+         ex:- GET,POST,PUT,PATCH,DELETE,
+
+Q.Explain the concept of Idempotence in RESTful APIs.
+Ans :-
+    Idempotence meaning performing an operation multiple time should have the same outcome as performing it once.
+
+    Idempotence Methods :- GET,PUT,DELETE
+    Non-Idempotence Methods :- POST
+
+Q. What is the role of status codes in RESTful APIS?
+Ans :-
+    100 -> continue
+    200 -> ok, 201 -> Created, 202 -> Accepted, 204 -> No content
+    300 -> Multiple choices
+    400 -> Bad Request, 401 -> Unauthorized, 403 -> Forbidden, 404 -> Not Found
+    500 -> Internal server error
+    501 -> Not Implemented
+    502 -> Bad Gateway
+    503 -> service unavailable
+
+Q. What is CORS in RESTful APIS?
+Ans :-
+    CORS(Cross-Origin Resource Sharing) is a security feature implemented in a web browsers that restricts web pages from making to a different domain than the one that served the web page.
+
+Q. What is Token based and JWT authentication?
+Ans :-
+    They contain JSON objects which have the information that needs to be shared b/w client and server.
+
+    These tokens are then sent on every HTTP requests, which allows the server to authenticate the user.
+
+    Each JWT is also signed using cryptography to ensure that the json contents cannot be altered by the client or a malicious party.
+
+    . Structure of a JWT :-
+            .HEADER     --> alogrithm(HS256) and token type(JWT)
+            .PAYLOAD    --> Data
+            .SIGNATURE  --> Verify Signature
+
+            A 'Signature' section, that is the result of header and payload, concatenated and then encrypted with the private key.
+
+
+    . On client-side, tokens can be stored in two different ways :
+            .Stored in a cookie
+            .Stored in the sessionStorage or localStorage of the browser.
+
+Q. Child process
+
+Q. Buffer and Stream
+
+Q. Promises
+
+Q. Event loop
