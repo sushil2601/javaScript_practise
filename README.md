@@ -1,4 +1,4 @@
-Q.) what is event loop?
+Q. what is event loop?
 
 Ans:- The JavaScript Event Loop is a core part of the JavaScript runtime that enables asynchronous behavior while still being single-threaded.
 
@@ -114,7 +114,7 @@ The event loop checks if the call stack is empty and moves tasks accordingly.
 Microtasks run before macrotasks.
 
 
-Q.) What is a JavaScript Engine?
+Q. What is a JavaScript Engine?
 
 Ans :-
 
@@ -232,14 +232,139 @@ Uses algorithms like mark-and-sweep.
 
 V8 uses generational GC to manage memory efficiently.
 
-⚡ Performance Tips (based on the engine)
-Avoid frequent object shape changes.
 
-Use consistent object keys and types.
+<!-- GIT Operation -->
 
-Minimize usage of eval() and with.
+Q. Difference b/w GIT and GITHUB.
+Ans :-
 
-Use async patterns efficiently — avoid blocking the main thread.
+  .Git is a distributed version control system (DVCS) that helps you track changes in your code and collaborate with others.
 
-Let the engine optimize — don’t fight it with overly clever code.
+  .GitHub is a server where we keep repositories/projects which would be used for colloboration.
+
+  .Git is a tool.
+  .GitHub is a platform.
+
+  .Git commndLine :- gitbash,gitcmd,gitgui
+
+  .git command :-
+  ----------------
+
+    .git version :- This command is used to check the version of git.
+
+    .git help    :- If we want to see the list of commands then we can use git help.
+
+    .git config  :- It is used when the git software is used for the first time.
+                    The command will set the developer identity like name,emailId ...
+                    This configuration information will be used by git software for every push operation encountered.
+
+    .git config --list :- This command is used to provide the list of configuration.
+
+    .git init     :- Normally a folder will be created in the developers works place and inside the folder the source code would place
+
+                    This command internally creeates one folder called .git.
+
+                    .git is used by git software to identify the folder which should participate in pushing to local and remote repository.
+
+    .git status :- This command is used to check the status of working directory.
+
+    .git add --a or git add . :- If we want to push all the files from stagged area to workplace.
+
+    .git rm --cached <file-name> :- It is also posssible to unstaged the files from stagged area to workplace.
+
+    .git restore <file-name>     :- To restore the old file
+
+    .git commit -m <some-message> :- The files which are ready for commit should be in stage area.    
+
+    .git commit -am "message" --> to add and commit ek sath karne ke liye.  
+
+
+    .Create remote repository and push it to remote repository
+    ------------------------------------------------------------
+
+      1. Open github.com
+      2. Create anew repository and enter some name and click on create repository
+      3. To perform push operation we need to use the following command
+
+          git branch -M main
+
+          git remote add origin https://github.com/sushil2601/nodecode.git
+
+          git push -u origin main
+
+Q.Difference b/w pull and clone
+Ans :-
+
+    pull:-
+    ------
+            It is used to fetch the latest changes made in remote repository to working directory.
+
+            Ex:- git pull
+
+    clone :-
+    --------
+            It is used to clone the repository to the working directory of the developer.
+
+            Ex:- git clone <url>
+
+.Working area :- developer workplace(source code)
+
+.stage area   :- Before adding the code to the local repository, we keep the code in stage area.
+
+.Local repository :- Before pushing the code to remote repository, we keep the code in local repository.
+
+.git checkout master --> to switch on master branch
+
+.git branch quicksort --> to create new branch(isme main wala code hoga)
+
+.git checkout quicksort --> to switch this branch from master branch.
+
+.git checkout -b bubblesort --> branch v creaate hoga aur sath-sath switch v kar jayega.
+
+or 
+
+git switch -c bubblesort
+
+.git merge bubblesort --> to merge the bubblesort to main branch.
+
+.git branch -d bubblesort --> to delete bubblesort branch.
+
+.Merge Conflict :-
+--------------------
+          conflict(means red sign wale ko remove karenge) ko remove karke again git add and git commit karke push karenge.
+
+.git merge --abort  --> to abort merge
+
+.git log   --> logs ko dekhne ke liye. Latest commit ko batata hai then move down.
+
+              Ex:- ID,Author,Date
+
+.git tag  :- tag a specific commit
+
+      Ex:- git tag -a betav1.0 "commitID" -m  "message"
+
+      git tag -d <Tagname>
+
+.git commit --amend   --> 
+
+.git reset            --> 
+
+.git show :- kisi v particular commit ke under kya kya hua hai wo sare dekhne ke liye.
+
+.git log -p :- latest commit ke sath sath , diff v dikhata hai means kis file me kya change hui hai wo v dikhata hai.
+
+.git log --online :  -> isme author,Id hidden milta hai.isme SHAID and message meilenge.
+
+.git log --stat :- sare commit to show hoga hi, sath-sath kis file me change hua hai wo v return dega.
+
+.git show <SHAID>  --> kisi particular commit ke under kya kya changes hui hai wo sare dekh sakte hai.
+
+.git rebase :-
+
+.git cheripick :-
+
+.git remote -V
+
+
+
 

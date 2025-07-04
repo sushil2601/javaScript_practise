@@ -123,9 +123,36 @@ Ans :-
             .Stored in the sessionStorage or localStorage of the browser.
 
 Q. Child process
+Ans :-
+    In Node.js, the child-process modules allows you to create and control system-level processes.
+
+    such as running shell commands, executing other node scripts.
+
+    This is useful for :-
+        . Running external tools(eg:- Git,Python,FFmpeg).
+        . Performing CPU intensive tasks outside the main thread.
+        . Creating worker processes.
+        . Auotmating Devops or system Scripts.
+
+    const {exec,spawn,fork,execFile} = require('child-process')
 
 Q. Buffer and Stream
 
 Q. Promises
 
 Q. Event loop
+
+Q. What is cookie-parser in Node.js (Express)?
+Ans :- 
+    cookie-parser is a middleware in Express used to parse cookies from the HTTP request header and make them easily accessible in your route handlers.
+
+    Cookies are automatically parsed and stored in req.cookies.
+
+Q. Monolith vs Micro services
+Ans :-
+
+
+Q. Redis
+Ans :-
+    
+

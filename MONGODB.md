@@ -55,7 +55,7 @@ Ans :-
 
 Q. What is projection in MongoDB? How to implement it?
 Ans :-
-    Projects is the way of specifying which fields should be returned in the query results.
+    Projection is the way of specifying which fields should be returned in the query results.
 
     Projection can be implemented by using the project method.
 
@@ -134,7 +134,34 @@ Ans :-
 Q. Query()
 
 Q. Aggregation
+Ans :-
+    Aggregation is a way of processing a large number of documents in a collection and returning computed results — like filtering, grouping, sorting, and transforming data.
 
-Q. How to perform transactions
+    Aggregation uses a pipeline pattern: each stage processes the documents and passes the result to the next stage.
+
+    Stage	                                   Purpose
+    $match	                                    Filters documents (like find)
+    $project	                                Selects specific fields
+    $group	                                    Groups documents and performs aggregations
+    $sort	                                    Sorts documents
+    $limit	                                    Limits number of results
+    $skip	                                    Skips documents (useful for pagination)
+    $unwind	                                    Deconstructs arrays into individual documents
+    $lookup	                                    Performs joins with other collections
+    $count	                                    Counts number of documents
+    $addFields	                                Adds new fields to documents
+
+Q. What is transactions? How to perform transactions?
+Ans :-
+    A transaction in MongoDB is a sequence of read and write operations that executes as a single unit.
+    If any part of the transaction fails, the entire transaction is rolled back, ensuring data integrity.
+
+    Method	                                       Description
+    startSession()	                                Starts a session
+    session.startTransaction()	                    Begins the transaction
+    { session }	                                    Pass session to each DB operation
+    commitTransaction()	                            Commits changes if everything is okay
+    abortTransaction()	                            Rolls back if there’s an error
+    endSession()	                                Always close the session
 
 Q. 
