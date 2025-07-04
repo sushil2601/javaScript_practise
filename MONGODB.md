@@ -130,3 +130,11 @@ Ans :-
 
     Create Model
     const User = mongoose.model('User', userSchema);  // now User is Model
+
+Q. Query()
+
+Q. Aggregation
+
+Q. How to perform transactions
+
+Q. 
