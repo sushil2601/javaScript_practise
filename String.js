@@ -333,6 +333,10 @@
 
 // console.log(removeWhiteSpace('Interview  Happy'));
 
+// Q. Palindrome number
+
+// Q. To check armstrong number
+
 
 
 

@@ -138,7 +138,9 @@ Ans :-
 
 Q. Buffer and Stream
 
-Q. Promises
+Q. Promises:-
+Ans :-
+        
 
 Q. Event loop
 

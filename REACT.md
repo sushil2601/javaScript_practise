@@ -151,8 +151,6 @@ Ans:-
 
                 ->Hooks can be used in functional component to make them stateful.
 
-                ->It uses JS function to create component.
-
                 ->React life cycle cannot be used in functional component.
 
     .Class Component :-
@@ -164,6 +162,24 @@ Ans:-
             .this.props can be used in child components to access properties/data passed from parent component.
 
             .this keyword is used to refer to the instance of the class.
+
+Q.“In React, everything is a component.” Explain.
+Ans:-
+
+    Components are the building blocks of a React application’s UI. These components split up the entire UI into small independent and reusable pieces. Then it renders each of these components independent of each other without affecting the rest of the UI.
+
+Q. Why is it necessary to start component names with a capital letter?
+Ans:-
+
+    In React, it is necessary to start component names with a capital letter. If we start the component name with lower case, it will throw an error as an unrecognized tag. It is because, in JSX, lower case tag names are considered as HTML tags.
+
+Q. How would you prevent a component from rendering in React?
+Ans:-
+    To prevent a component from rendering in React, you can use conditional rendering. You can wrap the component's JSX code inside an if statement or a ternary operator, where you specify a condition. If the condition evaluates to true, the component will render; otherwise, it won't. 
+
+Q. Why React uses className over class attribute?
+Ans:-
+    React uses className instead of class in HTML because class is a reserved keyword in JavaScript. Using class would cause conflicts with JavaScript syntax. So, to avoid issues, React uses className for specifying CSS classes on elements. This allows developers to apply CSS classes to React components without running into conflicts or JavaScript errors.
 
 Q. SPA (Single Page Application).
 Ans :-
@@ -296,7 +312,7 @@ Ans :-
 
             Angular :-
 
-                .Angular is a complete framework.
+                .Angular is a complete framework following MVC/MVVM patterns.
                 .Angular uses a real DOM.
                 .Angular is bigger because it is a complete framework.
                 .Angular is a complete framework , therefore it provide built-in support for features like routing, forms , validation and HTTP requests.
@@ -314,13 +330,46 @@ Ans:-
         .Props are read-only and cannot be modified within the component.
         .one way communication from parent to child.
 
-Q. Satet
+Q. State
 Ans :-
-        State is a built-in React object used to store dynamic data that affects the rendering of a component.
+        The state in ReactJS is a JavaScript object that stores data specific to a component. It represents the current state of the component and can be updated over time. 
 
         state is local and managed within the component.
 
         React provides the useState() hook to manage state in function components.
+
+Q. What happens when you call setState?
+Ans:-
+    The state property is updated in a React component with the object passed into setState, and this is done asynchronously. It tells React that this component and its children need to be re-rendered, but React may not do this immediately.
+
+Q. What are stateless components?
+Ans:-
+    If the behaviour of a component is independent of its state then it can be a stateless component. 
+
+Q.What are stateful components?
+Ans:-
+    If the behaviour of a component is dependent on the state of the component then it can be termed as stateful component. These stateful components are either function components with hooks or class components.
+
+Q. Does React re-render all components and sub components every time setState is called?
+Ans:-
+    No, React does not re-render all components and subcomponents every time setState is called. It only re-renders the components that are affected by the state change.
+
+Q. How does React renderer work exactly when we call setState?
+Ans:-
+    When you use setState in React, it triggers a process called reconciliation. React compares the old and new state, figures out what changed, and updates only the necessary parts of the user interface. It does this by creating a virtual copy of the user interface called the virtual DOM and then efficiently applying the required changes to the actual web page. This helps React make updates quickly and keeps your app running smoothly.
+
+Q.What are Default Props?
+Ans:-
+    In React, default props are used to define default values for props in a component. Default props ensure that if a parent component doesn't provide a value for a certain prop, the component will still have a default value to work with.
+
+Q. Is React a library or a Framework and why?
+Ans:-
+    React is a JavaScript library for UI building, not a framework. It focuses on the view layer, offering efficient ways to create UI components and manage state. Unlike frameworks, React doesn't provide a full set of development tools, but it excels at making interactive web applications with its declarative approach and efficient UI updates.
+
+Q. What are nested component in react?
+Ans:-
+    In React, nested components refer to the idea of rendering components within other components. 
+
 
 
 Q. What are children props
@@ -339,7 +388,7 @@ Ans:-
 
 Q. What is public folder
 Ans:-
-    It contain static assets that are served directly to the user's browser, such as images,fontsand the index.html file.
+    It contain static assets that are served directly to the user's browser, such as images,fonts and the index.html file.
 
 Q. What is src folder
 Ans:-
@@ -433,7 +482,7 @@ Q. What is routing and Router in React?
 Ans :-
     .Routing allows you to create a single page web application with navigation without the need for a full page refresh.
 
-    .React Router :- React Router is a library for handling routing and enables navigation and rendering of different components based on the URL.
+    .React Router :- React Router is a popular library in React for handling routing in a web application. It allows developers to create single-page applications with multiple views or pages. React Router works by defining routes that map to different components.
 
 Q. How to implement Routing in React?
 Ans :-
@@ -534,7 +583,7 @@ Q. useEffect.
 Ans :-
     .The useEffect Hook in react is used to perform side effects in functional components.
     
-    .Ex:- data fetching from API, subscriptions or any other operation that needs to be performed after the component has been rendered.
+    .Ex:- data fetching, subscriptions, or DOM manipulation  or any other operation that needs to be performed after the component has been rendered.
 
     .It serves the same purpose as componentDidMount,componentDidUpdate and componentWillUnMount lifecycles methods in React classes.but it unified in to a single API.
 
@@ -570,7 +619,7 @@ Ans:-
 
 Q.Life cycle methods.
 Ans :- 
-        .Lifecycle methods are special methods in class components that are automatically called at specific points during a component’s life cycle — from creation, updating, to unmounting.
+        .Lifecycle methods in ReactJS are special methods that are invoked at different stages of a component's lifecycle. They allow developers to perform specific actions at certain points, such as initializing state, updating the UI, or cleaning up resources.
 
         .componentWillMount():-   When the component is created and inserted into the DOM.
 
@@ -720,9 +769,14 @@ Q. How do you handle form validation in a controlled component?
 Ans :-
     By using conditional rendering based on the state and validate input values before updating the state.
 
-Q. Custom Hooks
-Ans :-
-    Custom hooks are user-defined functions that start with 'use' and allow you to reuse stateful logic across components.
+Q. Can you explain what custom hooks are in React and how they differ from regular hooks?
+Ans:-
+    Custom hooks in React are reusable JavaScript functions that allow you to extract logic and stateful behavior from components. While regular hooks like useState and useEffect are provided by React, custom hooks are created by developers to encapsulate specific logic that can be shared across multiple components.
+
+Q. What are the benefits of using custom hooks in React? Can you provide an example of a scenario where a custom hook would be useful?
+Ans:-
+    The benefits of using custom hooks in React are improved code organization, reusability, and separation of concerns. They enable you to extract complex logic into a reusable hook, reducing duplication and promoting cleaner, more maintainable code. For example, a custom hook for handling form validation can be reused in multiple forms throughout the application.
+
 
 <!-- Code Splitting -->
 
@@ -734,6 +788,10 @@ Ans :-
     1. Use React.lazy() to lazily import components.
     2. Wrap components with Suspense to handle laoding.
     3. Configure your build tool(eg. Webpack) for dynamic imports.
+
+Q. Explain the concept of lazy loading in React.
+Ans:-
+    Lazy loading in React is a technique used to optimize performance by loading components or resources only when they are needed. Instead of loading all components upfront, you can dynamically import them using the React.lazy function and render them when required. This helps reduce the initial bundle size and improves the loading speed of your application.
 
 Q. What is the role of Lazy and Suspense methods in React?
 Ans :-
@@ -868,17 +926,248 @@ Ans :-
 
 
 Q. useMemo
+Ans :-
+    The useMemo hook is used in React to optimize performance by memoizing (caching) the result of an expensive computation so that it does not re-run on every render unless necessary.
+
+        syntax :-
+                const memoizedValue = useMemo(() => computeSomething(a, b), [a, b]);
+
+                computeSomething(a, b) is the expensive calculation.
+
+                [a, b] is the dependency array – useMemo re-runs only if any of these values change.
+
+        Use useMemo when:
+
+                .You have a computationally expensive function.
+
+                .The result doesn’t need to be recalculated on every render.
+
+                .You want to avoid unnecessary recalculations or re-renders.
+
+    .Example Without useMemo
+
+            function App({ number }) {
+                    const expensiveCalculation = (num) => {
+                        console.log("Calculating...");
+                        let result = 0;
+                        for (let i = 0; i < 1e9; i++) {
+                        result += num;
+                        }
+                        return result;
+                    };
+
+            const result = expensiveCalculation(number); // runs on every render
+
+            return <div>Result: {result}</div>;
+            }
+
+            This will run expensiveCalculation on every render, even if number didn't change.
+
+    .Optimized with useMemo
+
+            import React, { useMemo } from "react";
+
+            function App({ number }) {
+                const expensiveCalculation = (num) => {
+                    console.log("Calculating...");
+                    let result = 0;
+                    for (let i = 0; i < 1e9; i++) {
+                    result += num;
+                    }
+                    return result;
+                }   ;
+
+            const result = useMemo(() => expensiveCalculation(number), [number]);
+
+            return <div>Result: {result}</div>;
+            }
+            Now, the calculation only runs if number changes.
+
+    .Real-World Example: Filtering a List
+
+        const filteredUsers = useMemo(() => {
+        return users.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        }, [users, searchTerm]);
+
+
+        This avoids filtering on every keystroke unless users or searchTerm changes.
+
 
 Q .useCallback
+Ans :-
+    useCallback is a React Hook used to memoize functions, so the function reference doesn’t change unless its dependencies change.
 
-Q. useRef
+    This helps you prevent unnecessary re-renders of child components or avoid re-creating functions on every render.
+
+    Syntax :-
+        const memoizedCallback = useCallback(() => {
+            // function body
+        }, [dependencies]);
+
+        It returns a memoized version of the function.
+
+        The function will be re-created only when a dependency in the array changes.
+
+    .Why use useCallback?
+
+        In React, functions are re-created on every render, which can cause:
+
+                .Unnecessary re-renders of child components using React.memo().
+
+                .Performance issues in deeply nested components.
+
+    Ex:-
+        Real-Time Scenario:
+            You have a Todo list, and the AddTodo component accepts an addTodo function as a prop. Without useCallback, this function gets re-created every time the parent re-renders, causing AddTodo to re-render unnecessarily.
+
+        
+        import React, { useState, useCallback } from 'react';
+
+            const AddTodo = React.memo(({ onAdd }) => {
+            console.log('AddTodo rendered');
+            return (
+                <div>
+                <button onClick={onAdd}>Add Todo</button>
+                </div>
+            );
+            });
+
+            function App() {
+            const [todos, setTodos] = useState(["Buy milk"]);
+            const [count, setCount] = useState(0);
+
+            // Without useCallback, this function is recreated every render
+            const addTodo = useCallback(() => {
+                setTodos(prev => [...prev, "New Task"]);
+            }, []); // memoized function
+
+            return (
+                <div>
+                <h2>Todos:</h2>
+                <ul>
+                    {todos.map((todo, idx) => <li key={idx}>{todo}</li>)}
+                </ul>
+                <AddTodo onAdd={addTodo} />
+
+                <hr />
+                <p>Counter: {count}</p>
+                <button onClick={() => setCount(c => c + 1)}>Increment</button>
+                </div>
+            );
+            }
+
+            export default App;
+
+AddTodo is wrapped with React.memo(), so it only re-renders when props change.
+
+addTodo is memoized with useCallback, so its reference stays the same unless dependencies change.
+
+Now, clicking “Increment” doesn’t re-render AddTodo.
+
+
+Simple Example Without useCallback
+
+    function App() {
+    const handleClick = () => {
+        console.log('Clicked');
+    };
+
+    return <Button onClick={handleClick} />;
+    }
+
+Every time App re-renders, handleClick is re-created — so if <Button> uses React.memo(), it will still re-render due to prop change.
+
+Using useCallback to Optimize
+
+    import React, { useCallback } from 'react';
+
+    function App() {
+    const handleClick = useCallback(() => {
+        console.log('Clicked');
+    }, []); // function reference remains the same unless dependencies change
+
+    return <Button onClick={handleClick} />;
+    }
+
+Now, if <Button> is a React.memo() component, it won't re-render unless handleClick actually changes.
+
+
+
+Q. useRef :-
+Ans :-
+    The useRef hook in React is used to:
+
+        .Access DOM elements directly.
+
+        .Persist values across renders without causing a re-render.
+
+        .Store mutable data (like instance variables in a class).
+
+    syntax :-
+            const myRef = useRef(initialValue);
+
 
 Q. ReactMemo :- 
 Ans :-
-    React.memo is a built-in HOC in React that wraps a functional component and memoizes its rendered output.
+    React.memo is a higher-order component (HOC) that memoizes a functional component.
 
-    This means it will skip re-rendering if the props haven't changed.
+    It prevents a component from re-rendering if its props haven't changed.
 
+        syntax :-
+                const MemoizedComponent = React.memo(Component);
+
+                or
+
+                export default React.memo(MyComponent);
+
+    .Why Use React.memo?
+
+            .By default, React re-renders a child component every time the parent renders — even if the child’s props didn’t change.
+
+            .React.memo helps in performance optimization by avoiding unnecessary renders of function components.
+
+    Real Example Without React.memo
+
+            function Child({ name }) {
+            console.log("Child rendered");
+            return <p>Hello, {name}</p>;
+            }
+
+            function Parent() {
+            const [count, setCount] = useState(0);
+            return (
+                <div>
+                <Child name="Suman" />
+                <button onClick={() => setCount(count + 1)}>Increment</button>
+                </div>
+            );
+            }
+
+Even though name="Suman" never changes, the Child component re-renders every time the parent does.
+
+
+ Optimized With React.memo
+
+    const Child = React.memo(({ name }) => {
+    console.log("Child rendered");
+    return <p>Hello, {name}</p>;
+    });
+
+Now, Child will only re-render if name changes.
+
+By default, React.memo does a shallow comparison.
+
+
+Q. Difference b/w useMemo and react.Memo
+Ans :-
+        useMemo                                            React.Memo
+
+    .Hook                                        .Higher-Order Component (HOC)
+    .Memoizes the result of a function (value)   .Memoizes a whole functional component
+    .Recalculating expensive values              .Re-rendering a component if props haven’t changed
+    .Caching computations                        .Avoiding re-render of child components with unchanged props
+
+Q. 
 
 <!-- Redux -->
 
@@ -893,7 +1182,17 @@ Ans :- Redux Toolkit is the official, recommended way to write Redux logic. It s
 
 Q .What is the flow of data in React while using Redux?
 Ans :-
-    Component → dispatch(action) → reducer → new state → store updates → component re-renders
+    Component(click to ADD button) → dispatch(action) → reducer(fn) → new state → store updates → component re-renders
+
+    Ex:- Suppose we add item in cart. Cart is here the store.
+
+        AddItem component
+
+            When we click on the 'add Item button' .It dispatches an action. Which calls the reducers function, which update the slice of our redux store and then add the item to be added to our slice.
+
+            for reading data we use selector. It will read the data from store and 
+
+            selector --> This phenomenal is known as subscribing to the store.
 
 Q. What is the role of Store in React Redux?
 Ans :-
@@ -906,6 +1205,11 @@ Ans :-
 Q .What is reducer in redux.
 Ans :-
     A reducer is a pure function that takes the previous state and an action as arguments and returns the new state of the application.
+
+Q. What is the role of the useReducer hook in React? How does it differ from the useState hook?
+Ans:-
+    The useReducer hook serves as an alternative to useState for managing complex state logic. It takes a reducer function and an initial state, returning the current state value and a dispatch function. By dispatching actions to the reducer, state updates can be controlled and organized in a more structured manner.
+
 
 Q. Core principle of redux.
 Ans :-
@@ -1082,7 +1386,364 @@ Q. React DevTools
 Ans :-
     React DevTools is a browser extension that allows you to inspect the react components tree, view props and state and debug React app efficiently.
 
-Q. 
+Q. What is package.json and package-lock.json?
+Ans :-
+    
+    .package.json :-
+                    It keeping track what version of package is installed in to system.
+                    In this automatically version upgraded.
+
+
+    .package-lock.json :-
+                        Keeps a track of exact version of package that is being installed.
+                        It locks the version.
+                        It doesnot have caret or tilde.
+
+Q. React19 features  
+Ans :-
+    npm install react@latest react-dom@latest (using a modern bundler like Vite or Next.js 14+ ).
+
+    1.Actions (New Form Handling API)
+        React 19 introduces actions, a new way to handle form submissions.
+
+        It's designed to make mutations (POST/PUT) easier and more declarative, especially in server components or async rendering.
+
+        function Form() {
+        async function handleSubmit(formData) {
+            'use action';
+            // server-safe logic
+        }
+
+        return <form action={handleSubmit}>...</form>;
+        }
+
+    2.useOptimistic (For Optimistic UI Updates)
+        New hook for optimistically updating UI before server response.
+
+        Makes apps feel more responsive and fast.
+
+        const [optimisticTodos, addOptimisticTodo] = useOptimistic(
+        todos,
+        (currentTodos, newTodo) => [...currentTodos, newTodo]
+        );
+
+    3.useFormStatus (Form State Awareness)
+        Lets you track the pending/submitting status of a form or button inside forms.
+
+        const { pending } = useFormStatus();
+
+        return <button disabled={pending}>Submit</button>;
+
+    4.useFormState (For Managing Form Responses)
+        Lets you manage form state, such as server responses or field-level errors.
+
+        const [state, formAction] = useFormState(handleSubmit, initialState);
+
+    5.Improved Server Components (RSC)
+
+        Server components are officially supported.
+
+        Enables zero-bundle-size components that render on the server only.
+
+        Great for SEO and performance.
+
+    6.Async Server-Side Rendering (SSR) by Default
+
+        React 19 supports full async rendering during server-side rendering.
+
+        You can now use await directly inside components (when using server components).
+
+    7.New Compiler (React Compiler - in progress)
+
+        A new compiler is being introduced that automatically optimizes reactivity (like auto-memoization).
+
+        Similar to how Svelte or Solid works under the hood.
+
+        Currently experimental but expected to be a game-changer.
+
+    8.Better Performance & Smaller Bundle Sizes
+
+        Internals improved to reduce overhead.
+
+        Tree-shaking friendly.
+
+        Faster hydration and update cycles.
+
+    9.Support for Web Standards Forms
+
+        Full support for HTML5 form behavior.
+
+        You can now rely more on native forms with better developer ergonomics.
+
+    10.Transition API Improvements
+
+        Smoother experience for handling UI transitions (e.g., loading states).
+
+        Supports better concurrent rendering experience.
+
+        const [isPending, startTransition] = useTransition();
+
+        startTransition(() => {
+        // state updates that can be deferred
+        });
+
+
+
+Q. RTK Query
+Ans :-
+
+Q.Redux-Thunk
+Ans:-
+
+
+
+Q.Conditional rendering
+Ans :-
+    Conditional Rendering in React means showing or hiding parts of the UI based on certain conditions (like state, props, or variables). 
+    It’s similar to using if statements in regular JavaScript, but within JSX.
+
+        ex:- function Greeting({ isLoggedIn }) {
+                return (
+                    <div>
+                        {isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please log in.</h1>}
+                    </div>
+                );
+            }
+
+            Ternary operator :- The ternary operator is a shorthand way to write an if...else condition 
+
+            Ex:- condition ? expressionIfTrue : expressionIfFalse
+
+Q. Server-side rendering
+Ans :-
+    Server-Side Rendering (SSR) means that your React components are rendered on the server (not in the browser) into HTML, which is then sent to the client. Once the HTML is loaded in the browser, React takes over and makes the page interactive.
+
+    why use ssr :-
+                    .Faster first load
+                    .SEO friendly
+                    .Better performance
+
+    How SSR Works in React:-
+
+                    .User requests a page → browser sends request to server.
+
+                    .Server runs React code → renders the React components into HTML.
+
+                    .HTML is sent to browser → browser displays page instantly.
+
+                    .React hydrates → React attaches event handlers and makes the page interactive.
+
+        .Next.js – Most Popular Framework for SSR
+
+        Disadv :-
+                .SSR increases server load, because the server must render for each request.
+
+                .SSR adds complexity for things like authentication, API requests, and caching.
+
+
+Q. Diiferent way to setup react project.
+Ans :-
+     1. Using create-react-app
+     2. Using Vite – Fast & Modern Alternative (npm create vite@latest my-app)
+     3. Using Next.js – Server-side Rendering & Routing Built-in
+
+            .Best for: SEO, SSR, hybrid static/dynamic apps, production-ready apps.
+
+                npx create-next-app my-app
+                cd my-app
+                npm run dev
+
+    4. Manual Setup with webpack,parcel and Babel
+
+Q. peventDefault().
+Ans :-
+    event.preventDefault() is a method provided by the browser's event system. It is used to prevent the default action that belongs to the event from happening.
+
+    .By default, a form submits and reloads the page.It stop the reloading.
+    .Clicking an <a> tag navigates to another page. You can prevent it:
+
+Q. What are event handler?
+Ans :-
+    An event handler in React is a function that’s called when a user interacts with a component — like clicking a button, typing in an input, submitting a form, etc.
+
+    React wraps the browser’s native events in its own SyntheticEvent system for better performance and cross-browser compatibility.
+
+        Event	                                                Description
+        onClick	                                                Fired when an element is clicked
+        onChange	                                            Fired when input value changes
+        onSubmit	                                            Fired when a form is submitted
+        onMouseEnter	                                        Fired when mouse enters element
+        onKeyDown	                                            Fired when a key is pressed
+        onFocus	                                                Fired when input gets focus
+        onBlur	                                                Fired when input loses focus
+
+    SyntheticEvent in React
+        All events in React are instances of SyntheticEvent, which:
+
+                Wrap native browser events
+
+                Work consistently across browsers
+
+                Include common properties: type, target, currentTarget, preventDefault(), stopPropagation()
+
+Q. What is a Synthetic Event?
+Ans:-
+    In React, a SyntheticEvent is a cross-browser wrapper around the browser’s native event (like click, change, submit, etc.).
+
+    React creates a synthetic version of the native event so it works consistently across all browsers.
+
+Q. stopPropagation.
+Ans :-
+    prevents an event from bubbling up the DOM tree.
+
+Q. What is event object?
+Ans :-
+    The event object is a special object that is automatically passed to event handler functions when an event occurs (like a click, key press, form submit, etc.).
+
+    It contains information about the event, such as:
+
+        What triggered the event
+
+        The type of event
+
+        Mouse/key positions
+
+        Target element
+
+        Methods like preventDefault() or stopPropagation()
+
+    
+Q. What is the purpose of the "render" method in ReactJS?
+Ans:-
+    The "render" method in ReactJS is a crucial part of a component. It is responsible for returning the JSX (JavaScript XML) code that defines the structure and content of the component's UI. The render method is called automatically whenever there is a change in the component's state or props.
+
+Q. What is the purpose of the "key" prop in ReactJS?
+Ans:-
+    The "key" prop in ReactJS is used to uniquely identify elements in a list of components or elements rendered by a loop. It helps React efficiently update and re-render only the necessary components when the list changes.
+
+Q. What is the impact of indexes as keys?
+Ans:-
+    Using indexes as keys in React can cause problems. When components are rendered using indexes as keys, React may not properly update or reorder them when the order changes. This can result in incorrect rendering, loss of component state, and slower performance. It's better to use unique and stable identifiers as keys to avoid these issues and ensure that components are updated correctly.
+
+Q. How does React handle event handling?
+Ans:-
+    React handles event handling by using synthetic events, which are cross-browser wrappers around native browser events. When an event is triggered, React creates a synthetic event object and passes it to the event handler function.
+
+Q. What are error boundaries in react?
+Ans:-
+    Error boundaries in React are components that prevent the entire application from crashing when an error occurs within their child components. They act as safety nets by catching and handling errors, allowing developers to display fallback UI and maintain a smoother user experience.
+
+Q. Explain the concept of "forwarding refs" in React.
+Ans:-
+    "Forwarding refs" in React allows a parent component to pass a ref to its child component. This way, the parent can access and control the child's DOM element or component. It's like giving a special power to the parent component to interact with its child component's internals.
+
+Q. How do you clean up or release the resources associated with a ref in React?
+Ans:-
+    To clean up or release resources associated with a ref in React, you can leverage the useEffect hook. Within the useEffect hook, you can return a cleanup function that will be called when the component unmounts or when the ref value changes. This allows you to handle any necessary cleanup operations, such as removing event listeners or cancelling timers, ensuring that your application's resources are properly managed.
+
+Q. How to apply validation on props in React?
+Ans:-
+    To apply validation on props in React, you can use the PropTypes library.
+
+Q. What is ReactDOM package?
+Ans:-
+    The ReactDOM package in React is responsible for rendering the React components to the browser's DOM (Document Object Model). It provides methods and functionality for efficiently updating and manipulating the DOM based on changes in the React component tree. ReactDOM acts as the bridge between React's virtual representation of the UI and the actual HTML elements on the webpage, ensuring that any changes in the component hierarchy are reflected in the rendered UI.
+
+Q. What is Axios, and what problem does it solve in JavaScript or React development?
+Ans:-
+    Axios is a JavaScript library used for making HTTP requests in browsers or Node.js. It simplifies the process of sending and receiving data from servers, making it easier to handle network requests in JavaScript or React applications.
+
+Q. What are the advantages of using Axios over the built-in fetch API in JavaScript?
+Ans:-
+    Axios offers advantages over the built-in fetch API by providing a more convenient and consistent API, better error handling, support for request cancellation, and the ability to intercept requests and responses.
+
+Q. What is React Fiber?
+Ans:-
+    React Fiber is a new reconciliation algorithm introduced in React 16. It is responsible for the efficient rendering and updating of components in React applications. React Fiber breaks the rendering work into smaller units called "fibers" and manages them in a priority-based manner.
+
+Q. How does React Fiber improve the overall performance of React applications?
+Ans:-
+    React Fiber improves performance by allowing more control over scheduling and rendering. It enables asynchronous rendering, which avoids blocking the main thread, resulting in a smoother user experience.
+
+Q. How do you handle authentication and authorization in React applications?
+Ans:-
+    There are two main ways to handle authentication and authorization in React applications. One way is to use a third-party library, such as Auth0 or Firebase. These libraries provide a number of features that make it easy to implement authentication and authorization in your application, such as user management, password hashing, and session management.
+
+
+<!-- Server-side rendering -->
+
+Q. Why do we need Nextjs?
+Ans:-
+    Next.js is a React framework that provides server-side rendering (SSR), static site generation (SSG), and other features like routing and API handling. It is useful for building optimized and performant React applications, improving SEO, and enabling server-side functionality.
+
+
+Q. What is server-side rendering (SSR) in React.js?
+Ans:-
+    Server-side rendering (SSR) in React.js is the process of rendering React components on the server and sending the pre-rendered HTML to the client.
+
+Q. Why would you choose to use server-side rendering instead of client-side rendering in React.js?
+Ans:-
+    Server-side rendering is chosen over client-side rendering in React.js for benefits like improved performance, SEO friendliness, and better initial page load experience.
+
+Q. How does server-side rendering differ from client-side rendering in React.js?
+Ans:-
+    Server-side rendering differs from client-side rendering in that the rendering process occurs on the server before sending the HTML to the client, whereas client-side rendering renders components in the browser.
+
+Q. Explain the benefits and drawbacks of server-side rendering in React.js.
+Ans:-
+    The benefits of server-side rendering in React.js include improved SEO, faster initial page load, and better performance for low-end devices. However, it can introduce more complexity and may not be suitable for all applications.
+
+Q. What are the performance implications of server-side rendering in React.js?
+Ans:-
+    Server-side rendering can improve performance by reducing the time required for the initial render, but it can also increase the server load and network traffic for subsequent or additional requests.
+
+Q. How can you implement server-side rendering with React.js without using frameworks like Next.js?
+Ans:-
+    To perform server-side rendering with React.js without frameworks like Next.js, you need to set up a Node.js server, use a build system like Webpack or Babel, and implement server-side rendering logic using libraries like react-dom/server.
+
+Q. Describe the steps involved in setting up server-side rendering with React.js from scratch.
+Ans:-
+    The steps for setting up server-side rendering with React.js from scratch involve creating a Node.js server, configuring a build system, creating a server-side entry point, implementing rendering logic, and setting up routing.
+
+Q. What libraries or tools can be used to perform server-side rendering with React.js?
+Ans:-
+    Libraries like react-dom/server, ReactDOMServer, and express can be used to perform server-side rendering with React.js.
+
+Q. How can you handle data fetching and asynchronous operations during server-side rendering in React.js?
+Ans:-
+    Data fetching and asynchronous operations during server-side rendering can be handled by making use of lifecycle methods like componentDidMount or using libraries like react-async.
+
+Q. What considerations should you keep in mind when implementing server-side rendering for a large-scale React.js application?
+Ans:-
+    Considerations for server-side rendering in large-scale React.js applications include optimizing performance, managing data fetching efficiently, and dealing with complex application states.
+
+Q. Can you explain the concept of code splitting and how it relates to server-side rendering in React.js?
+Ans:-
+    Code splitting is the process of splitting the JavaScript bundle into smaller chunks to improve performance. It can be utilized with server-side rendering to load only the necessary JavaScript code for each route or component.
+
+Q. How can you optimize server-side rendered React.js applications for search engine optimization (SEO)?
+Ans:-
+    To optimize server-side rendered React.js applications for SEO, ensure that important content is present in the initial HTML, use proper meta tags, and provide server-side rendering for dynamic content.
+
+Q. What are some common challenges or pitfalls associated with server-side rendering in React.js, and how can you address them?
+Ans:-
+    Common challenges with server-side rendering include handling client-side interactions, managing state across the server and client, and dealing with third-party libraries that are not SSR-friendly. These challenges can be addressed by using techniques like rehydration and carefully handling asynchronous operations.
+
+Q. How does server-side rendering impact the development and debugging process compared to client-side rendering?
+Ans:-
+    Server-side rendering impacts development and debugging differently from client-side rendering, as errors and issues can occur on both the server and the client. Proper error handling and debugging techniques are necessary.
+
+Q. Can you explain the concept of hydration in the context of server-side rendering in React.js?
+Ans:-
+    Hydration in server-side rendering refers to the process of attaching event listeners and reattaching React components on the client-side after the initial server-rendered HTML has been received. It enables interactivity and seamless transition to client-side rendering.
+
+
+
+
+
+
+
+
 
 
 
