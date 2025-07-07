@@ -275,6 +275,19 @@ Ans :-
 
 Q. Buffer and Stream
 Ans :-
+    Streams in Node.js are objects that facilitate reading from or writing to a data
+    source in a continuous fashion. Streams are particularly useful for handling large
+    amounts of data efficiently.
+
+    Buffers are used to handle binary data in Node.js. They provide a way to work
+    with raw memory allocations and are useful for operations involving binary data,
+    such as reading files or network communications.
+
+    Pipes in Node.js:-
+
+        Pipes in Node.js are a powerful feature for managing the flow of data between
+        streams. They simplify the process of reading from a readable stream and writing
+        to a writable stream, facilitating efficient and seamless data processing.
 
 
 Q. Promises:-
@@ -351,16 +364,6 @@ Ans :-
     cookie-parser is a middleware in Express used to parse cookies from the HTTP request header and make them easily accessible in your route handlers.
 
     Cookies are automatically parsed and stored in req.cookies.
-
-Q. Monolith vs Micro services
-Ans :-
-
-
-Q. Redis
-Ans :-
-
-Q. What is localStorage and cookies
-Ans:-
 
 Q. What is modules?
 Ans:-
@@ -613,11 +616,8 @@ This ensures that these tasks are handled promptly before moving on to the next 
 
 .If everything has done, callback queue is empty, call stack is empty, event loop wait over poll phase for any poll event occur.
 
-Q. What is process.nextTick()?
-Ans:-
 
-
-Q. Thread pool
+Q. Thread pool :-
 Ans:-
     .The Thread Pool in Node.js is a pool of worker threads, managed by Libuv, used to handle expensive or blocking operations in the background — without blocking the main (single) JavaScript thread.
 
@@ -639,14 +639,61 @@ Ans:-
 
         process.env.UV_THREADPOOL_SIZE = 8;
 
-Q. What is Socket and Web socket?
+Q. What is Socket?
 Ans:-
     In socket, you made a connections, complete your task and close the connection.
     It takes less resources.
 
+    When a user makes a request to a website, a socket connection is established
+    between the client and the server. This connection is typically used for a single
+    request-response cycle: the client sends a request, the server processes it, sends
+    back the response, and then the socket is closed. This process involves opening a
+    new connection for each request.
+
+    In the libuv library, when it interacts with the OS for networking tasks, it uses
+    sockets. Networking operations occur through these sockets. Each socket has a
+    socket descriptor, also known as a file descriptor (although this has nothing to do
+    with the file system).
+
+    When an incoming request arrives on a socket, and you want to write data to this
+    connection, it involves blocking operations. To handle this, a thread is created for
+    each request. However, creating a separate thread for each connection is not
+    practical, especially when dealing with thousands of requests.
+    Instead, the system uses efficient mechanisms provided by the OS, such as epoll
+    (on Linux) or kqueue (on macOS). These mechanisms handle multiple file
+    descriptors (sockets) without needing a thread per connection.
+
+    Here’s how it works:-
+
+    epoll (Linux) and kqueue (macOS) are notification mechanisms used to
+    manage many connections efficiently.
+
+    When you create an epoll or kqueue descriptor, it monitors multiple file
+    descriptors (sockets) for activity.
+
+    The OS kernel manages these mechanisms and notifies libuv of any changes
+    or activity on the sockets.
+
+    This approach allows the server to handle a large number of connections
+    efficiently without creating a thread for each one.
+
+    The kernel-level mechanisms, like epoll and kqueue , provide a scalable way to
+    manage multiple connections, significantly improving performance and resource
+    utilization in a high-concurrency environment.
+
+Q.What is Web-socket?
+Ans:-
     Web-socket :-
                 .When a user makes a connection, it stays for a long time.
                 .It takes more resources.
+
+                WebSockets introduce a more efficient method by allowing the
+                connection to remain open. This means that after the initial connection is
+                established, it stays active, allowing for continuous communication between the
+                client and server. Both the client and server can send and receive data at any time
+                without the need to re-establish the connection. This persistent connection is
+                ideal for real-time applications, where continuous interaction is required, such as
+                in chat applications, online gaming, or live updates.
 
 Q. What is server?
 Ans:-
@@ -654,7 +701,78 @@ Ans:-
 
     You can access servers remotely over a network to provide resources and services to another computer program.
 
-Q. 
+    Hardware:- A physical machine (computer) that provides resources and
+                services to other computers (clients) over a network.
+
+    Software:- An application or program that handles requests and delivers
+                data to clients.
+            
+Q. What is a protocol?
+Ans:-
+    A protocol is a set of rules that define how computers communicate with each
+    other. Protocols determine the format in which data is sent between devices.
+
+    ex:- FTP (File Transfer Protocol): Used for transferring files.
+         SMTP (Simple Mail Transfer Protocol): Used for sending emails.
+
+    HTTP :-
+            (HyperText Transfer Protocol) is a language or set of rules that defines how clients
+            and servers communicate.
+
+Q. Suppose you have a server with many incoming requests, and users are hitting APIs. Do these APIs use the thread pool?
+Ans:-
+    No
+
+Q. File Descriptors (fds) and Socket Descriptors
+Ans:-
+
+    File Descriptors (FDs) are integral to Unix-like operating systems, including Linux
+    and macOS. They are used by the operating system to manage open files,
+    sockets, and other I/O resources.
+
+    Socket descriptors are a special type of file descriptor used to manage network
+    connections. They are essential for network programming, allowing processes to
+    communicate over a network.
+
+Q. app.use() and app.all()
+Ans:-
+    .app.use():-
+    ------------
+
+            .app.use() is used to apply middleware functions that run for all HTTP methods (GET, POST, etc.) and optionally for specific route prefixes.
+
+            Main Purposes:-
+            ---------------
+                Handle:
+
+                    .Logging
+
+                    .Authentication
+
+                    .Error handling
+
+                    .Body parsing (express.json())
+    .app.all():-
+    -------------
+
+            .app.all() is used to define a route handler that matches all HTTP methods (GET, POST, etc.) for a specific route path.
+
+            Main Purposes:-
+            ----------------
+                    .Create a catch-all handler for a specific route.
+
+Q. What is process.nextTick()?
+Ans:-
+
+
+
+<!-- Pending topic -->
+1. Redis
+2. stream and buffer
+3. file system
+4. 
+
+
 
 
 
