@@ -1,9 +1,14 @@
+<!-- Online editor for javaScript  -->
+
+CodePen, JSFiddle, CodeSandbox, and JS Bin,Programiz,JavaScript playground
+
+
 Q. what is event loop?
+Ans:- 
+  The JavaScript Event Loop is a core part of the JavaScript runtime that enables asynchronous behavior while still being single-threaded.
 
-Ans:- The JavaScript Event Loop is a core part of the JavaScript runtime that enables asynchronous behavior while still being single-threaded.
-
-What is the Event Loop?
-The event loop continuously monitors the call stack and the callback queue. It pushes tasks from the queue to the stack when the stack is empty, allowing asynchronous operations to execute in a non-blocking way.
+  What is the Event Loop?
+    The event loop continuously monitors the call stack and the callback queue. It pushes tasks from the queue to the stack when the stack is empty, allowing asynchronous operations to execute in a non-blocking way.
 
 Key Concepts
 1. Call Stack

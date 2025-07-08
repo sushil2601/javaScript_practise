@@ -1,3 +1,6 @@
+<!-- online editor for nodeJs  -->
+Replit, W3Schools Spaces, CodeSandbox, and Codeanywhere,oneCompiler,JDoodle.
+
 Q. What is Node.js
 Ans :- 
     .is a c++ application with V8 embedded into it.
@@ -770,7 +773,10 @@ Ans:-
 1. Redis
 2. stream and buffer
 3. file system
-4. 
+
+
+<!-- Scenario based question -->
+
 
 
 
