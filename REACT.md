@@ -2,6 +2,20 @@
 
 OneCompiler, CodeSandbox, CodePen, Repl.it, JSFiddle, and NextLeap.
 
+.Using Vite:-
+--------------
+
+# npm 7+, extra double-dash is needed:
+npm create vite@latest my-vue-app -- --template vue
+
+npx degit user/project#main my-project
+cd my-project
+
+npm install
+npm run dev
+
+--------------------------------------------------------------------------------------------------
+
 Q. what is React ?
 Ans :-  .React is an open source javaScipt library.
         .is used for building user interface(UI).
@@ -183,7 +197,7 @@ Ans:-
 
 Q. Why React uses className over class attribute?
 Ans:-
-    React uses className instead of class in HTML because class is a reserved keyword in JavaScript. Using class would cause conflicts with JavaScript syntax. So, to avoid issues, React uses className for specifying CSS classes on elements. This allows developers to apply CSS classes to React components without running into conflicts or JavaScript errors.
+    React uses className instead of class in HTML because class is a reserved keyword in JavaScript. Using class would cause conflicts with JavaScript syntax. 
 
 Q. SPA (Single Page Application).
 Ans :-
@@ -226,7 +240,6 @@ Ans :-
         .Simple to build single page applications(by using components).
         .React is a cross paltform and open source.
         .Lightweight and very fast.
-        .Large community and Ecosystem.
         .Testing is easy.
 
     React is not good choice for very small applications.
@@ -324,8 +337,6 @@ Ans :-
 Q. What are state,stateless,stateful and state management terms?
 Ans :- 
 
-    state :- refers to the current data for the component.
-
     Stateful and state management means,when a user performs some actions on the UI then the react application should be able to update and re-render that data or state on the UI.
 
 Q. Props
@@ -373,8 +384,6 @@ Ans:-
 Q. What are nested component in react?
 Ans:-
     In React, nested components refer to the idea of rendering components within other components. 
-
-
 
 Q. What are children props
 Ans :- 
@@ -484,7 +493,7 @@ Ans :- Lifting state up means moving shared state from multiple child components
 
 Q. What is routing and Router in React?
 Ans :-
-    .Routing allows you to create a single page web application with navigation without the need for a full page refresh.
+    .Routing allows you to create a single page web application with navigation without the need of a full page refresh.
 
     .React Router :- React Router is a popular library in React for handling routing in a web application. It allows developers to create single-page applications with multiple views or pages. React Router works by defining routes that map to different components.
 
@@ -594,7 +603,7 @@ Ans :-
     .Every time the component is rendered useEffect will be called.
 
 
-    Note :- .useEffect() is called after the component renders.Ex:-side effects.
+    Note :- 
             .useEffect is always called on initial renders.
             .It will accept two parameter.(Effect function,dependency array).
             .Always try to called on the top of function.
@@ -625,15 +634,17 @@ Q.Life cycle methods.
 Ans :- 
         .Lifecycle methods in ReactJS are special methods that are invoked at different stages of a component's lifecycle. They allow developers to perform specific actions at certain points, such as initializing state, updating the UI, or cleaning up resources.
 
-        .componentWillMount():-   When the component is created and inserted into the DOM.
+        1. Mounting Phase (when the component is created and added to the DOM)
 
-        Note :- Jitne method isme honge wo component ke render hone se phle dom me aa jate hai.
+            .componentDidMount():- Runs after the component is mounted. Good for API calls, timers, etc.
 
+        2. Updating Phase (when props or state changes)
 
-        .componentWillUpdate():-  When the component re-renders due to props/state changes.
-        .componentWillUnmount():- This runs once, just before the component is removed from the DOM.
+            .componentDidUpdate():-Runs after the component updates (ideal for API re-fetching)
+        
+        3. Unmounting Phase (when the component is removed from the DOM)
 
-                                    Ex:- Cleanup (e.g., remove event listeners, clear timers).
+            .componentWillUnmount():-Cleanup tasks like clearing timers, removing listeners
 
 
 Note :- .Lifecycle methods are mostly used in class components

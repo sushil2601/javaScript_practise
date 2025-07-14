@@ -337,6 +337,9 @@
 
 // Q. To check armstrong number
 
+// Q. To count the occurence of letter
+// Q. 
+
 
 
 
