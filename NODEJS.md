@@ -275,27 +275,7 @@ Ans :-
         . Auotmating Devops or system Scripts.
 
     const {exec,spawn,fork,execFile} = require('child-process')
-
-Q. Buffer and Stream
-Ans :-
-    Streams in Node.js are objects that facilitate reading from or writing to a data
-    source in a continuous fashion. Streams are particularly useful for handling large
-    amounts of data efficiently.
-
-    Buffers are used to handle binary data in Node.js. They provide a way to work
-    with raw memory allocations and are useful for operations involving binary data,
-    such as reading files or network communications.
-
-    Pipes in Node.js:-
-
-        Pipes in Node.js are a powerful feature for managing the flow of data between
-        streams. They simplify the process of reading from a readable stream and writing
-        to a writable stream, facilitating efficient and seamless data processing.
-
-
-Q. Promises:-
-Ans :-
-        
+ 
 Q. What is V8 engine and how it works?
 Ans :-
     An open-source, high-performance JavaScript engine built by Google, written in C++, and used in Google Chrome and Node.js.
@@ -372,7 +352,9 @@ Q. What is modules?
 Ans:-
     A module in Node.js is just a separate file that contains some code (like functions, variables, or logic) that you can reuse in other files by importing it using require().
 
-    Modules are protected by default.It protects their variables and functio from leaaking.
+    Modules are protected by default.It protects their variables and function from leaaking.
+
+    ex:- HTTP module,HTTPs module,File System module,Stream module and Buffer module.
 
     If we want to access of variables and functions from one modules to another modules we will have to export and import that modules.
 
@@ -767,12 +749,176 @@ Ans:-
 Q. What is process.nextTick()?
 Ans:-
 
+Q. Difference b/w process.nextTick() and setImmediate.
+Ans:-
 
+
+<!-- File System,Stream and Buffer -->
+
+.File System :-
+
+        .The Node.js File System module (fs) provides a set of methods for working with the file system on your computer.
+
+        .It allows you to perform file I/O operations in both synchronous and asynchronous ways.
+
+        .const fs = require('fs');
+
+    .promise-based versions of the File System API
+
+        .const fs = require('fs').promises;
+
+    .common use cases :-
+        .Read and write files
+        .Create and delete files
+        .Create and remove directories
+
+.'utf8' – ensures it returns text instead of a buffer.
+
+1. Reading Files :-
+
+        .readFile :-  asynchronous
+
+                .Callback based
+                .Uses callback functions to handle results or errors. 
+                
+                ex:-
+                    const fs = require('fs');
+                    fs.readFile('myfile.txt', 'utf8', (err, data)){}
+        
+        .readFileAsync :- asynchronous  (Node.js 10.0.0+)
+
+                .Promises based
+                .use async/await to handles results or errors.
+
+                ex:-
+                    const fs = require('fs').promises;
+                    const data = await fs.readFile('myfile.txt', 'utf8');
+
+        .readFileSync :- synchronous
+
+                .Reading a file synchronously.
+                
+                ex:-
+                    const fs = require('fs')
+                    const data = fs.readFileSync('myfile.txt', 'utf8');
+
+2. Creating and Writing Files :-
+
+        .Asynchronous :-
+
+            .writeFile      :- callback based      
+            .writeFileAsync :- promise based
+
+                .Creates a new file or overwrites an existing file with the specified content.
+                Ex:- fs.writeFile('myfile.txt', 'Hello, World!', 'utf8');
+
+            .appendFile :- Appends to a file; creates it if it doesn't exist.
+
+        .Synchronous :-
+            
+            .writeFileSync :- 
+
+                .Creates a new file or overwrites an existing file with the specified content.
+                .It block the event loop until the file operation is complete.
+                .fs.writeFileSync(path, data, options)
+
+            .appendFileSync :- Appends to a file; creates it if it doesn't exist.
+
+        .fs.open :- Opens a file for writing and creates it if it doesn't exist.
+
+        .fs.close :- close file.
+
+        .openSync , closeSync
+
+        .File Flags :- When opening files, you can specify different modes:
+
+            ->  'w'  - Open for writing (file is created or truncated or replace)
+            ->  'wx' - Like 'w' but fails if the path exists
+            ->  'w+' - Open for reading and writing (file is created or truncated)
+            ->  'a'  - Open for appending (file is created if it doesn't exist)
+            ->  'ax' - Like 'a' but fails if the path exists
+            ->  'r+' - Open for reading and writing (file must exist)
+
+.For writing large amounts of data, use streams to avoid high memory usage:
+
+        .fs.access() :- Check if destination file already exists.
+
+        .fs.rename() :-  method can be used for both renaming and moving files.
+
+    .Delete :-
+
+        .fs.unlink() :- to delete a single file.
+
+        .To delete multiple files, you can use Promise.all() with fs.unlink():
+
+        .fs.rm :- to delete directories.
+
+.Stream :-
+------------
+        .Streams in Node.js are objects that facilitate reading from or writing to a data
+        source in a continuous fashion. Streams are particularly useful for handling large
+        amounts of data efficiently.
+
+        .They allow you to process data in chunks as it becomes available, rather than loading everything into memory at once.
+
+        .uses:-
+            .File system operations (reading/writing files)
+            .HTTP requests and responses
+            .Data compression and decompression
+            .Database operations
+            .Real-time data processing
+
+        .Why Use Streams?
+
+                .Memory Efficiency
+                .Time Efficiency
+
+        .Without streams:- You'd crash the process attempting to load the entire file into memory
+        .With streams:-    You process the file in small chunks (e.g., 64KB at a time)
+
+
+    .Stream Type	                 
+
+        .Readable      --> Streams from which data can be read (data source).
+
+        .Writable      --> Streams to which data can be written (data destination).
+
+        .Duplex        --> Streams that are both Readable and Writable.
+
+        .Transform     --> Duplex streams that can modify or transform data as it's written and read.
+
+    1. Readable Streams :-
+
+            Ex:- Reading from a file ,HTTP responses on the client ,HTTP requests on the server
+
+            .createReadStream :- Create a readable stream from a file.
+
+
+        .Flowing Mode:- Data is read from the source and provided to your application as quickly as possible using events.
+
+        .Paused Mode:-  You must explicitly call stream.read() to get chunks of data from the stream.
+
+    2. Writable Streams :-
+
+            Ex:- Writing to a file ,HTTP requests on the client ,HTTP responses on the server
+
+            .createWriteStream :- Create a writable stream to a file.
+
+    .The pipe():-  It connects a readable stream to a writable stream, automatically managing the flow of data and handling backpressure.
+
+
+
+.Buffer :-
+-----------
+            .Buffers are used to handle binary data in Node.js. They provide a way to work
+             with raw memory allocations and are useful for operations involving binary data,
+             such as reading files or network communications.
+
+
+        
 
 <!-- Pending topic -->
 1. Redis
-2. stream and buffer
-3. file system
 
 
 <!-- Scenario based question -->

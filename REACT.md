@@ -1505,11 +1505,7 @@ Ans :-
 
 
 Q. RTK Query
-Ans :-
-
-Q.Redux-Thunk
-Ans:-
-
+Ans :- RTK Query is a powerful data fetching and caching tool. It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
 
 
 Q.Conditional rendering
