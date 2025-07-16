@@ -1,6 +1,7 @@
 Q.What is CSS?
 Ans:-
-    CSS stands for Cascading Style Sheets. CSS is used to define styles for web pages, including the design, layout and variations in display for different devices and screen sizes.
+    .CSS stands for Cascading Style Sheets. 
+    .used to define styles for web pages, including the design, layout and variations in display for different devices and screen sizes.
 
 Q. What are the possible ways to apply CSS styles to a web page?
 Ans:-   

@@ -164,4 +164,195 @@ Ans :-
     abortTransaction()	                            Rolls back if there’s an error
     endSession()	                                Always close the session
 
-Q. 
+Q.DB operation:- 
+
+--> To create(or switch) db :- use studentDB, but it won't show if we do show dbs;
+
+--> If studentDB doesn’t exist yet, MongoDB will prepare to create it .
+
+--> .MongoDB is lazy in creating databases by design.
+    .MongoDB only creates a database physically on disk when you insert data into at least one collection.
+
+.To create collection :-
+
+            db.users.insertOne({ name: "Sushil" })
+
+            show collections  :- to list all collection names in the current database.
+
+.Queries :-
+------------
+
+    1. Insert to the document :-
+    --------------------------------
+
+        .insertOne :- Insert a Single Document.
+
+            ex:- db.studentDB.insertOne({name: 'sushil',age: 25})
+
+        .insertMany :- Insert multiple document.
+
+            ex:- db.studentDB.insertMany([
+                { name: "Anita", age: 30, city: "Mumbai" },
+                { name: "Raj", age: 28, city: "Kolkata" },
+                { name: "Neha", age: 24, city: "Delhi" }
+                ])
+
+        .insert :- 
+                    .Legacy Method, but not used now
+                    .Can insert one or many documents.
+
+            ex:- db.studentDB.insert({ field1: value1, field2: value2 })
+
+    2. Find the document :-
+    ------------------------
+
+        .pretty() :-      formats the output of your query to make it more readable.
+
+        .find() :-        show all documents in the studentDB collection.
+
+                ex:- db.studentDB.find();
+
+        .findById() :-    
+        ---------------
+                          .Finds a single document by its _id field.
+
+                          .almost equivalent to findOne({ _id: id })
+
+                          .Except for how it treats undefined. If you use findOne(), you'll see that findOne(undefined) and findOne({ _id: undefined }) are equivalent to findOne({}) and return arbitrary documents. However, mongoose translates findById(undefined) into findOne({ _id: null }).
+
+                          .is used in Mongoose, not MongoDB shell.
+
+                          .findOne({}) --> gives the first document of collection.
+
+                Ex:- db.studentDB.findById(id). id = "3432463wdwd3253"
+
+        .findOne() :- 
+        --------------
+                         .Finds one document, and gives the first matching documents.
+                         .without condition gives first document if it is exits , otherwise give null.
+
+                Ex:- db.studentDB.findOne({_id : ObjectId('6877a867717f04fedb32a03d')})
+                     db.studentDB.findOne({name : 'sushil'});
+                     db.studentDB.findOne()  :- gives the first matching document.
+
+        
+        .findByIdAndUpdate() :- 
+        ------------------------
+                                .Finds a document by _id
+                                .Updates it
+
+                                .mongodb findOneAndUpdate command by a document's _id field. findByIdAndUpdate(id, ...) is equivalent to findOneAndUpdate({ _id: id }, ...).
+
+                                .Finds a matching document, updates it according to the update arg, passing any options, and returns the found document (if any).
+
+                Ex:- 
+                    .studentDB.findByIdAndUpdate("64f4d2f45528b3cf68c9e85a", { age: 30 }) --> This returns the old version by default.
+
+                    .User.findByIdAndUpdate("64f4d2f45528b3cf68c9e85a",
+                        { city: "Mumbai" },
+                        { new: true }
+                    )                      --> Return Updated Document.
+
+                    .User.findByIdAndUpdate("64f4d2f45528b3cf68c9e85a",
+                        { $set: { city: "Delhi", age: 27 } },
+                        { new: true }
+                    )
+
+                    .User.findByIdAndUpdate(id)  -> only finds the document and doesn’t update anything.
+
+                    .User.findByIdAndUpdate() :- throw an error, because the method expects at least one argument, the _id of the document to update.
+
+                    .$set --->	Update specific fields only
+
+        .findOneAndUpdate() :- 
+        ----------------------
+                                .Finds a document matching a condition (filter)
+
+                                .Updates it with the specified changes
+
+                                .Returns the document (by default, the original, unless you ask for the updated one)
+
+                Ex:- 
+                        .User.findOneAndUpdate(
+                            { name: "Sushil" },
+                            { age: 30 },
+                            { new: true }
+                        )
+
+                        .User.findOneAndUpdate(
+                            { name: "NewUser" },
+                            { $set: { age: 25 } },
+                            { new: true, upsert: true } //upsert :- Insert if Not Found
+                        )
+
+                    .findByIdAndUpdate() is just a shortcut for findOneAndUpdate() with _id.     
+                    .If a document with name: "NewUser" doesn’t exist, it will be created.
+        
+        .findByIdAndDelete() :- 
+        -----------------------
+                                .Find a document by its _id
+                                .Delete it from the database
+                                .Return the deleted document (or null if not found)
+
+                        
+                Ex:- User.findByIdAndDelete("64f4d2f45528b3cf68c9e85a")
+
+                     User.findOneAndDelete({ _id: "64f4d2f45528b3cf68c9e85a" })
+
+
+            .MongoDB findOneAndDelete() command by a document's _id field. In other words, findByIdAndDelete(id) is a shorthand for findOneAndDelete({ _id: id }).
+
+        .findOneAndReplace() :- 
+        -------------------------
+        
+            Finds a matching document, replaces it with the provided doc, and returns the document.
+
+                ex:- 
+                        User.findOneAndReplace(
+                            { name: "Sushil" }, // filter
+                            { name: "Sushil", age: 30, city: "Mumbai" }, // replacement (full doc)
+                            { new: true } // return the new document
+                        )
+
+                        .You must provide all fields (like name, age, city) — because it overwrites the original doc.
+
+                        .Deletes everything in the matched document and replaces it.
+
+        
+        .deleteMany() :-
+        ----------------
+                        .Deletes all of the documents that match conditions from the collection. It returns an object with the property deletedCount containing the number of documents deleted.
+
+            ex:- 
+                .db.users.deleteMany({ city: "Delhi" }) //Deletes all users where city is "Delhi".
+
+                .User.deleteMany({ age: { $lt: 18 } }); //deletes all users whose age is lt 18.
+
+                o/p :- { "acknowledged": true, "deletedCount": 4 }
+
+        .deleteOne() :-
+        ---------------
+                
+                .Deletes the first document that matches conditions from the collection. It returns an object with the property deletedCount indicating how many documents were deleted.
+
+
+            Ex:- 
+            
+            db.users.deleteOne({ name: "Sushil" }) //{ "acknowledged": true, "deletedCount": 1 }
+
+                        .Deletes one document where name is "Sushil".
+
+                        .If multiple documents match, only the first one is deleted.
+
+    Note :- If no match is found → both return deletedCount: 0
+
+
+        .updateMany():-
+        ----------------
+
+
+        .updateOne():-
+        ----------------
+
+
+    

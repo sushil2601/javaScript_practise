@@ -671,14 +671,6 @@ Ans :-
 
     .this.state property is used to render the updated state in DOM.
 
-Q. What is the role of componentDidMount() methods in component life cycle?
-Ans :-
-    .Rendered after constructor initialization
-
-    .Render after componentDidMount() to run side effects and then call render() method of updating phase again.
-
-    .componentDidMount() lifecycle methods in react is the part of mounting phase and it is called after a component has been rendered to the DOM.
-
 Q. What is the role of useContext() hooks?
 Ans:- 
     useContext in react provides a way to pass data from parent to child component without using props.
@@ -726,9 +718,7 @@ Ans :-
 
 
         use:-  .Theme Switching(Dark/Light)
-               .Localization.
                .Centralize Configuration Settings.
-               .User Performance.
                .Notification System.
 
 Q. What are controlled components in react?
@@ -739,10 +729,7 @@ Ans :-
 
     This allows react to have full control over the form data making it easier to manage and validate the i/p.
 
-    In controlled components, form elements have their values managed by React state, ensuring a single source of truth.
-
-    It offer better control and maintainability compared to uncontrolled components, making them the best practice for handling forms in React applications.
-
+    In controlled components, form elements values are  managed by React state.
 
 Q. What are unControlled components in react?
 Ans :-
@@ -806,7 +793,7 @@ Ans :-
 
 Q. Explain the concept of lazy loading in React.
 Ans:-
-    Lazy loading in React is a technique used to optimize performance by loading components or resources only when they are needed. Instead of loading all components upfront, you can dynamically import them using the React.lazy function and render them when required. This helps reduce the initial bundle size and improves the loading speed of your application.
+    Lazy loading in React is a technique used to optimize performance by loading components only when they are needed. Instead of loading all components upfront, you can dynamically import them using the React.lazy function and render them when required. This helps reduce the initial bundle size and improves the loading speed of your application.
 
 Q. What is the role of Lazy and Suspense methods in React?
 Ans :-
@@ -1213,8 +1200,6 @@ Q. What is the role of Store in React Redux?
 Ans :-
     Redux store is a centralized place for holding the state of all the components in the  application.
 
-    Redux store enables the application to update store using the defined reducer.
-
     Redux Store comes from reduxjs/toolkit package.
 
 Q .What is reducer in redux.
@@ -1329,7 +1314,7 @@ Q. Server-side routing
 Ans:-
     Server-side routing manages routing and navigation on the server.
 
-    When a user requests a different url, the server generates and sends a new HTML page for the toute.
+    When a user requests a different url, the server generates and sends a new HTML page for the route.
 
     .Slower transition
     .SEO friendly
