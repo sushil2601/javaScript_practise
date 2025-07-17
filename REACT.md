@@ -1623,7 +1623,7 @@ Ans:-
 
 Q. How does React handle event handling?
 Ans:-
-    React handles event handling by using synthetic events, which are cross-browser wrappers around native browser events. When an event is triggered, React creates a synthetic event object and passes it to the event handler function.
+    React handles event handling by using synthetic events. When an event is triggered, React creates a synthetic event object and passes it to the event handler function.
 
 Q. What are error boundaries in react?
 Ans:-

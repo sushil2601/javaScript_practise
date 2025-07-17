@@ -179,6 +179,8 @@ Q.DB operation:-
 
             show collections  :- to list all collection names in the current database.
 
+--------------------------------------------------------------------------------------------------
+
 .Queries :-
 ------------
 
@@ -300,7 +302,19 @@ Q.DB operation:-
                      User.findOneAndDelete({ _id: "64f4d2f45528b3cf68c9e85a" })
 
 
-            .MongoDB findOneAndDelete() command by a document's _id field. In other words, findByIdAndDelete(id) is a shorthand for findOneAndDelete({ _id: id }).
+                .MongoDB findOneAndDelete() command by a document's _id field. In other words, findByIdAndDelete(id) is a shorthand for findOneAndDelete({ _id: id }).
+
+        .findByIdAndRemove() :-
+        ----------------------
+
+                        .used to find a document by its _id and remove it from the MongoDB collection.
+
+                        .findByIdAndRemove() and findByIdAndDelete() both do the same things.
+
+                        .findByIdAndDelete() is just newer and more semantically clear. we can use either, but findByIdAndDelete() is preferred for clarity.
+
+            Ex:- db.users.findByIdAndRemove(userId);
+        
 
         .findOneAndReplace() :- 
         -------------------------
@@ -350,9 +364,214 @@ Q.DB operation:-
         .updateMany():-
         ----------------
 
+            .Same as updateOne(), except MongoDB will update all documents that match filter (as opposed to just the first one) regardless of the value of the multi option.
 
-        .updateOne():-
+            ex:- 
+                
+                const res = await Person.updateMany({ name: /Stark$/ }, { isDeleted: true });
+
+                await Person.find({ name: /Stark$/ }).updateMany({ isDeleted: true }); // Using chaining syntax
+
+                await Person.find().updateMany({ isDeleted: true }); // Set `isDeleted` on _all_ Person documents
+
+
+        .updateOne():-      Update only the first document that matches filter.
         ----------------
+            
+                Ex:-
 
+                    await Person.findOne({ name: 'Jean-Luc Picard' }).updateOne({ ship: 'USS Enterprise' }); // Using chaining syntax
+
+                    await Person.updateOne({ ship: 'USS Enterprise' }); // Updates first doc's `ship` property
+
+        .replaceOne() :-
+        ----------------
+                    .replaces an entire document that matches the specified filter with a new document.
+
+                    .If a field is not included in the new document, it will be removed.
+
+            Ex:- 
+
+                    {
+                        "_id": ObjectId("667f62a32f85ab7f9ef12345"),
+                        "name": "Sushil",
+                        "age": 24,
+                        "course": "ReactJS"
+                    }
+
+                    db.students.replaceOne(
+                        { name: "Sushil" }, // filter
+                        {
+                            name: "Sushil Kumar",
+                            age: 25,
+                            course: "NodeJS"
+                        }
+                    )
+
+                    After running this, the document becomes:
+                        {
+                            "_id": ObjectId("667f62a32f85ab7f9ef12345"), // same _id retained
+                            "name": "Sushil Kumar",
+                            "age": 25,
+                            "course": "NodeJS"
+                        }
+
+        .insert() :-     Creates one or multiple documents and saves them to the MongoDB collection.
+        -------------
+                    Syntax :- Model.create(doc || [docs], [options])
+
+                    Ex:- await User.create({ name: "Sushil", age: 25 });
+
+                        // Create multiple users
+
+                        await User.create([
+                        { name: "Ram", age: 22 },
+                        { name: "Shyam", age: 30 }
+                        ]);
+
+
+
+        .save() :-      Used to manually save a single Mongoose document.
+        -------------
+
+                    syntax:- 
+                                const doc = new Model(data); 
+                                await doc.save();
+
+                    ex:- const user = new User({ name: "Sita", age: 28 });
+                         await user.save(); // saves to DB
+
+        .bulkSave() :-       Saves multiple document instances in bulk (efficiently).
+        ---------------
+
+                syntax :- Model.bulkSave([doc1, doc2, ...])
+
+                ex:- const user1 = new User({ name: "A", age: 20 });
+                     const user2 = new User({ name: "B", age: 25 });
+
+                     await User.bulkSave([user1, user2]);
+
+        .bulkWrite() :-     bulk operations like insert, update, delete.
+        ---------------
+
+                syntax :- Model.bulkWrite([
+                            { insertOne: { document: { name: "A" } } },
+                            { updateOne: { filter: { name: "B" }, update: { $set: { age: 30 } } } },
+                            { deleteOne: { filter: { name: "C" } } }
+                            ])
+
+                ex:- 
+                        await User.bulkWrite([
+                        { insertOne: { document: { name: "X", age: 20 } } },
+                        { updateOne: { filter: { name: "Ram" }, update: { $set: { age: 35 } } } },
+                        { deleteOne: { filter: { name: "OldUser" } } }
+                        ]);
+
+        .lean() :-
+        ----------
+                .It tells Mongoose to return plain JavaScript objects instead of full Mongoose documents (which have methods like .save(), .validate(), etc.).
+
+            Ex:- const users = await User.find({ age: { $gt: 18 } }).lean();
+
+            o/p :-  with lean
+            
+                    {
+                        _id: new ObjectId("667abcde1234567890abcdef"),
+                        name: 'Sushil',
+                        age: 25,
+                        __v: 0
+                    }
+
+                without lean :- 
+
+                    {
+                        _id: new ObjectId("667abcde1234567890abcdef"),
+                        name: 'Sushil',
+                        age: 25,
+                        __v: 0,
+                        save: [Function], // <-- Mongoose adds methods
+                        validate: [Function],
+                        ...
+                    }
+
+        .exec() :-
+        -----------
+
+            .is used to execute the query explicitly. It's optional but provides better control (especially when chaining or working with Promises).
+            
+            .Why use .exec()?
+
+                Helps avoid callback hell.
+
+                Ensures consistent behavior when using .then() / await.
+
+                Returns a true Promise, not a thenable.
+
+            
+            Ex:- const user = await User.findOne({ name: "Sushil" }).exec();
+
+        
+        .distinct() :-   
+        --------------
+                    .Returns an array of unique values for a specified field across a collection.
+
+                Ex:- const skills = await User.distinct("skills");
+                     console.log(skills);
+
+                     o/p :- ['ReactJs', 'NodeJs', 'JavaScript']
+
+
+        .exists() :–  Check if a Document Exists
+        -----------
+
+            Returns true if at least one document matches the condition.
+
+                const exists = await User.exists({ email: "sushil@gmail.com" });
+                console.log(exists ? "User exists" : "User not found");
+
+        .inspect() :– Debug a Mongoose Document
+        -----------
+
+            Ex:- const user = await User.findOne();
+                 console.log(user.inspect());
+
+
+        .populate() :–  Fetch Referenced Documents
+        -----------
+            
+            .Used when one document references another collection, and you want full data instead of just the _id.
+
+            Ex:- const post = await Post.findOne().populate("author");
+
+        .countDocuments() :– Count Matching Documents
+        -----------------
+
+                    .If you want to count all documents in a large collection, use the estimatedDocumentCount() function instead.
+
+                Ex:- const count = await User.countDocuments({ gender: "male" });
+                     console.log(`Male users: ${count}`);
+
+        .ref :-    Reference Another Collection.
+        --------
+
+                .In Mongoose, the ref option is used to define a relationship between collections — it's how Mongoose lets one document reference documents in another collection, similar to foreign keys in relational databases.
+
+                .To tell Mongoose that a field contains the ObjectId of a document from another collection.
+
+            Syntax :-
+
+                    const postSchema = new mongoose.Schema({
+                        title: String,
+                        author: {
+                            type: mongoose.Schema.Types.ObjectId,
+                            ref: 'User'   // name of the model being referenced
+                        }
+                    });
+
+-------------------------------------------------------------------------------------------------
+
+.comparision operator :-
+-------------------------
 
     
+
