@@ -181,7 +181,7 @@ Q.DB operation:-
 
 --------------------------------------------------------------------------------------------------
 
-.Queries :-
+1. Queries :-
 ------------
 
     1. Insert to the document :-
@@ -570,8 +570,564 @@ Q.DB operation:-
 
 -------------------------------------------------------------------------------------------------
 
-.comparision operator :-
+2. comparision operator :-
 -------------------------
 
+    .$eq :- 
+            .Specifies equality condition. The $eq operator matches documents where the value of a field equals the specified value.
+
+        Ex:- db.inventory.find( { qty: { $eq: 20 } } )
+
+    .$gt :- 
+            .$gt selects those documents where the value of the specified field is greater than (i.e. >) the specified value.
+
+        syntax :- { field: { $gt: value } }
+
+        ex:- db.inventory.find( { quantity: { $gt: 20 } } )
+
     
+    .$gte :- 
+            .$gte selects the documents where the value of the specified field is greater than or equal to (i.e. >=) a specified value (e.g. value.)
+
+        syntax :- { field: { $gte: value } } 
+
+        ex:- db.inventory.find( { quantity: { $gte: 20 } } )
+
+
+    .$in :- 
+            .The $in operator selects the documents where the value of a field equals any value in the specified array.
+
+        Synatx :- { field: { $in: [<value1>, <value2>, ... <valueN> ] } }
+
+        ex:- db.inventory.find( { quantity: { $in: [ 5, 15 ] } }, { _id: 0 } )
+
+    .$lt :- 
+
+            .$lt selects the documents where the value of the field is less than (i.e. <) the specified value.
+
+        syntax :- { field: { $lt: value } }
+
+        ex:- db.inventory.find( { quantity: { $lt: 20 } } )
+
+    .$lte :- 
+            .$lte selects the documents where the value of the field is less than or equal to (i.e. <=) the specified value.
+
+        syntax :- { field: { $lte: value } }
+
+        ex:- db.inventory.find( { quantity: { $lte: 20 } } )
+
+    .$ne :- 
+            .$ne selects the documents where the value of the specified field is not equal to the specified value. This includes documents that do not contain the specified field.
+
+        syntax :- { field: { $ne: value } }
+
+        ex:- db.inventory.find( { quantity: { $ne: 20 } } )  
+
+            SELECT * FROM INVENTORY WHERE QUANTITIY != 20  --> equivalent sql query
+
+            db.inventory.updateMany(
+                { "carrier.fee" : { $ne: 1 } },
+                { $set: { "price": 9.99 } }
+            )
+
+            UPDATE INVENTORY SET PRICE = '9.99' WHERE carrierfee != 1  --> equivalent sql query
+
+        
+    .$nin :- 
+            .$nin selects the documents where:
+
+                .the specified field value is not in the specified array or
+
+                .the specified field does not exist.
+
+        syntax :- { field: { $nin: [ <value1>, <value2> ... <valueN> ] } }
+
+        ex:- db.inventory.find( { quantity: { $nin: [ 5, 15 ] } }, { _id: 0 } )
+
+
+.Logical operator :-
+---------------------
+
+    .$and :-
+            .$and performs a logical AND operation on an array of one or more expressions (<expression1>, <expression2>, and so on) and selects the documents that satisfy all the expressions.
+
+            .Note :- 
+                MongoDB provides an implicit AND operation when specifying a comma separated list of expressions.
+
+        syntax :- { $and: [ { <expression1> }, { <expression2> } , ... , { <expressionN> } ] }
+
+
+        Ex:- 
+            db.inventory.find( { $and: [ { price: { $ne: 1.99 } }, { price: { $exists:             true } } ] } )
+
+    
+    .$not :-
+            .$not performs a logical NOT operation on the specified <operator-expression> and selects the documents that do not match the <operator-expression>. This includes documents that do not contain the field.
+
+        syntax :- { field: { $not: { <operator-expression> } } }
+
+        ex:- db.inventory.find( { price: { $not: { $gt: 1.99 } } } )
+
+
+    .$nor :- 
+            .$nor performs a logical NOR operation on an array of one or more query predicates and selects the documents that fail all the query predicates in the array. 
+
+        syntax :- { $nor: [ { <expression1> }, { <expression2> }, ...  { <expressionN> } ] }
+
+        ex:- db.inventory.find( { $nor: [ { price: 1.99 }, { sale: true } ]  } )
+
+
+    .$or :-
+            .The $or operator performs a logical OR operation on an array of one or more <expressions> and selects the documents that satisfy at least one of the <expressions>.
+
+        syntax :- { $or: [ { <expression1> }, { <expression2> }, ... , { <expressionN> } ] }
+
+        ex :- db.inventory.find( { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] } )
+
+    
+.Element Query :-
+-----------------
+
+    .$exists :-
+            .The $exists operator matches documents that contain or do not contain a specified field, including documents where the field value is null.
+
+        syntax :- { field: { $exists: <boolean> } }
+
+        ex :- db.spices.find( { saffron: { $exists: true } } )
+              db.inventory.find( { qty: { $exists: true, $nin: [ 5, 15 ] } } )
+
+    
+    .$type :-
+
+            syntax :- { field: { $type: [ <BSON type1> , <BSON type2>, ... ] } }
+                      { field: { $type: <BSON type> } }
+
+            ex :- db.data.find( { x: { $type: "minKey" } } )
+
+    
+    .$expr :- Allows the use of expressions within a query predicate.
+
+            syntax :- { $expr: { <expression> } }
+
+            ex :- db.monthlyBudget.find( { $expr: { $gt: [ "$spent" , "$budget" ] } } )
+
+            The following operation uses $expr to find documents where the spent amount exceeds the budget
+
+    .$mod :-
+
+            .Select documents where the value of a field divided by a divisor has the specified remainder. That is, $mod performs a modulo operation to select documents. The first argument is the dividend, and the second argument is the remainder.
+
+
+        syntax :- { field: { $mod: [ divisor, remainder ] } }
+
+        ex :- db.inventory.find( { qty: { $mod: [ 4, 0 ] } } )
+
+.Array Query :-
+----------------
+
+    .$all :- 
+            .The $all operator selects the documents where the value of a field matches all specified values. The matched documents can either contain a field with a value that is an array containing all the specified elements, or a field with a single value matching the specified element.
+
+        syntax :- { <field>: { $all: [ <value1> , <value2> ... ] } }
+
+        ex:- { tags: { $all: [ "ssl" , "security" ] } }
+
+    .$elemMatch  :-
+            
+            .The $elemMatch operator matches documents that contain an array field with at least one element that matches all the specified query criteria.
+
+        syntax :- { <field>: { $elemMatch: { <query1>, <query2>, ... } } }
+
+        ex :- db.scores.find({ results: { $elemMatch: { $gte: 80, $lt: 85 } } }
+        )
+
+
+    .$size :-
+            .The $size operator matches any array with the number of elements specified by the argument.
+
+        ex :- db.collection.find( { field: { $size: 2 } } );
+
+.Update query :-
+----------------
+
+        .field :-
+        ---------
+                .$currentDate :- 
+                            .The $currentDate operator sets the value of a field to the current date, either as a Date or a timestamp. The default type is Date.
+
+                    syntax :- { $currentDate: { <field1>: <typeSpecification1>, ... } }
+
+                    ex :- 
+
+                    db.customers.updateOne(
+                        { _id: 1 },
+                        {
+                            $currentDate: {
+                                lastModified: true,
+                                "cancellation.date": { $type: "timestamp" }
+                            },
+                            $set: {
+                                "cancellation.reason": "user request",
+                                status: "D"
+                            }
+                        }
+                    )
+
+                .$inc :- 
+                        .The $inc operator increments a field by a specified value.
+
+                    syntax :- { $inc: { <field1>: <amount1>, <field2>: <amount2>, ... } }
+
+                    ex :- db.products.insertOne(
+                            {
+                                _id: 1,
+                                sku: "abc123",
+                                quantity: 10,
+                                metrics: { orders: 2, ratings: 3.5 }
+                            }
+                        )
+
+                        db.products.updateOne(
+                            { sku: "abc123" },
+                            { $inc: { quantity: -2, "metrics.orders": 1 } }
+                        )
+
+                .$min :-
+                        .The $min updates the value of the field to a specified value if the specified value is less than the current value of the field. The $min operator can compare values of different types, using the BSON comparison order.
+
+                    syntax :- { $min: { <field1>: <value1>, ... } }
+
+                    ex :- db.scores.updateOne( { _id: 1 }, { $min: { lowScore: 150 } } )
+
+                .$max :-
+
+                        .The $max operator updates the value of the field to a specified value if the specified value is greater than the current value of the field. The $max operator can compare values of different types, using the BSON comparison order.
+
+                    syntax :- { $max: { <field1>: <value1>, ... } }
+
+                    ex :- db.scores.updateOne( { _id: 1 }, { $max: { highScore: 950 } } )
+
+                .$mul :-
+                        .Multiply the value of a field by a number. To specify a $mul expression
+
+                    syntax :- { $mul: { <field1>: <number1>, ... } }
+
+                    ex :- db.products.updateOne(
+                            { _id: 1 },
+                            { $mul:
+                                {
+                                    price: Decimal128( "1.25" ),
+                                    quantity: 2
+                                }
+                            }
+                        )
+
+                .$rename :-
+                        .The $rename operator updates the name of a field.
+
+                    syntax :- { $rename: { <field1>: <newName1>, <field2>: <newName2>, ... } }
+
+                    ex :- db.students.updateOne(
+                            { _id: 1 }, { $rename: { 'nickname': 'alias', 'cell': 'mobile' } }
+                        )
+
+                .$set :- 
+
+                        .The $set operator replaces the value of a field with the specified value.
+
+                    syntax :- { $set: { <field1>: <value1>, ... } }
+
+                    ex :- db.products.updateOne(
+                            { _id: 100 },
+                            { $set:
+                                {
+                                    quantity: 500,
+                                    details: { model: "2600", make: "Fashionaires" },
+                                    tags: [ "coats", "outerwear", "clothing" ]
+                                }
+                            }
+                        )
+
+                .$setOnInsert :-
+
+                        .$setOnInsert is an update operator used only with upsert: true operations. It allows you to set specific fields only when a new document is inserted (i.e., not during updates).
+
+                        .What It Does:
+                            If a document exists, only $set runs.
+
+                            If no document is found, a new document is inserted, and both $set and $setOnInsert run.
+
+                            Fields in $setOnInsert are not updated on future updates — only on initial insert.
+
+                    ex :- db.collection.updateOne(
+                            <query>,
+                            { $setOnInsert: { <field1>: <value1>, ... } },
+                            { upsert: true }
+                        )
+
+
+                        db.products.updateOne(
+                            { _id: 1 },
+                            {
+                                $set: { item: "apple" },
+                                $setOnInsert: { defaultQty: 100 }
+                            },
+                            { upsert: true }
+                        )
+                
+                .$unset :-
+                        .The $unset operator deletes a particular field.
+
+
+                    syntax :- { $unset: { <field1>: "", ... } }
+
+                    ex :- db.products.updateOne(
+                            { sku: "unknown" },
+                            { $unset: { quantity: "", instock: "" } }
+                        )
+
+
+        .Array :-
+        ---------
+
+                .$(update) :-  
+                        .The positional $ operator identifies an element in an array to update without explicitly specifying the position of the element in the array.
+
+                    syntax :- { "<array>.$" : value }
+
+                    ex :- db.collection.updateOne(
+                            { <array>: value ... },
+                            { <update operator>: { "<array>.$" : value } }
+                        )
+
+                        db.students.insertMany( [
+                            { "_id" : 1, "grades" : [ 85, 80, 80 ] },
+                            { "_id" : 2, "grades" : [ 88, 90, 92 ] },
+                            { "_id" : 3, "grades" : [ 85, 100, 90 ] }
+                        ] )
+
+                        db.students.updateOne(
+                            { _id: 1, grades: 80 },
+                            { $set: { "grades.$" : 82 } }
+                        )
+
+                        .The positional $ operator acts as a placeholder for the first match of the update query document.
+
+                .$[] :-
+                        .The all positional operator $[] indicates that the update operator should modify all elements in the specified array field.
+
+
+                    syntax :- { <update operator>: { "<array>.$[]" : value } }
+
+                    Ex :- db.collection.updateOne(
+                            { <query conditions> },
+                            { <update operator>: { "<array>.$[]" : value } }
+                        )
+
+                        db.students.insertMany( [
+                            { "_id" : 1, "grades" : [ 85, 82, 80 ] },
+                            { "_id" : 2, "grades" : [ 88, 90, 92 ] },
+                            { "_id" : 3, "grades" : [ 85, 100, 90 ] }
+                        ] )
+
+                        db.students.updateMany(
+                            { },
+                            { $inc: { "grades.$[]": 10 } },
+                        )
+
+                .$[<identifier>] :-
+
+                        .The filtered positional operator $[<identifier>] identifies the array elements that match the arrayFilters conditions for an update operation.
+
+
+                    syntax :- { <update operator>: { "<array>.$[<identifier>]" : value } },
+                              { arrayFilters: [ { <identifier>: <condition> } ] }
+
+                    ex :- db.collection.updateOne(
+                                { myArray: [ 0, 1 ] },
+                                { $set: { "myArray.$[element]": 2 } },
+                                { arrayFilters: [ { element: 0 } ], upsert: true }
+                            )
+
+                .$addToSet :- 
+
+                        .The $addToSet operator adds a value to an array unless the value is already present, in which case $addToSet does nothing to that array.
+
+
+                        syntax :- { $addToSet: { <field1>: <value1>, ... } }
+
+                        ex :- db.alphabet.updateOne(
+                                { _id: 1 },
+                                { $addToSet: { letters: [ "c", "d" ] } }
+                            )
+
+
+                .$pop :-
+                        .The $pop operator removes the first or last element of an array. Pass $pop a value of -1 to remove the first element of an array and 1 to remove the last element in an array.
+
+                    syntax :- { $pop: { <field>: <-1 | 1>, ... } }
+
+                    ex :- db.students.insertOne( { _id: 1, scores: [ 8, 9, 10 ] } )
+                          db.students.updateOne( { _id: 1 }, { $pop: { scores: -1 } } )
+                          db.students.updateOne( { _id: 10 }, { $pop: { scores: 1 } } )
+
+                .$pull :-
+                        .The $pull operator removes from an existing array all instances of a value or values that match a specified condition.
+
+                    syntax :- 
+                            { $pull: { <field1>: <value|condition>, <field2>: <value|             condition>, ... } }
+
+                    ex :- 
+
+                        db.stores.insertMany( [
+                                {
+                                    _id: 1,
+                                    fruits: [ "apples", "pears", "oranges", "grapes", "bananas" ],
+                                    vegetables: [ "carrots", "celery", "squash", "carrots" ]
+                                },
+                                {
+                                    _id: 2,
+                                    fruits: [ "plums", "kiwis", "oranges", "bananas", "apples" ],
+                                    vegetables: [ "broccoli", "zucchini", "carrots", "onions" ]
+                                }
+                        ] )
+
+                        db.stores.updateMany(
+                            { },
+                            { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } }
+                        )
+
+                .$push :- The $push operator appends a specified value to an array.
+
+                    syntax :- { $push: { <field1>: <value1>, ... } }
+
+                    ex :- db.students.insertOne( { _id: 1, scores: [ 44, 78, 38, 80 ] } )
+                          db.students.updateOne(
+                            { _id: 1 },
+                            { $push: { scores: 89 } }
+                          )
+
+                .$pullAll :- 
+
+                            .The $pullAll operator removes all instances of the specified values from an existing array. Unlike the $pull operator that removes elements by specifying a query, $pullAll removes elements that match the listed values.
+
+                    syntax :- { $pullAll: { <field1>: [ <value1>, <value2> ... ], ... } }
+
+                    ex :- db.survey.insertOne( { _id: 1, scores: [ 0, 2, 5, 5, 1, 0 ] } )
+                          db.survey.updateOne( { _id: 1 }, { $pullAll: { scores: [ 0, 5 ] } } )
+
+
+                .$each :- 
+                            .The $each modifier is available for use with the $addToSet operator and the $push operator.
+
+                        Use with the $addToSet operator to add multiple values to an array <field> if the values do not exist in the <field>.
+
+                            { $addToSet: { <field>: { $each: [ <value1>, <value2> ... ] } } }
+
+                        Use with the $push operator to append multiple values to an array <field>.
+
+                            { $push: { <field>: { $each: [ <value1>, <value2> ... ] } } }
+
+                    ex :- db.students.updateOne(
+                            { name: "joe" },
+                            { $push: { scores: { $each: [ 90, 92, 85 ] } } }
+                          )
+
+                .$position :- 
+
+                            .The $position modifier specifies the location in the array at which the $push operator inserts elements. Without the $position modifier, the $push operator inserts elements to the end of the array. See $push modifiers for more information.
+
+                        To use the $position modifier, it must appear with the $each modifier.
+
+                                    {
+                                    $push: {
+                                        <field>: {
+                                        $each: [ <value1>, <value2>, ... ],
+                                        $position: <num>
+                                        }
+                                    }
+                                    }
+
+                        db.students.insertOne( { "_id" : 1, "scores" : [ 100 ] } )
+
+                        db.students.updateOne(
+                                { _id: 1 },
+                                    {
+                                        $push: {
+                                            scores: {
+                                            $each: [ 50, 60, 70 ],
+                                            $position: 0
+                                        }
+                                    }
+                                }
+                            )
+
+                .$slice :- 
+                        .The $slice modifier limits the number of array elements during a $push operation. To project, or return, a specified number of array elements from a read operation, see the $slice projection operator instead.
+
+                        To use the $slice modifier, it must appear with the $each modifier. You can pass an empty array [] to the $each modifier such that only the $slice modifier has an effect.
+
+                                {
+                                    $push: {
+                                        <field>: {
+                                        $each: [ <value1>, <value2>, ... ],
+                                        $slice: <num>
+                                        }
+                                    }
+                                }
+
+                    ex :- { "_id" : 1, "scores" : [ 40, 50, 60 ] }
+
+                        db.students.updateOne(
+                            { _id: 1 },
+                                {
+                                    $push: {
+                                    scores: {
+                                        $each: [ 80, 78, 86 ],
+                                        $slice: -5
+                                    }
+                                    }
+                                }
+                        )
+                
+                .$sort :- 
+
+                        .The $sort modifier orders the elements of an array during a $push operation.
+
+                        .To use the $sort modifier, it must appear with the $each modifier. You can pass an empty array [] to the $each modifier such that only the $sort modifier has an effect.
+
+                                {
+                                    $push: {
+                                        <field>: {
+                                        $each: [ <value1>, <value2>, ... ],
+                                        $sort: <sort specification>
+                                        }
+                                    }
+                                }
+
+--------------------------------------------------------------------------------------------------
+
+3. Projection :-
+---------------
+
+
+---------------------------------------------------------------------------------------------------
+
+4. Aggregation :-
+---------------
+
+
+---------------------------------------------------------------------------------------------------
+
+5. QUERY() contructor :-
+-----------------------
+
+
+---------------------------------------------------------------------------------------------------
+
+6. Indexing :-
+-------------
+
+
+
 
