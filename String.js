@@ -333,6 +333,27 @@
 
 // console.log(removeWhiteSpace('Interview  Happy'));
 
+// Q. 
+
+const arr = [0,2,1,3,10,6,4,10,8,9,7,14,11]
+
+console.log(arr)
+
+const newArr = arr.filter((item)=> item % 2 !==0).map((item)=>item*2).sort((a,b)=>b-a);
+
+console.log(newArr);
+
+//The .sort() method by default sorts elements as strings, which can lead to incorrect results for numbers
+//To correctly sort numbers numerically, we provide a compare function
+
+//The compare function takes two arguments: a and b.
+
+/*If the result is negative (a - b < 0), then a comes before b.
+
+If the result is zero (a - b === 0), then the order stays the same.
+
+If the result is positive (a - b > 0), then b comes before a.*/
+
 // Q. Palindrome number
 
 // Q. To check armstrong number

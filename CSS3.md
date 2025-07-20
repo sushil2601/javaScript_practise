@@ -360,3 +360,6 @@ Example: Hovering a parent changes child text color
     <p class="text-sm group-hover:underline">Hover over this box</p>
     </div>
 
+
+Q. viewport,em,%,px,shadow,overflow,opacity,gradients,boxSizing,
+

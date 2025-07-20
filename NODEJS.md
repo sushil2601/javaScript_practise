@@ -21,7 +21,7 @@ Ans:-
 
     V8 Engine only understand the global object when nodeJs give it to v8 engine.
 
-    globalThis :- ferering across all JS runtime either in windows or nodejs.
+    globalThis :- referering across all JS runtime either in windows or nodejs.
 
 Q. Node REPL?
 Ans:-
@@ -57,7 +57,7 @@ Q. Difference b/w Runtime environment and Framework?
 Ans :-
     .Runtime Environment :- Primarily focus on providing the necessary infrastrucutre for code execution,including service like memory management and I/O operations.
 
-    .Framework :- Primarily focuses on simplifying the development process by offering a structured set of tools,libraries and best practises.
+    .Framework :- Primarily focuses on simplifying the development process by offering a structured set of tools,libraries.
 
 Q. Express.js
 Ans :- 
@@ -66,6 +66,31 @@ Ans :-
     .It is designed to simplify the process of building web applications and APIs by providing a set of features like routing system, middleware support etc.
 
     .Supports building REST APIs, real-time applications and single page applications.
+
+Q. Difference b/w NodeJS(Http server) vs Express.js
+Ans :-
+    
+    Feature / Task            Node.js (Without Express)                                                          | Express.js    
+                                                            |
+| **Setup Simplicity**              | low-level setup required to create and manage an HTTP server manually. | One line to set up the server. `app.listen()`  
+                       |
+| **Routing**                       | Manually parse `req.url` and `req.method` to handle different routes.              | Built-in routing methods like `app.get()`, `app.post()`, etc.  
+       |
+| **Request Parsing (body)**        | manually handle and parse JSON | Use middleware like `express.json()` 
+      |
+
+| **Middleware Support**            | No built-in middleware support. You have to build everything from scratch.         | Easy and powerful middleware pattern support           
+               |
+| **Code Readability**              | Can become cluttered and hard to manage for multiple routes and logic.             | Clean and modular code using route handlers and middleware  
+          |
+| **Error Handling**                | Requires custom logic to catch and handle errors.                                  | Centralized error handling with middleware                            |
+
+| **Routing Parameters / Query**    | Manual extraction from the URL.                                                    | Automatically handled and accessible via `req.params` and `req.query` |
+
+| **Third-party Integrations**      | Manual configuration for any external libraries.                                   | Easily integrates with tools like Mongoose, Passport, JWT, etc.       |
+
+| **Maintainability & Scalability** | Poor scalability and code gets harder to manage as app grows.                      | Easy to scale and organize using routers and middleware.              |
+
 
 Q. What is Middleware in Express.js and when to use them?
 Ans :-
