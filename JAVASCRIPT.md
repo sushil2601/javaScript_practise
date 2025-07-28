@@ -366,8 +366,96 @@ Ans :-
       .Lazy Load Data
       .code splitting
 
+Q. Deep copy and shallow copy
+Ans :-
+
+    .Normal copy :- both object point the same memory refernece.
+
+        Ex:- var obj1 = {
+          name : 'sushil'
+        }
+
+        var obj2 = obj1;
+        console.log(obj2.name)
+        console.log(obj1.name)
+
+    .shallow copy :- 
+   -----------------
+       .A shallow copy creates a new object or array, but it only copies the references to the elements of the original.
+
+       .If the original object or array contains nested objects or arrays, the shallow copy will still point to the same nested objects/arrays in memory as the original.
+
+        Ex:- var obj1 = {
+          name : 'sushil',
+          address : {
+            street : 'Nehru road',
+            city : 'Delhi'
+          }
+        }
+
+        <!-- var obj2 = Object.assign({},obj1); -->
+        var obj2 = {...obj1}
+
+        obj2.address.city = 'Noida';
+        console.log(obj2.address.city); //Noida
+        console.log(obj1.address.city); //Noida
+
+    .Deep copy :-
+   ---------------
+          .A deep copy creates a completely new, independent copy of the original object or array, including all nested objects and arrays.
+
+          .All values, including those in nested structures, are duplicated, ensuring no shared references between the original and the copy.
+
+        Ex:- var obj1 = {
+          name : 'sushil',
+          address : {
+            street : 'Nehru road',
+            city : 'Delhi'
+          }
+        } 
+
+        var obj2 = JSON.parse(JSON.Stringify(obj1))
+
+        obj2.address.city = 'Mumbai'
+        console.log(obj2.address.city); //Mumbai
+        console.log(obj1.address.city); //Delhi
+
+        var obj1 = {
+          name : 'sushil',
+          address : function(){}       //not acceptable in deep copy also
+        } 
+
+        //use cloneDeep to resolve above issue
+
+        var obj2 = lodash.cloneDeep(obj1)
+
+Q. Polyfill for bind :-
+Ans :-
+      A Polyfill is a function which is created as a replacement to an existing function to make it compatible with all the browsers.
+
+    Function.prototype.MyBind = function(obj,...args1){  args1 = 'Mumbai'
+      const func = this;
+      return function(...args2){             args2 = 'Delhi'
+        return func.apply(obj,[...args1,...args2])
+      }
+    }
+
+    const bindName = getName.MyBind(Person,'Mumbai');
+    bindName('Delhi')
+
+    const Person = {
+      fName : 'Sushil',
+      lName : 'Suman'
+    }
+
+    function getName(city1,city2){
+      console.log(this.fName + ''+this.lName+''+'lives in'+city1+'and'+city2);
+    }
+            
+      
 
 
+---------------------------------------------------------------------------------------------------
 <!-- GIT Operation -->
 
 Q. Difference b/w GIT and GITHUB.
