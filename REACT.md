@@ -560,6 +560,36 @@ Ans:-
 
     .Outlet :-  .Used to render nested child routes inside a parent route layout.
 
+Q. URLSearchParams():- 
+Ans:-
+    .URLSearchParams() is used to read and manipulate URL query parameters.
+
+    .Useful in React apps for routing, filters, pagination, auth tokens, etc.
+
+Q. useParams() :-
+Ans :-
+    .useParams() is a React Router hook used to access URL parameters from the current route.
+
+    .It returns an object containing key-value pairs of the dynamic parameters from the URL.
+
+    ex:- 
+        <Route path="/product/:productId" element={<ProductDetails />} />
+
+        import { useParams } from "react-router-dom";
+
+        const ProductDetails = () => {
+        const { productId } = useParams();
+
+        return <h2>Showing details for product ID: {productId}</h2>;
+        };
+
+Q. shimmer UI :-
+Ans :-
+    .We load fake page,until we get actual data from API.
+    .Display a skeleton UI that matches the shape of your real content.
+    .It gives users the impression of content structure before real content is ready.
+    .Replace it with real content once loading is complete.
+
 
 <!-- Hook -->
 
@@ -614,6 +644,10 @@ Ans :-
                                                         Clearing timers.
 
                                                         Unsubscribing from services.
+
+Q. componentWillMount :-
+Ans :-
+    componentWillMount() Called just before the component mounts (before render()) – Deprecated.
 
 Q. useLayoutEffect :-
 Ans :-
@@ -1299,11 +1333,6 @@ Ans :-
         });
 
 
-
-Q. RTK Query
-Ans :- RTK Query is a powerful data fetching and caching tool. It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
-
-
 Q.Conditional rendering
 Ans :-
     Conditional Rendering in React means showing or hiding parts of the UI based on certain conditions (like state, props, or variables). 
@@ -1442,12 +1471,6 @@ Q. How does React handle event handling?
 Ans:-
     React handles event handling by using synthetic events. When an event is triggered, React creates a synthetic event object and passes it to the event handler function.
 
-Q. What are error boundaries in react?
-Ans:-
-    .Error boundaries in React are components that prevent the entire application from crashing when an error occurs within their child components. They act as safety nets by catching and handling errors, allowing developers to display fallback UI and maintain a smoother user experience.
-
-    .componentDidCatch is used for error boundaries.
-
 Q. Explain the concept of "forwarding refs" in React.
 Ans:-
     "Forwarding refs" in React allows a parent component to pass a ref to its child component. This way, the parent can access and control the child's DOM element or component. It's like giving a special power to the parent component to interact with its child component's internals.
@@ -1464,83 +1487,226 @@ Q. What is ReactDOM package?
 Ans:-
     The ReactDOM package in React is responsible for rendering the React components to the browser's DOM (Document Object Model). It provides methods and functionality for efficiently updating and manipulating the DOM based on changes in the React component tree. ReactDOM acts as the bridge between React's virtual representation of the UI and the actual HTML elements on the webpage, ensuring that any changes in the component hierarchy are reflected in the rendered UI.
 
-Q. Axios :-
-
-Q. Fetch :-
-
 Q. React Fiber :- 
+Ans :-
+    .React Fiber is the new reconciliation method in React (introduced in React 16).
+
+    .It is a complete rewrite of the old React rendering system.
+
+    .Built to support concurrent rendering, prioritization, and better UI responsiveness.
+
+    .Why React Fiber?
+
+        .To break rendering work into smaller units.
+
+        .To pause, resume, abort, or reuse rendering tasks.
+
+        .To handle complex UIs and animations smoothly.
+
+        .To improve performance and user experience.
+
 
 Q. How do you handle authentication and authorization in React applications?
 Ans:-
     There are two main ways to handle authentication and authorization in React applications. One way is to use a third-party library, such as Auth0 or Firebase. These libraries provide a number of features that make it easy to implement authentication and authorization in your application, such as user management, password hashing, and session management.
 
+--------------------------------------------------------------------------------------------------
+<!-- Fetch and axios -->
 
-<!-- Server-side rendering -->
-
-Q. Why do we need Nextjs?
+Q. Axios :-
 Ans:-
-    Next.js is a React framework that provides server-side rendering (SSR), static site generation (SSG), and other features like routing and API handling. It is useful for building optimized and performant React applications, improving SEO, and enabling server-side functionality.
+    .Axios is a third-party JavaScript library designed for making HTTP requests. 
+    
+    .It works with both Node.js and browsers. Like Fetch, Axios uses the Promise API introduced in ES6. 
+    
+    .Axios is known for its simplicity and extra features, such as request/response interception, error handling, and support for cancellation.
 
+    .Uses data to send and receive content.
+    .Sends JavaScript objects directly.
+    .Automatically parses JSON responses.
+    .Returns error only when status is not in the 200 range.
 
-Q. What is server-side rendering (SSR) in React.js?
+ex:- 
+
+    axios.get("https://jsonplaceholder.typicode.com/posts/1")
+    .then((response) => {
+        console.log("GET response:", response.data);
+    })
+    .catch((error) => {
+        console.error("GET error:", error);
+    });
+
+    axios.post("https://jsonplaceholder.typicode.com/posts", {
+        title: "Axios POST Example",
+        body: "This is a test post",
+        userId: 1
+    })
+    .then((response) => {
+        console.log("POST response:", response.data);
+    })
+    .catch((error) => {
+        console.error("POST error:", error);
+    });
+
+Q. Fetch :-
+Ans :-
+    .The Fetch API is a built-in JavaScript feature available in modern browsers. 
+    
+    .It provides a simple way to make network requests using the fetch() method, which is part of the window object. This method returns a Promise that resolves with the response to the request.
+
+    .Uses body for sending data.
+    .Data must be stringified using JSON.stringify().
+    .You must call .json() to parse the response.
+    .Requires manual check of response.ok for errors.
+
+    ex:- GET and POST Operation
+
+    fetch("https://jsonplaceholder.typicode.com/posts/1")       //GET
+    .then((response) => {
+        if (!response.ok) throw new Error("Network error");
+        return response.json();
+    })
+    .then((data) => {
+        console.log("GET result:", data);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
+
+    fetch("https://jsonplaceholder.typicode.com/posts", {        //POST
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title: "React Fetch Example",
+            body: "This is a test post.",
+            userId: 1,
+        }),
+    })
+        .then((response) => {
+            if (!response.ok) throw new Error("Network error");
+            return response.json();
+        })
+        .then((data) => {
+            console.log("POST result:", data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
+-------------------------------------------------------------------------------------------------
+<!-- Error boundary -->
+
+Q. What are error boundaries in react?
 Ans:-
-    Server-side rendering (SSR) in React.js is the process of rendering React components on the server and sending the pre-rendered HTML to the client.
+    .Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
 
-Q. Why would you choose to use server-side rendering instead of client-side rendering in React.js?
-Ans:-
-    Server-side rendering is chosen over client-side rendering in React.js for benefits like improved performance, SEO friendliness, and better initial page load experience.
+    .Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
 
-Q. How does server-side rendering differ from client-side rendering in React.js?
-Ans:-
-    Server-side rendering differs from client-side rendering in that the rendering process occurs on the server before sending the HTML to the client, whereas client-side rendering renders components in the browser.
+    .It introduces in React v16.
 
-Q. Explain the benefits and drawbacks of server-side rendering in React.js.
-Ans:-
-    The benefits of server-side rendering in React.js include improved SEO, faster initial page load, and better performance for low-end devices. However, it can introduce more complexity and may not be suitable for all applications.
 
-Q. What are the performance implications of server-side rendering in React.js?
-Ans:-
-    Server-side rendering can improve performance by reducing the time required for the initial render, but it can also increase the server load and network traffic for subsequent or additional requests.
+Note:-
 
-Q. How can you implement server-side rendering with React.js without using frameworks like Next.js?
-Ans:-
-    To perform server-side rendering with React.js without frameworks like Next.js, you need to set up a Node.js server, use a build system like Webpack or Babel, and implement server-side rendering logic using libraries like react-dom/server.
+    Error boundaries do not catch errors for:-
 
-Q. Describe the steps involved in setting up server-side rendering with React.js from scratch.
-Ans:-
-    The steps for setting up server-side rendering with React.js from scratch involve creating a Node.js server, configuring a build system, creating a server-side entry point, implementing rendering logic, and setting up routing.
+        .Event handlers
+        .Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)
+        .Server side rendering
+        .Errors thrown in the error boundary itself (rather than its children)
 
-Q. What libraries or tools can be used to perform server-side rendering with React.js?
-Ans:-
-    Libraries like react-dom/server, ReactDOMServer, and express can be used to perform server-side rendering with React.js.
+    .A class component becomes an error boundary if it defines either (or both) of the lifecycle methods static getDerivedStateFromError() or componentDidCatch(). 
 
-Q. How can you handle data fetching and asynchronous operations during server-side rendering in React.js?
-Ans:-
-    Data fetching and asynchronous operations during server-side rendering can be handled by making use of lifecycle methods like componentDidMount or using libraries like react-async.
+    .Use static getDerivedStateFromError() to render a fallback UI after an error has been thrown. Use componentDidCatch() to log error information.
 
-Q. What considerations should you keep in mind when implementing server-side rendering for a large-scale React.js application?
-Ans:-
-    Considerations for server-side rendering in large-scale React.js applications include optimizing performance, managing data fetching efficiently, and dealing with complex application states.
+    ex:- 
 
-Q. Can you explain the concept of code splitting and how it relates to server-side rendering in React.js?
-Ans:-
-    Code splitting is the process of splitting the JavaScript bundle into smaller chunks to improve performance. It can be utilized with server-side rendering to load only the necessary JavaScript code for each route or component.
+        class ErrorBoundary extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { hasError: false };
+            }
 
-Q. How can you optimize server-side rendered React.js applications for search engine optimization (SEO)?
-Ans:-
-    To optimize server-side rendered React.js applications for SEO, ensure that important content is present in the initial HTML, use proper meta tags, and provide server-side rendering for dynamic content.
+        static getDerivedStateFromError(error) {
+            // Update state so the next render will show the fallback UI.
+            return { hasError: true };
+        }
 
-Q. What are some common challenges or pitfalls associated with server-side rendering in React.js, and how can you address them?
-Ans:-
-    Common challenges with server-side rendering include handling client-side interactions, managing state across the server and client, and dealing with third-party libraries that are not SSR-friendly. These challenges can be addressed by using techniques like rehydration and carefully handling asynchronous operations.
+        componentDidCatch(error, errorInfo) {
+            // You can also log the error to an error reporting service
+            logErrorToMyService(error, errorInfo);
+        }
 
-Q. How does server-side rendering impact the development and debugging process compared to client-side rendering?
-Ans:-
-    Server-side rendering impacts development and debugging differently from client-side rendering, as errors and issues can occur on both the server and the client. Proper error handling and debugging techniques are necessary.
+        render() {
+            if (this.state.hasError) {
+            // You can render any custom fallback UI
+            return <h1>Something went wrong.</h1>;
+            }
 
-Q. Can you explain the concept of hydration in the context of server-side rendering in React.js?
-Ans:-
-    Hydration in server-side rendering refers to the process of attaching event listeners and reattaching React components on the client-side after the initial server-rendered HTML has been received. It enables interactivity and seamless transition to client-side rendering.
+            return this.props.children; 
+        }
+    }
+
+    <ErrorBoundary>
+        <App />
+    </ErrorBoundary>
+
+-------------------------------------------------------------------------------------------------
+<!-- Webpack,Parcel -->
+
+-------------------------------------------------------------------------------------------------
+<!-- React Query -->
+
+Q. React Query   --> npm install @tanstack/react-query
+Ans :-
+    React Query is a powerful data-fetching and state management library for React that helps you:
+
+        .Fetch,
+        .Cache,
+        .Synchronize, and
+        .Update remote data in your UI (typically from APIs).
+
+    .React Query simplifies and automates:-
+            .Built-in hooks for fetching
+            .Auto handles loading & error states
+            .Automatic caching, background updates
+            .Persisted across route changes
+
+    
+    .useQuery	            -->              Fetch and cache data (GET requests)
+    .useMutation	        -->              Perform changes like POST, PUT, DELETE
+    .QueryClient	        -->              Handles configuration, caching, retry logic
+    .QueryClientProvider	-->              Wraps your app, similar to Context API
+    .Query Keys	            -->              Unique identifier for each query's cache
+
+
+    .Benefits of React Query :-
+
+        .Fast and lightweight
+
+        .Caching with stale/refresh control
+
+        .Background refetching
+
+        .Out-of-the-box support for paginated and infinite queries
+
+        .Reduces boilerplate (useState, useEffect, axios repeated everywhere)
+
+    .Use React Query when your app:-
+
+        .Communicates with remote APIs
+
+        .Needs efficient data fetching, caching, and updating
+
+        .Requires features like pagination, polling, invalidation, offline support
+
+--------------------------------------------------------------------------------------------------
+<!-- RTK Query -->
+
+Q. RTK Query
+Ans :- 
+    RTK Query is a powerful data fetching and caching tool. It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
 
 
 
