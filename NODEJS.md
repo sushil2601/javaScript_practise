@@ -67,6 +67,44 @@ Ans :-
 
     .Supports building REST APIs, real-time applications and single page applications.
 
+Q. Http server
+Ans:-   
+    To create an HTTP server in Node.js, you use the built-in http module, which allows Node.js to transfer data over the Hyper Text Transfer Protocol (HTTP).
+
+    const http = require('http');
+
+    // Create the server
+    const server = http.createServer((req, res) => {
+        // Set the response header (status code and content type)
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+
+        // Send the response body
+        res.end('Hello, World!\n');
+    });
+
+    // Start the server on port 3000
+    server.listen(3000, () => {
+        console.log('Server running at http://localhost:3000/');
+    });
+
+
+    Term	                                              Description
+http module	          A core Node.js module used to build HTTP-based applications like APIs and websites.
+
+http.createServer()	  A method to create a new web server instance. It takes a callback with request and response objects.
+
+req (Request Object)  Represents the incoming HTTP request. You can access method, headers, URL, body, etc.
+
+res (Response Object)	Represents the server’s response to the client. You use it to send data back.
+
+res.writeHead()	        Sets the HTTP status code and response headers. E.g., 200 = OK, 'Content-Type': 'text/html'.
+
+res.end()	            Ends the response process and sends data back to the client. You can pass a message string.
+
+req.on() :-             In Node.js, HTTP requests stream the data into the server. That means the   full data doesn't arrive all at once. You use req.on('data') and req.on('end') to collect and handle the full body of a request.
+
+
+
 Q. Difference b/w NodeJS(Http server) vs Express.js
 Ans :-
     
@@ -189,7 +227,7 @@ Ans :-
 Q. What is the role of status codes in RESTful APIS?
 Ans :-
     100 -> continue
-    200 -> ok, 201 -> Created, 202 -> Accepted, 204 -> No content
+    200 -> ok, 201 -> Created, 202 -> Accepted, 204 -> No content,203 Non-Authoritative Information
     300 -> Multiple choices
     400 -> Bad Request, 401 -> Unauthorized, 403 -> Forbidden, 404 -> Not Found
     500 -> Internal server error
@@ -518,7 +556,7 @@ Q. what are the portions inside the JS engine and How synchronous code is execut
 Ans:-
     The JavaScript engine operates with a single call stack, and all the code you
     write is executed within this call stack. The engine runs on a single thread,
-    meaning it can only perform one operation at a time.
+    which perform one operation at a time.
 
     In addition to the call stack, the JavaScript engine also includes a memory
     heap. This memory heap stores all the variables, numbers, and functions that
@@ -649,6 +687,17 @@ Ans:-
 
         process.env.UV_THREADPOOL_SIZE = 8;
 
+Q. What process.exit(1) Does:
+Ans :-
+
+    process.exit() is a Node.js method that immediately stops the Node process.
+
+    It takes a status code:
+=
+    0 = success
+
+    1 or any non-zero number = error/failure
+
 Q. What is Socket?
 Ans:-
     In socket, you made a connections, complete your task and close the connection.
@@ -773,9 +822,25 @@ Ans:-
 
 Q. What is process.nextTick()?
 Ans:-
+    process.nextTick() is a function provided by Node.js to schedule a callback function to be executed after the current operation completes but before the event loop continue.
+
+    Use Case:
+        .To delay execution of a function until the current stack clears.
+
+        .Useful for cleanup tasks or manipulating data just before continuing.
+
 
 Q. Difference b/w process.nextTick() and setImmediate.
 Ans:-
+
+    Concept	                     process.nextTick()	                           setImmediate()
+Event Loop Phase	    Runs before event loop continues (microtask)	Runs in check phase of the event loop (macrotask)
+
+Order of Execution	    Executes before I/O and timers	                Executes after I/O events
+
+Type of Task	        Microtask	                                    Macrotask
+
+Priority	            Higher 	                                        Lower 
 
 
 <!-- File System,Stream and Buffer -->

@@ -353,7 +353,18 @@ Q. Can you access DOM in nodejs?
 Ans:-
   No, you cannot directly access the DOM in Node.js. Node.js is a runtime environment for running JavaScript outside of web browsers, and it does not have a built-in DOM implementatio
 
+Q. What is the difference b/w an event object and a custom event in javaScript?
+Ans :-
+       .
 
+Q. How do you optimize performance in javaScript applications?
+Ans :-
+
+      .Debouncing and Throttling
+      .Memoization
+      .Clean up event listeners, intervals, timeouts, and DOM references properly.
+      .Lazy Load Data
+      .code splitting
 
 
 

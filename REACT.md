@@ -149,7 +149,7 @@ Ans:-
         return (
             <div>
             <h2>Hello, {name}!</h2>
-            <button onClick={() => setLikes(likes + 1)}>👍 {likes}</button>
+            <button onClick={() => setLikes(likes + 1)}> {likes}</button>
             </div>
         );
     }
@@ -161,7 +161,7 @@ Ans:-
 
     .Functional Component :-
 
-                ->A functional component is just a plain javaScript pure functions that accepts    props as an argument and return react element(JSX).
+                ->A functional component is just a plain javaScript pure functions that accepts props as an argument and return react element(JSX).
 
                 ->It run from top to bottom and once the function is returned it can't be keep alive.
 
@@ -290,9 +290,7 @@ Ans:-
     React Element	                                        React Component
 A plain JavaScript object that represents a DOM node  A function or class that returns React elements
 Static description of the UI	                      Reusable logic and UI blueprint
-React.createElement() or JSX (<div>)	              function MyComponent() or class MyComponent
-Reusable? :-	 No	                                  Yes
-State & Props	No state or lifecycle	              Can use state, props, lifecycle (with hooks or class)
+React.createElement()               	              function MyComponent() or class MyComponent
 Renders a DOM node	                                  Renders one or more React Elements
 
 Q. Babel :- 
@@ -334,7 +332,7 @@ Ans :-
                 .Angular is bigger because it is a complete framework.
                 .Angular is a complete framework , therefore it provide built-in support for features like routing, forms , validation and HTTP requests.
 
-Q. What are state,stateless,stateful and state management terms?
+Q. What are stateful and state management terms?
 Ans :- 
 
     Stateful and state management means,when a user performs some actions on the UI then the react application should be able to update and re-render that data or state on the UI.
@@ -353,9 +351,14 @@ Ans :-
 
         React provides the useState() hook to manage state in function components.
 
+Q. What are the difference b/w state and props?
+Ans:-
+    State is internal to a component and can be changed over time,
+                                                                while props are external and passed to a component.
+
 Q. What happens when you call setState?
 Ans:-
-    The state property is updated in a React component with the object passed into setState, and this is done asynchronously. It tells React that this component and its children need to be re-rendered, but React may not do this immediately.
+    setState is used to update the state of a component and trigger a re-render.
 
 Q. What are stateless components?
 Ans:-
@@ -398,20 +401,6 @@ Ans:-
         NPM(Node Package Manager) is used to manage the dependencies for your react project, including the React library itself.
 
         it conain all the dependencies of the project .
-
-Q. What is public folder
-Ans:-
-    It contain static assets that are served directly to the user's browser, such as images,fonts and the index.html file.
-
-Q. What is src folder
-Ans:-
-    src folder is used to store all the source code of the application which is the responsible for the dynamic changes in your web application.
-
-Q. What is the role of index.html page in react?
-Ans:-
-    index.html file is the main HTML file(SPA) in react application.
-
-    here the div with id="root" will be replaced by the component inside index.js file.
 
 Q. ReactDOM  and index.js file in react?
 Ans:-
@@ -487,7 +476,19 @@ Ans :- Lifting state up means moving shared state from multiple child components
             .Two or more components need to read or update the same state
             .One child needs to send data to another sibling
 
+Q. <React.StrictMode>
+Ans :-
+        .React provides a special wrapper that helps you find bugs early.
+        .warn about unsafe code.
+        .works only in development not in production
 
+Q. Different way to pass data from Child to Parent.
+Ans :-
+        .using callback function
+        .Lifting up state
+        .Context Api
+        .Using useRef and forwardRef()
+        .Using Redux and Zustand
 
 <!-- Routing -->
 
@@ -531,16 +532,8 @@ Ans :-
     .without exact default behaviour :- match /about, /about/team , /about/contact
 
 Q. What is BrowserRouter?
-Ans:-BrowserRouter is a router implementation that uses the HTML5 history API (i.e., pushState, replaceState, and pop events) to keep your UI in sync with the URL.
-
-It's part of the react-router-dom package and is required to use routing features in a React SPA (Single Page Application).
-
-    What Does BrowserRouter Do?
-        .Listens to changes in the browser’s address bar
-
-        .Keeps React components in sync with the current URL
-
-        .Enables client-side navigation — no full page reloads
+Ans:-
+    BrowserRouter is a router implementation that uses the HTML5 history API (i.e., pushState, replaceState, and pop events) to keep your UI in sync with the URL.
 
 Q. What is HashRouter?
 Ans :-
@@ -622,6 +615,10 @@ Ans :-
 
                                                         Unsubscribing from services.
 
+Q. useLayoutEffect :-
+Ans :-
+    .useLayoutEffect is similar to useEffect,but it fires synchronously after all DOM mutations.
+
 
 Q. useEffect vs Lifecycle Methods (class components)
 Ans:- 
@@ -636,11 +633,13 @@ Ans :-
 
         1. Mounting Phase (when the component is created and added to the DOM)
 
-            .componentDidMount():- Runs after the component is mounted. Good for API calls, timers, etc.
+            .componentDidMount():- call after the component is mounted. Good for API calls, timers, etc.
 
         2. Updating Phase (when props or state changes)
 
-            .componentDidUpdate():-Runs after the component updates (ideal for API re-fetching)
+            .componentDidUpdate():-Runs after the component updates(means props and state change)
+
+            .Good for updating based on changes.
         
         3. Unmounting Phase (when the component is removed from the DOM)
 
@@ -683,34 +682,6 @@ Ans :-
 
         .useContext() method or Consumer property can be used to consume the context value in child component.
 
-
-Ex:- 
-    import {createContext} from 'react'
-
-    const MyContext = createContext();
-
-    const Parent = () =>{
-    const contextValue = "Hello how r u?"
-
-    return {
-        <MyContext.Provider value={contextValue}>
-            <Child></Child>
-        <MyContext.Provider>
-    }
-}
-
-const Child = () =>{
-    const contextValue = useContext(MyContext)
-    return <p>{contextValue}</p>
-
-    or 
-
-    return {
-        <MyContext.Consumer>
-            {(contextValue) => <div>{contextValue}</div>}
-        </MyContext.Consumer>
-    }
-}
 
 Q. When to use useContext() hook instead of props in real applications?
 Ans :- 
@@ -771,19 +742,22 @@ Q. How do you handle form validation in a controlled component?
 Ans :-
     By using conditional rendering based on the state and validate input values before updating the state.
 
-Q. Can you explain what custom hooks are in React and how they differ from regular hooks?
-Ans:-
-    Custom hooks in React are reusable JavaScript functions that allow you to extract logic and stateful behavior from components. While regular hooks like useState and useEffect are provided by React, custom hooks are created by developers to encapsulate specific logic that can be shared across multiple components.
+Q. Custom hook :- 
+Ans :-
+        .A custom hook is simply a user defined JavaScript function whose name starts with use.
 
-Q. What are the benefits of using custom hooks in React? Can you provide an example of a scenario where a custom hook would be useful?
-Ans:-
-    The benefits of using custom hooks in React are improved code organization, reusability, and separation of concerns. They enable you to extract complex logic into a reusable hook, reducing duplication and promoting cleaner, more maintainable code. For example, a custom hook for handling form validation can be reused in multiple forms throughout the application.
+        .It lets you extract reusable “hook logic” out of a component so that it can be shared across many components without repeating code.
 
+        .Move duplicated hook logic (e.g., form handling, data fetching) into a single function.
 
 <!-- Code Splitting -->
 
 Q. What is code Splitting in React?
-Ans :- Code Splitting is a technique to split in JavaScript bundle into smaller chunks, which are loaded on-demand.
+Ans :- 
+
+    .Code Splitting is a technique to split in JavaScript bundle into smaller chunks, which are loaded on-demand.
+
+    .Improve performance by reducing the initial bundle size.
 
 Q. How to implement Code Splitting in React?
 Ans :-
@@ -793,14 +767,12 @@ Ans :-
 
 Q. Explain the concept of lazy loading in React.
 Ans:-
-    Lazy loading in React is a technique used to optimize performance by loading components only when they are needed. Instead of loading all components upfront, you can dynamically import them using the React.lazy function and render them when required. This helps reduce the initial bundle size and improves the loading speed of your application.
+    .Lazy loading in React is a technique used to optimize performance by loading components only when they are needed. Instead of loading all components at once.
+    
+    .We can dynamically import them using the React.lazy function and render them when required. This helps reduce the initial bundle size and improves the loading speed of your application.
 
-Q. What is the role of Lazy and Suspense methods in React?
+Q. What is the role of Suspense methods in React?
 Ans :-
-    React.lazy is a function that allows you to laod a component lazily
-
-    It enables code splitting by allowing you to import a component asynchronously/dynamically ,meaning component is loaded only when needed only.
-
     The Suspense component is used to display a fallback UI while the lazily loaded component is being fetched.
 
 Q. What are the pros and cons of code Splitting?
@@ -835,11 +807,6 @@ Q. How do you inspect and analyze the generated chunks in a React application?
 Ans :-
     Use tools like Webpack Bundle Analyzer to analyze the size and composition of chunks.
 
-Q. What is a Higher-Order Component in React?
-Ans :-
-    A Higher-Order Component is a component which takes another component as an argument and adds extra features to that another component.
-
-    Ex:- ReactMemo
 
 Q. What are the 5 ways to style React components? Explain Inline Styles?
 Ans :-
@@ -860,11 +827,6 @@ Ans :-
 .HTML and CSS are used for UI.                               .Native UI components are used for UI.
 .Deployed as web applications.                               .Deployed through app stores.
 
-Q. What is GraphQL?
-Ans:-
-    GraphQL is a query language for APIs and a runtime for executing those queries with your existing data.
-
-    GraphQL and React are often used together.React components can use GraphQL queries to fetch the data required for rendering.
 
 Q. What are the ways to achieve state managements? When to use What in React?
 Ans :-
@@ -882,22 +844,6 @@ Ans:- React Profiler is a set of tools in React that allows developers to profil
     Ex:- <React.Profiler id="example" onRender={callback}>
             <!-- your code -->
          </React.Profiler>
-
-Q. Difference b/w fetch and axios in react for api calls in React?
-Ans :-
-
-      Fetch                                                              Axios
-    .Fetch is built-in JavaScript function,                .Axios is a third-party libraries,that
-    so it doesn't require any additional libraries.   simplifies the process of making HTTP request.
-
-    .fetch returns promises, making it easy to work        .Axios allows you to use interceptors,
-    with asynchrounous code using async/await syntax.    which can be good for tasks like request/
-                                                        response logging,authentication and error
-                                                        handling.
-
-    .if you want to keep http requests simple,             .If you want to intercept http request/
-    fetch is a good choice.                             response,or improve error handling then 
-                                                        axios has more function to do it.
 
                                     
 Q. Popular testing library for React?
@@ -925,74 +871,27 @@ Q. How to pass data from child component to parent component in React?
 Ans :-
     Parent provides a callback function to child and then child component can then invoke this callback to pass data back to the parent.
 
+Q What is Memoization?
+Ans :- 
+        In programming,memoization is an optimization technique that makes applications more efficient and hence faster.
+        It does this by storing computation results in cache, and retrieving that same information from the cache the next time it's needed instead of computing again.
 
+Q. What is a Higher-Order Component in React?
+Ans :-
+    A Higher-Order Component is a component which takes another component as an argument and adds extra features to that another component and return a new component.
+
+    Ex:- ReactMemo
 
 Q. useMemo
 Ans :-
-    The useMemo hook is used in React to optimize performance by memoizing (caching) the result of an expensive computation so that it does not re-run on every render unless necessary.
+    .The useMemo hook is used in React to optimize performance by memoizing (caching) the result of an expensive computation so that it does not re-run on every render unless necessary.
 
-        syntax :-
-                const memoizedValue = useMemo(() => computeSomething(a, b), [a, b]);
+    .it is used inside the functional component to memoize the result of expensive computation.
 
-                computeSomething(a, b) is the expensive calculation.
-
-                [a, b] is the dependency array – useMemo re-runs only if any of these values change.
-
-        Use useMemo when:
-
-                .You have a computationally expensive function.
-
-                .The result doesn’t need to be recalculated on every render.
-
-                .You want to avoid unnecessary recalculations or re-renders.
-
-    .Example Without useMemo
-
-            function App({ number }) {
-                    const expensiveCalculation = (num) => {
-                        console.log("Calculating...");
-                        let result = 0;
-                        for (let i = 0; i < 1e9; i++) {
-                        result += num;
-                        }
-                        return result;
-                    };
-
-            const result = expensiveCalculation(number); // runs on every render
-
-            return <div>Result: {result}</div>;
-            }
-
-            This will run expensiveCalculation on every render, even if number didn't change.
-
-    .Optimized with useMemo
-
-            import React, { useMemo } from "react";
-
-            function App({ number }) {
-                const expensiveCalculation = (num) => {
-                    console.log("Calculating...");
-                    let result = 0;
-                    for (let i = 0; i < 1e9; i++) {
-                    result += num;
-                    }
-                    return result;
-                }   ;
-
-            const result = useMemo(() => expensiveCalculation(number), [number]);
-
-            return <div>Result: {result}</div>;
-            }
-            Now, the calculation only runs if number changes.
-
-    .Real-World Example: Filtering a List
-
-        const filteredUsers = useMemo(() => {
-        return users.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
-        }, [users, searchTerm]);
-
-
-        This avoids filtering on every keystroke unless users or searchTerm changes.
+    ex:- const result = useMemo(()=>{
+            console.log('Inside useMemo')
+            return (marks*100)/100
+    },[marks])
 
 
 Q .useCallback
@@ -1018,83 +917,6 @@ Ans :-
 
                 .Performance issues in deeply nested components.
 
-    Ex:-
-        Real-Time Scenario:
-            You have a Todo list, and the AddTodo component accepts an addTodo function as a prop. Without useCallback, this function gets re-created every time the parent re-renders, causing AddTodo to re-render unnecessarily.
-
-        
-        import React, { useState, useCallback } from 'react';
-
-            const AddTodo = React.memo(({ onAdd }) => {
-            console.log('AddTodo rendered');
-            return (
-                <div>
-                <button onClick={onAdd}>Add Todo</button>
-                </div>
-            );
-            });
-
-            function App() {
-            const [todos, setTodos] = useState(["Buy milk"]);
-            const [count, setCount] = useState(0);
-
-            // Without useCallback, this function is recreated every render
-            const addTodo = useCallback(() => {
-                setTodos(prev => [...prev, "New Task"]);
-            }, []); // memoized function
-
-            return (
-                <div>
-                <h2>Todos:</h2>
-                <ul>
-                    {todos.map((todo, idx) => <li key={idx}>{todo}</li>)}
-                </ul>
-                <AddTodo onAdd={addTodo} />
-
-                <hr />
-                <p>Counter: {count}</p>
-                <button onClick={() => setCount(c => c + 1)}>Increment</button>
-                </div>
-            );
-            }
-
-            export default App;
-
-AddTodo is wrapped with React.memo(), so it only re-renders when props change.
-
-addTodo is memoized with useCallback, so its reference stays the same unless dependencies change.
-
-Now, clicking “Increment” doesn’t re-render AddTodo.
-
-
-Simple Example Without useCallback
-
-    function App() {
-    const handleClick = () => {
-        console.log('Clicked');
-    };
-
-    return <Button onClick={handleClick} />;
-    }
-
-Every time App re-renders, handleClick is re-created — so if <Button> uses React.memo(), it will still re-render due to prop change.
-
-Using useCallback to Optimize
-
-    import React, { useCallback } from 'react';
-
-    function App() {
-    const handleClick = useCallback(() => {
-        console.log('Clicked');
-    }, []); // function reference remains the same unless dependencies change
-
-    return <Button onClick={handleClick} />;
-    }
-
-Now, if <Button> is a React.memo() component, it won't re-render unless handleClick actually changes.
-
-
-
 Q. useRef :-
 Ans :-
     The useRef hook in React is used to:
@@ -1111,9 +933,15 @@ Ans :-
 
 Q. ReactMemo :- 
 Ans :-
-    React.memo is a higher-order component (HOC) that memoizes a functional component.
+    .React.memo is a higher-order component (HOC) that memoizes a functional component.
 
-    It prevents a component from re-rendering if its props haven't changed.
+    .It memoize whole functional component.
+
+    .It prevents a component from re-rendering if its props haven't changed.
+
+    .It is used only in functional component.
+
+    .PureComponent and shouldComponentUpdate we used in class component for memoization.
 
         syntax :-
                 const MemoizedComponent = React.memo(Component);
@@ -1126,39 +954,22 @@ Ans :-
 
             .By default, React re-renders a child component every time the parent renders — even if the child’s props didn’t change.
 
-            .React.memo helps in performance optimization by avoiding unnecessary renders of function components.
+            .React.memo helps in performance optimization by avoiding unnecessary renders of functional components.
 
-    Real Example Without React.memo
+            .By default, React.memo does a shallow comparison.
 
-            function Child({ name }) {
-            console.log("Child rendered");
-            return <p>Hello, {name}</p>;
+Q. Pure Component
+Ans:-
+        PureComponent is similar to component but it skips re-renders for same props and state.
+
+        class Greeting extends PureComponent{
+            render(){
+                return <h1>Hello,{this.props.name}!</h1>
             }
-
-            function Parent() {
-            const [count, setCount] = useState(0);
-            return (
-                <div>
-                <Child name="Suman" />
-                <button onClick={() => setCount(count + 1)}>Increment</button>
-                </div>
-            );
-            }
-
-Even though name="Suman" never changes, the Child component re-renders every time the parent does.
-
-
- Optimized With React.memo
-
-    const Child = React.memo(({ name }) => {
-    console.log("Child rendered");
-    return <p>Hello, {name}</p>;
-    });
-
-Now, Child will only re-render if name changes.
-
-By default, React.memo does a shallow comparison.
-
+        } 
+Q. purpose of shouldComponentUpdate method
+Ans :- 
+    is a lifecycle method that determines if a component should re-render.Developer can use it to optimize performance by preventing unnecessary renders.
 
 Q. Difference b/w useMemo and react.Memo
 Ans :-
@@ -1615,11 +1426,17 @@ Ans:-
 
 Q. What is the purpose of the "key" prop in ReactJS?
 Ans:-
-    The "key" prop in ReactJS is used to uniquely identify elements in a list of components or elements rendered by a loop. It helps React efficiently update and re-render only the necessary components when the list changes.
+    The "key" prop in ReactJS is used to uniquely identify elements in a list of components . It helps React efficiently update and re-render only the necessary components when the list changes.
+
+Q. What is the significance of keys in React?
+Ans :-
+    Keys are used to uniquely identify and differentiate between components in React.They help react to identify which items have changed,added or removed.
 
 Q. What is the impact of indexes as keys?
 Ans:-
-    Using indexes as keys in React can cause problems. When components are rendered using indexes as keys, React may not properly update or reorder them when the order changes. This can result in incorrect rendering, loss of component state, and slower performance. It's better to use unique and stable identifiers as keys to avoid these issues and ensure that components are updated correctly.
+    .Using indexes as keys in React can cause problems. When components are rendered using indexes as keys, React may not properly update or reorder them when the order changes. 
+    
+    .This can result in incorrect rendering, loss of component state, and slower performance. 
 
 Q. How does React handle event handling?
 Ans:-
@@ -1627,7 +1444,9 @@ Ans:-
 
 Q. What are error boundaries in react?
 Ans:-
-    Error boundaries in React are components that prevent the entire application from crashing when an error occurs within their child components. They act as safety nets by catching and handling errors, allowing developers to display fallback UI and maintain a smoother user experience.
+    .Error boundaries in React are components that prevent the entire application from crashing when an error occurs within their child components. They act as safety nets by catching and handling errors, allowing developers to display fallback UI and maintain a smoother user experience.
+
+    .componentDidCatch is used for error boundaries.
 
 Q. Explain the concept of "forwarding refs" in React.
 Ans:-
@@ -1645,21 +1464,11 @@ Q. What is ReactDOM package?
 Ans:-
     The ReactDOM package in React is responsible for rendering the React components to the browser's DOM (Document Object Model). It provides methods and functionality for efficiently updating and manipulating the DOM based on changes in the React component tree. ReactDOM acts as the bridge between React's virtual representation of the UI and the actual HTML elements on the webpage, ensuring that any changes in the component hierarchy are reflected in the rendered UI.
 
-Q. What is Axios, and what problem does it solve in JavaScript or React development?
-Ans:-
-    Axios is a JavaScript library used for making HTTP requests in browsers or Node.js. It simplifies the process of sending and receiving data from servers, making it easier to handle network requests in JavaScript or React applications.
+Q. Axios :-
 
-Q. What are the advantages of using Axios over the built-in fetch API in JavaScript?
-Ans:-
-    Axios offers advantages over the built-in fetch API by providing a more convenient and consistent API, better error handling, support for request cancellation, and the ability to intercept requests and responses.
+Q. Fetch :-
 
-Q. What is React Fiber?
-Ans:-
-    React Fiber is a new reconciliation algorithm introduced in React 16. It is responsible for the efficient rendering and updating of components in React applications. React Fiber breaks the rendering work into smaller units called "fibers" and manages them in a priority-based manner.
-
-Q. How does React Fiber improve the overall performance of React applications?
-Ans:-
-    React Fiber improves performance by allowing more control over scheduling and rendering. It enables asynchronous rendering, which avoids blocking the main thread, resulting in a smoother user experience.
+Q. React Fiber :- 
 
 Q. How do you handle authentication and authorization in React applications?
 Ans:-
