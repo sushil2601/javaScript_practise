@@ -335,13 +335,13 @@
 
 // Q. 
 
-const arr = [0,2,1,3,10,6,4,10,8,9,7,14,11]
+// const arr = [0,2,1,3,10,6,4,10,8,9,7,14,11]
 
-console.log(arr)
+// console.log(arr)
 
-const newArr = arr.filter((item)=> item % 2 !==0).map((item)=>item*2).sort((a,b)=>b-a);
+// const newArr = arr.filter((item)=> item % 2 !==0).map((item)=>item*2).sort((a,b)=>b-a);
 
-console.log(newArr);
+// console.log(newArr);
 
 //The .sort() method by default sorts elements as strings, which can lead to incorrect results for numbers
 //To correctly sort numbers numerically, we provide a compare function
@@ -359,8 +359,106 @@ If the result is positive (a - b > 0), then b comes before a.*/
 // Q. To check armstrong number
 
 // Q. To count the occurence of letter
-// Q. 
 
+// Q. Closure
+
+    //1.
+    // function xyz(){
+    //     let count = 0;
+    //     return function abc(){
+    //         count++;
+    //         console.log(count);
+    //     }
+    // }
+
+    // const counter1 = xyz();
+    // counter1();
+    // counter1();
+    // counter1();
+
+    //2.
+    // function abc(){
+    //     let count = 0;
+
+    //     return{
+    //         increment : function(){
+    //             count++;
+    //         },
+    //         decrement : function(){
+    //             count--;
+    //         },
+    //         log : function(){
+    //             console.log(count);
+    //         }
+    //     }
+    // }
+
+    // const counter = abc();
+    // counter.increment();
+    // counter.increment();
+    // counter.decrement()
+    // counter.log();
+
+    //3. IIFE -> immediate invoked function expression
+        //self invoked function --> one time create hoga aur one time hi run hoga.
+    // (function abc(a){
+    //     return (function xyz(b){
+    //         console.log(a)
+    //     })(1)
+    // })(0)
+
+
+// Q. Promises
+
+//1.produce and consume promises
+
+    // const promise1 = new Promise((resolve,reject)=>{
+    //     // resolve('promise is resolved')
+    //     resolve({
+    //         name : 'sushil',
+    //         city : 'Noida'
+    //     })
+    //     reject('Promise is rejected')
+    // })
+
+    // promise1.then((data)=>{
+    //     console.log(data)
+    // })
+    // .catch((err)=>{
+    //     console.log(err)
+    // })
+
+//2. returnig some value    --> interview qns
+
+    const promise = function(args){
+        return new Promise((resolve,reject)=>{
+            resolve(args)
+        })
+    }
+
+    promise('hello').then((data)=>console.log(data))
+
+//3. promise.all()
+
+const promise1 = new Promise((resolve,reject)=>{
+    // resolve('Promise1 resolved')
+    reject('promise1 rejected')
+})
+
+const promise2 = new Promise((resolve,reject)=>{
+    // resolve('Promise2 resolved')
+    reject('Promise2 is rejected')
+})
+
+const promise3 = new Promise((resolve,reject)=>{
+    // resolve('Promise3 resolved')
+    reject('Promise3 rejected')
+})
+
+// Promise.all([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+// Promise.allSettled([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+Promise.race([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+Promise.any([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
 
 
 

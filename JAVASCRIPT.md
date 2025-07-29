@@ -451,7 +451,45 @@ Ans :-
     function getName(city1,city2){
       console.log(this.fName + ''+this.lName+''+'lives in'+city1+'and'+city2);
     }
-            
+
+Q. Promise :-   in the starting it is an empty object({}).
+Ans:-
+    .The Promise Object represents the eventual completion(or failure) of an asynchronous operation and its resulting value.
+
+      or,
+
+    .Promise object is a placeholder for a certain period of time until we receive a value from a asynchronous operation.
+
+    .Promise object can only be resolved once,either it will be success or a failure.
+
+            .Three stage of promise
+                1.pending    --> This is the initial state,which we start from.
+                2.fulfilled  --> promise has been fulfilled successfully.
+                3.rejected   --> promise has been rejected, there was an error.
+
+    .use  :- handled asynchronous data
+
+    .Need of promises :-
+            .Promises are created to avoid callback hell.
+
+        
+    .callback hell(pyramid of doom) :- calling one callback in another callback and so..on
+    .Inversion of control :- 
+
+
+    .producing promises :-
+
+        Ex:- const promise1 = new Promise((resolve,reject)=>{                
+              resolve('Promise Resolved...')
+                reject('Promise is rejected..')
+            })
+
+    .consuming promises :-
+
+        Ex:- promise1.then((data)=>console.log(data))
+             .catch((err)=>console.log(err))
+
+Q. Exmaple of memoization --> sum and fibonacci        
       
 
 
