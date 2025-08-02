@@ -896,6 +896,93 @@ Q. How to pass data from child component to parent component in React?
 Ans :-
     Parent provides a callback function to child and then child component can then invoke this callback to pass data back to the parent.
 
+Q. How to Know If There’s a Performance Issue
+Ans:-
+    .Symptoms in the UI :-
+
+        .App feels slow or laggy
+
+        .Delayed rendering after user interaction
+
+        .Large bundle sizes
+
+        .High CPU usage during re-renders
+
+        .Scroll jank (choppy or delayed scrolling)
+
+        .Frequent re-rendering of components without need
+
+    .Tools & Techniques to Detect Performance Problems :-
+
+        .React Developer Tools (Profiler Tab) :- Ideal for: Component-level performance analysis
+
+            Use the "Profiler" tab to:
+
+                .Record renders
+
+                .See which components re-render
+
+                .See how long each render takes
+
+                .Spot unnecessary re-renders
+
+        .Chrome DevTools (Performance Tab) :-
+
+            .Record a timeline trace during user interaction.
+
+            Look for:
+
+                .Long tasks (>50ms)
+
+                .Excessive scripting or layout time
+
+                .Recalculating styles
+
+                .Paint bottlenecks
+
+            .Ideal for: Browser-level bottlenecks (not just React)
+
+        .Use console.log to Track Renders (Basic Debugging)
+
+        .Install why-did-you-render Package :- npm install @welldone-software/why-did-you-render
+
+            .In development mode, it detects unnecessary re-renders.
+
+        .Bundle Analyzer :- npm install --save-dev webpack-bundle-analyzer
+
+            .Large bundles slow down app load and performance.
+
+            .Use webpack-bundle-analyzer to inspect your bundle size.
+    
+        .Grafana is an open-source data visualization and monitoring tool, similar to Kibana.
+        
+            .It is used to analyze, query, and visualize metrics and logs.
+
+            .Visualization focus -->Time-series, graphs, alerts	-->Logs, metrics, security, dashboards
+
+            .Use Case in React or Frontend Projects
+
+                .Grafana is not used inside React apps, but it monitors and analyzes:
+
+                    .Performance of backend APIs
+
+                    .CPU, memory, disk usage of your servers
+
+                    .Response times, error rates, latency
+
+                    .Application logs (with Loki)
+
+                Example:-
+
+                If your React app is deployed on a cloud server:
+
+                    .Grafana can show how many users are hitting the app
+
+                    .How fast the backend responds
+
+                    .How much memory/CPU it's using
+
+
 Q What is Memoization?
 Ans :- 
         In programming,memoization is an optimization technique that makes applications more efficient and hence faster.
@@ -1235,14 +1322,11 @@ Q. What is package.json and package-lock.json?
 Ans :-
     
     .package.json :-
-                    It keeping track what version of package is installed in to system.
-                    In this automatically version upgraded.
+                    We have information about generic version of installed package.
 
 
     .package-lock.json :-
-                        Keeps a track of exact version of package that is being installed.
-                        It locks the version.
-                        It doesnot have caret or tilde.
+                        We have information about the specific or exact version of installed package
 
 Q. React19 features  
 Ans :-
@@ -1350,7 +1434,7 @@ Ans :-
 
             Ex:- condition ? expressionIfTrue : expressionIfFalse
 
-Q. Server-side rendering
+Q. Server-side rendering or service-side rendering
 Ans :-
     Server-Side Rendering (SSR) means that your React components are rendered on the server (not in the browser) into HTML, which is then sent to the client. Once the HTML is loaded in the browser, React takes over and makes the page interactive.
 
@@ -1659,6 +1743,82 @@ Note:-
 -------------------------------------------------------------------------------------------------
 <!-- Webpack,Parcel -->
 
+Q. Webpack :-
+Ans :-
+    Webpack is a module bundler. It takes your React app — all the JS, CSS, images, fonts, etc. — and bundles them into one or more optimized files that browsers can load efficiently.
+
+        Features:-
+            Hot Module Replacement (HMR)
+            File Watcher Algorithm - C++
+            Bundling
+            Minify Code
+            Cleaning our code
+            Dev and production build
+            Igniting Our App!
+            Super fast build algorithm
+            Image Optimization
+            Caching while development
+            Compression
+            Compatible with older browser versions
+            Https on dev
+            Image Optimization
+            Port No
+            Consistency Hashing Algorithm
+            Zero Config
+            Tree Shaking
+
+        .HMR:-
+            .It means that Webpack will keep a track of all the files which you are updating.
+
+            .There is File Watcher Algorithm (written in C++). It keeps track of all the files which are changing realtime and it tells the server to reload.
+
+        .webpack-cache:
+
+            .webpack caches code all the time.When we run the application, a build is created which takes some time in ms.
+
+            .If we make any code changes and save the application, another build will be triggered which might take even less time than the previous build.
+
+            .This reduction of time is due to webpack cache.webpack immediately loads the code from the cache every time there is a subsequent build.
+
+            .On the very first build parcel creates a folder .webpack-cache where it stores the caches in binary codeformat.
+
+            webpack gives faster build, faster developer experience because of caching.
+
+        .* dist:
+            .It keeps the files minified for us.When bundler builds the app, the build goes into a folder called dist.
+
+            .The `/dist` folder contains the minimized and optimised version the source code.
+            Along with the minified code, the /dist folder also comprises of all the compiled modules that may or may not be used with other systems.
+
+            .When we run command:-   npx parcel index.html
+
+                .This will create a faster development version of our project and serves it on the server.
+                When I tell  to make a production build:
+                npx parcel build index.html
+
+                Igniting Our App!
+
+                .It creates a lot of things, minify your file.
+                And the parcel will build all the production files to
+                the dist folder.
+
+        .* Tree Shaking:-
+
+            .Tree shaking is a process of removing the unwanted code that we do not use while developing the application.
+
+            .In computing, tree shaking is a dead code elimination technique that is applied when optimizing code.
+
+.* Browserslist:-
+
+    .Browserslist is a tool that specifies which browsers should be supported/compatible in your frontend app.
+
+    It makes our code compatible for a lot of browsers.
+
+    In package.json file do: 
+
+            "browserlist":[
+                "last 2 versions"
+            ]
 -------------------------------------------------------------------------------------------------
 <!-- React Query -->
 
@@ -1710,7 +1870,18 @@ Ans :-
 
 Q. RTK Query
 Ans :- 
-    RTK Query is a powerful data fetching and caching tool. It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
+    RTK Query is a powerful data fetching and caching tool that comes built-in with Redux Toolkit.
+
+    It helps :-
+            .Fetch data from APIs
+
+            .Cache the responses
+
+            .Automatically handle loading and error states
+
+            .Refetch when needed
+
+            .Minimize boilerplate
 
 ---------------------------------------------------------------------------------------------------
 <!-- Project description -->
@@ -1757,6 +1928,20 @@ Utilized Postman for API testing, debugging, and validation.
 Contributed to overall application stability by fixing UI and logic bugs across the application.
 
 Collaborated with cross-functional teams to ensure smooth delivery and feature rollout.
+
+Module :-
+        .Employee information.
+        .Inbox module --> here searching is available
+        .Accordion Page
+        .Progress page(Initiate,validation,Approval,Clearence and final settlement)--> resignation in which stage show
+        .Initiator page
+        .validation page(By HR)
+        .Employee details page(for both screen1 and screen2) --> here all parsonal details
+        .Approver page(For both screen1 and screen2 page)
+        .Employee rehire page(Employee can be eligible for rehire or not)
+        .Notice period page --> NP detail,Notice Cost
+        .Declaration page
+        .Button(save,approve ,reject and withdrawal)
 
 
 
