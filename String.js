@@ -32,6 +32,10 @@
 //   console.log(`${word} - ${wordCount[word]}`);
 // }
 
+// for(let [word,count] of Object.entries(wordCount)){
+//         console.log(`${word}-${count}`)
+//     }
+
 // Q 2) find out the mising numbers
 
 // ex:- arr = [1,3,5,9,11] , o/p :- 7
@@ -354,11 +358,22 @@ If the result is zero (a - b === 0), then the order stays the same.
 
 If the result is positive (a - b > 0), then b comes before a.*/
 
-// Q. Palindrome number
-
-// Q. To check armstrong number
-
 // Q. To count the occurence of letter
+
+// function countLetters(str){
+
+//     let count ={};
+
+//     str.toLowerCase().split('').forEach((char)=>{
+//         if(char >='a' && char <='z'){
+//             count[char] = (count[char] || 0) +1
+//         }
+//     })
+
+//     return count
+// }
+
+// console.log(countLetters("Hello World"));
 
 // Q. Closure
 
@@ -430,35 +445,289 @@ If the result is positive (a - b > 0), then b comes before a.*/
 
 //2. returnig some value    --> interview qns
 
-    const promise = function(args){
-        return new Promise((resolve,reject)=>{
-            resolve(args)
-        })
-    }
+    // const hello = function(obj){
+    //     return new Promise((resolve,reject)=>{
+    //         setTimeout(()=>{
+    //             resolve(obj)
+    //         },5000)
+    //     })
+    // }
 
-    promise('hello').then((data)=>console.log(data))
+    // hello('Hello').then((val)=>console.log(val)).catch((err)=>console.log(err))
 
-//3. promise.all()
 
-const promise1 = new Promise((resolve,reject)=>{
-    // resolve('Promise1 resolved')
-    reject('promise1 rejected')
-})
 
-const promise2 = new Promise((resolve,reject)=>{
-    // resolve('Promise2 resolved')
-    reject('Promise2 is rejected')
-})
 
-const promise3 = new Promise((resolve,reject)=>{
-    // resolve('Promise3 resolved')
-    reject('Promise3 rejected')
-})
+//     const promise = function(args){
+//         return new Promise((resolve,reject)=>{
+//             resolve(args)
+//         })
+//     }
 
-// Promise.all([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
-// Promise.allSettled([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
-Promise.race([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
-Promise.any([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+//     promise('hello').then((data)=>console.log(data))
+
+// //3. promise.all()
+
+// const promise1 = new Promise((resolve,reject)=>{
+//     // resolve('Promise1 resolved')
+//     reject('promise1 rejected')
+// })
+
+// const promise2 = new Promise((resolve,reject)=>{
+//     // resolve('Promise2 resolved')
+//     reject('Promise2 is rejected')
+// })
+
+// const promise3 = new Promise((resolve,reject)=>{
+//     // resolve('Promise3 resolved')
+//     reject('Promise3 rejected')
+// })
+
+// // Promise.all([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+// // Promise.allSettled([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+// Promise.race([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+// Promise.any([promise1,promise2,promise3]).then((val)=>console.log(val)).catch((err)=>console.log(err))
+
+//use of await with promise
+
+    // const sayHello = function(){
+    //     return new Promise((resolve,reject)=>{
+    //         setTimeout(()=>{
+    //             resolve('Say hello after 3 second')
+    //         },3000)
+    //     })
+    // }
+
+    // async function Greet(){
+    //     console.log('Inside Greet function')
+    //     const value = await sayHello();
+    //     console.log(value)
+    // }
+
+    // Greet();
+
+//sleep function
+    // const Sleep = function(ms){
+    //     return new Promise((resolve,reject)=>{
+    //         console.log('Print after 3 sec')
+    //         setTimeout(()=>{
+    //             resolve('Hello, how are you')
+    //         },ms)
+    //     })
+    // }
+
+    // async function Greet(){
+    //     console.log('Print the hello after 5 sec')
+    //     const message = await Sleep(5000)
+    //     console.log(message)
+    // }
+
+    // Greet();
+
+    // Sleep(3000).then((val)=>console.log(val)).catch((err)=>console.log(err))
+
+// Q. chain multiple synchronous operaration.
+
+// function step1(){
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve(10)
+//         },500)
+//     })
+// }
+
+// function step2(value){
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve(value*2)
+//         },500)
+//     })
+// }
+
+// function step3(value){
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve(value + 5)
+//         },500)
+//     })
+// }
+
+// step1().then(step2).then(step3).then((finalResult)=>{
+//     console.log('Final resilt :',finalResult)
+// })
+
+// function step1WithError(){
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve(10)
+//         },500)
+//     })
+// }
+
+// function step2WithError(value){
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             if(value>15){
+//                 reject(new Error('value is too large'))
+//             }else{
+//                 resolve(value*2)
+//             }
+//         },500)
+//     })
+// }
+
+// function step3WithError(value){
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve(value +5)
+//         },500)
+//     })
+// }
+
+// step1WithError()
+// .then(step2WithError)
+// .then(step3WithError)
+// .then((finalResult)=>{
+//     console.log('Final Result : ',finalResult)
+// })
+// .catch((err)=>{
+//     console.log(err.message)
+// })
+
+// Q. Promise API
+
+// const promiseA = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         // resolve('A')
+//         reject('A')
+//     },2000)
+// })
+
+// const promiseB = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         reject('B')
+//     },500)
+// })
+
+// const promiseC = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         // resolve('C')
+//         reject('C')
+//     },1000)
+// })
+
+// Promise.all([promiseA,promiseB,promiseC])
+// .then((results)=>{
+//     console.log('All promise resolved',results)
+// })
+// .catch((err)=>{
+//     console.log('One of the promises rejected',err)
+// })
+
+// Promise.allSettled([promiseA,promiseB,promiseC])
+// .then((results)=>{
+//     console.log('All promise resolved',results)
+// })
+// .catch((err)=>{
+//     console.log('One of the promise rejected',err)
+// })
+
+/*  output :- 
+    All promise resolved [
+  { status: 'fulfilled', value: 'A' },
+  { status: 'rejected', reason: 'B' },
+  { status: 'fulfilled', value: 'C' }
+]
+
+*/
+
+// Promise.race([promiseA,promiseB,promiseC])
+// .then((results)=>{
+//     console.log('All promise resolved',results)
+// })
+// .catch((err)=>{
+//     console.log('One of the promise rejected',err)
+// })
+
+// Promise.any([promiseA,promiseB,promiseC])
+// .then((results)=>{
+//     console.log('Promise resolved',results)
+// })
+// .catch((err)=>{
+//     console.log('Promise rejected',err)
+// })
+
+// Q. 
+
+// console.log(Math.random())
+
+// const randomPromise = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         const shouldResolve = Math.random() > 0.5;
+
+//         if(shouldResolve){
+//             resolve('Hello world')
+//         }else{
+//             reject('Error occured')
+//         }
+//     },2000)
+// })
+
+// randomPromise
+// .then((val)=>{
+//     console.log(val)
+// })
+// .catch((err)=>{
+//     console.log(err)
+// })
+
+// Q. Fetch data in parallel in promises
+
+// const delay = [800,1200,1000];
+
+// const fetchSimulator = (url,delay) =>{
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve(`data from ${url}`)
+//         },delay)
+//     })
+// }
+
+// const data1 = fetchSimulator('https://crocoder.dev/data1',delay[0])
+// const data2 = fetchSimulator('https://crocoder.dev/data2',delay[1])
+// const data3 = fetchSimulator('https://crocoder.dev/data3',delay[2])
+
+// const delay = [800,1200,1000]
+
+// const promise1 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve('https://crocoder.dev/data1')
+//     },delay[0])
+// })
+
+// const promise2 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve('https://crocoder.dev/data2')
+//     },delay[1])
+// })
+
+// const promise3 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve('https://crocoder.dev/data3')
+//     },delay[2])
+// })
+
+// Promise.all([promise1,promise2,promise3])
+// .then((results)=>{
+//     console.log('All data fetched:',results)
+// })
+// .catch((err)=>{
+//     console.log('Something is wrong',err.message)
+// })
+
+
+
+
 
 
 

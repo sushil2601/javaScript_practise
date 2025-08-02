@@ -372,10 +372,6 @@ Q. Does React re-render all components and sub components every time setState is
 Ans:-
     No, React does not re-render all components and subcomponents every time setState is called. It only re-renders the components that are affected by the state change.
 
-Q. How does React renderer work exactly when we call setState?
-Ans:-
-    When you use setState in React, it triggers a process called reconciliation. React compares the old and new state, figures out what changed, and updates only the necessary parts of the user interface. It does this by creating a virtual copy of the user interface called the virtual DOM and then efficiently applying the required changes to the actual web page. This helps React make updates quickly and keeps your app running smoothly.
-
 Q.What are Default Props?
 Ans:-
     In React, default props are used to define default values for props in a component. Default props ensure that if a parent component doesn't provide a value for a certain prop, the component will still have a default value to work with.
@@ -490,6 +486,12 @@ Ans :-
         .Using useRef and forwardRef()
         .Using Redux and Zustand
 
+Q. What is Shadow DOM?
+Ans :-
+    .The Shadow DOM is a web standard that enables encapsulation of HTML, CSS, and JavaScript in custom elements (Web Components). 
+
+    .It allows developers to create isolated DOM trees that don't clash with the main document's styles or scripts.
+
 <!-- Routing -->
 
 Q. What is routing and Router in React?
@@ -587,7 +589,6 @@ Q. shimmer UI :-
 Ans :-
     .We load fake page,until we get actual data from API.
     .Display a skeleton UI that matches the shape of your real content.
-    .It gives users the impression of content structure before real content is ready.
     .Replace it with real content once loading is complete.
 
 
@@ -734,8 +735,6 @@ Ans :-
 
     This allows react to have full control over the form data making it easier to manage and validate the i/p.
 
-    In controlled components, form elements values are  managed by React state.
-
 Q. What are unControlled components in react?
 Ans :-
         It store form data within the DOM itself rather than in the component's state.
@@ -833,10 +832,6 @@ Q. What is the purpose of the fallback prop in suspense?
 Ans:-
     The fallback prop provides a loading indicator or UI while the dynamically imported component is being loaded.
 
-Q. Can you dynamically load CSS files using code splitting in React?
-Ans:-
-    Yes, using dynamic import() for CSS files allows you to load styles on-demand along with the corresponding components.
-
 Q. How do you inspect and analyze the generated chunks in a React application?
 Ans :-
     Use tools like Webpack Bundle Analyzer to analyze the size and composition of chunks.
@@ -890,16 +885,12 @@ Ans:-
 Q. How can you Optimize Performance in a React applications?
 Ans :- 
     .Memoization with useMemo and useCallback.
-        --> use this hook to memoize values and , reducing unneccessary recalculations.
 
     .Optimizing Renders with React.Fragment.
-        --> use it avoid unneccessary wrapper elements that could cause additional DOM nodes.
-
+        
     .Lazy loading with React.lazy.
-        --> use it to load components lazily,reducing the initial bundle size and improving initial loading performance.
 
     .Code Splitting.
-        --> Using code splitting to divide your application into smaller chunks that are loaded on demand,improving initial load times.
     
 Q. How to pass data from child component to parent component in React?
 Ans :-
@@ -931,8 +922,6 @@ Ans :-
 Q .useCallback
 Ans :-
     useCallback is a React Hook used to memoize functions, so the function reference doesn’t change unless its dependencies change.
-
-    This helps you prevent unnecessary re-renders of child components or avoid re-creating functions on every render.
 
     Syntax :-
         const memoizedCallback = useCallback(() => {
@@ -1024,6 +1013,8 @@ Ans :-
 
     Redux provides a centralized store that holds the entire state of an application and allow components to access and update the state in a predictable manner.
 
+    Redux Store comes from reduxjs/toolkit package.
+
 Q. Redux Toolkit.
 Ans :- Redux Toolkit is the official, recommended way to write Redux logic. It simplifies store setup and reduces boilerplate.
 
@@ -1041,11 +1032,6 @@ Ans :-
 
             selector --> This phenomenal is known as subscribing to the store.
 
-Q. What is the role of Store in React Redux?
-Ans :-
-    Redux store is a centralized place for holding the state of all the components in the  application.
-
-    Redux Store comes from reduxjs/toolkit package.
 
 Q .What is reducer in redux.
 Ans :-
@@ -1122,12 +1108,6 @@ Ans :-
             Ex:- const dispatch = useDispatch();
                  dispatch(action);
 
-Q. Slice  --> comes from reduxjs/toolkit package
-Ans :- 
-    In Redux Toolkit , a slice is a collection of redux related code, including reducer logic and actions, that corresponds a specific piece of the application state.
-
-    Slice are created using the createSlice utility function provided by Redux Toolkit.
-
 Q. Asynchronous action in redux.
 Ans :-
     Redux supports asynchronous actions using middleware like redux-thunk or redux-saga.
@@ -1137,13 +1117,33 @@ Ans :-
 
 Q. Explain createSlice and the configuration it takes?
 Ans :-
-    
-    .createSlice is a utility function provided by redux toolkit that simplifies the process of creating Redux Slices.
 
+    .In Redux Toolkit , a slice is a collection of redux related code, including reducer logic and actions, that corresponds a specific piece of the application state.
+
+    .Slice are created using the createSlice utility function provided by Redux Toolkit that simplifies the process of creating Redux Slices.
+
+    .Slice  --> comes from reduxjs/toolkit package
+    
     .A redux slice is a piece of the Redux store that includes a set of actions, a reducer and an initial state.
 
     .It helps reduce boilerplate code associated with defining actions and the reducers for a specific slice of your Redux store.
 
+Q. How can we access redux store outside  a react component?
+Ans :-
+    1. Create and Export the Store
+    2. Use the Store Outside React
+
+        Ex :- import store from './store';
+
+        const state = store.getState(); // Access current state
+        console.log('User ID:', state.user.id);
+
+        // Optional: Dispatch action
+        store.dispatch({ type: 'user/logout' });
+
+    .Use Case:-
+        .Auth headers	--> Add token from Redux state to every API request
+        .Preload data	--> Fetch something before the React tree loads
 
 Q. Client-side routing 
 Ans:-
@@ -1442,8 +1442,6 @@ Ans :-
 
         The type of event
 
-        Mouse/key positions
-
         Target element
 
         Methods like preventDefault() or stopPropagation()
@@ -1457,10 +1455,6 @@ Q. What is the purpose of the "key" prop in ReactJS?
 Ans:-
     The "key" prop in ReactJS is used to uniquely identify elements in a list of components . It helps React efficiently update and re-render only the necessary components when the list changes.
 
-Q. What is the significance of keys in React?
-Ans :-
-    Keys are used to uniquely identify and differentiate between components in React.They help react to identify which items have changed,added or removed.
-
 Q. What is the impact of indexes as keys?
 Ans:-
     .Using indexes as keys in React can cause problems. When components are rendered using indexes as keys, React may not properly update or reorder them when the order changes. 
@@ -1473,7 +1467,9 @@ Ans:-
 
 Q. Explain the concept of "forwarding refs" in React.
 Ans:-
-    "Forwarding refs" in React allows a parent component to pass a ref to its child component. This way, the parent can access and control the child's DOM element or component. It's like giving a special power to the parent component to interact with its child component's internals.
+    ."Forwarding refs" in React allows a parent component to pass a ref to its child component. This way, the parent can access and control the child's DOM element or component. 
+    
+    .It's like giving a special power to the parent component to interact with its child component's internals.
 
 Q. How do you clean up or release the resources associated with a ref in React?
 Ans:-
@@ -1509,6 +1505,14 @@ Ans :-
 Q. How do you handle authentication and authorization in React applications?
 Ans:-
     There are two main ways to handle authentication and authorization in React applications. One way is to use a third-party library, such as Auth0 or Firebase. These libraries provide a number of features that make it easy to implement authentication and authorization in your application, such as user management, password hashing, and session management.
+
+Q. Integration testing :-
+Ans :-
+    Integration testing focuses on testing how different modules or components of an application work together.
+
+Q. End-To-End testing :-
+Ans :-
+    E2E testing simulates real user scenarios by testing the entire application flow, from start to finish, as a user would.
 
 --------------------------------------------------------------------------------------------------
 <!-- Fetch and axios -->
@@ -1707,6 +1711,54 @@ Ans :-
 Q. RTK Query
 Ans :- 
     RTK Query is a powerful data fetching and caching tool. It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
+
+---------------------------------------------------------------------------------------------------
+<!-- Project description -->
+
+Project: E-Separation
+Domain: Employee Exit Management
+Role: Frontend Developer / Full-Stack Developer (Based on your actual role)
+Duration: [Add your duration, e.g., July 2024 – April 2025]
+
+Project Overview:
+The E-Separation system is designed to manage the employee exit process efficiently. It streamlines workflows such as employee clearance, approvals, and documentation during offboarding.
+
+Roles & Responsibilities:
+Provided production support, performed bug fixes, and implemented new features based on client requirements.
+
+Designed and developed multiple frontend screens including:
+
+Employee Details Page (with address section)
+
+Accordion Page for displaying grouped data
+
+Employee Details – Screen 1 & Screen 2
+
+Approver Page – Screen 1 & Screen 2
+
+Created and integrated RESTful APIs for:
+
+Accordion Page
+
+Employee Details Page
+
+Approver Details Page
+
+Performed various levels of testing:
+
+Unit Testing
+
+Integration Testing
+
+End-to-End (E2E) Testing
+
+Utilized Postman for API testing, debugging, and validation.
+
+Contributed to overall application stability by fixing UI and logic bugs across the application.
+
+Collaborated with cross-functional teams to ensure smooth delivery and feature rollout.
+
+
 
 
 

@@ -264,24 +264,10 @@ Q. What is a callback hell in javascript?
 Ans:-
   Callback hell is a term used to describe a situation where multiple callbacks are nested within one another, making the code difficult to read, debug, and maintain. It often arises when dealing with asynchronous operations, such as making HTTP requests or working with databases.
 
-Q. What is memoization?
-Ans:-
-  Memoization is a technique used in computer science to speed up the execution of functions by caching the results of expensive function calls and returning the cached result when the same inputs occur again.
 
 Q. What is the purpose of the "use strict" statement in JavaScript?
 Ans:-
   The "use strict" statement is used to enable strict mode in JavaScript, which helps to prevent common errors and make the code more secure. It prevents things like use of undeclared variable, use of keywords as variable name, using duplicate property names in objects, etc.
-
-Q. What is a cookie in javascript?
-Ans:-
-  A cookie is a small data file that a website stores on a user's computer or device. Cookies are commonly used to remember user preferences and login information, and to track user activity on a website. Cookies can also have an expiration date, after which they are automatically deleted.
-
-Q. What are the differences between cookie, local storage and session storage?
-Ans:-
-  Cookie	                                  Local storage	                        Session storage
-Accessed on Both server-side & client-side	client-side only	                   client-side only
-As configured using Expires option	        until deleted	                       until tab is closed
-4KB	                                         5 MB	                               5 MB
 
 Q. What is AJAX?
 Ans:-
@@ -433,9 +419,9 @@ Q. Polyfill for bind :-
 Ans :-
       A Polyfill is a function which is created as a replacement to an existing function to make it compatible with all the browsers.
 
-    Function.prototype.MyBind = function(obj,...args1){  args1 = 'Mumbai'
+    Function.prototype.MyBind = function(obj,...args1){      //args1 = 'Mumbai'
       const func = this;
-      return function(...args2){             args2 = 'Delhi'
+      return function(...args2){                             //args2 = 'Delhi'
         return func.apply(obj,[...args1,...args2])
       }
     }
