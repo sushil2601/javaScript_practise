@@ -1198,7 +1198,7 @@ Ans :-
         
         6.Custom Error handlers 
 
-Q. Where you store a token?
+Q. Where do you store a token?
 Ans :-
         .In a Frontend Application :-
                 .In cookies (on the browser)
@@ -1239,21 +1239,187 @@ Ans :-
 
             -> We authenticate the token using a middleware function --> placed before protected routes.
 
+Q. What is Restful API and what is the rule to create it?
+Ans :-
+    A RESTful API is an architectural style for building networked applications, particularly web services, based on stateless client-server communication over HTTP.
+
+    It allow clients to communicate with a server over HTTP using standard methods.
+
+    Rule to create Restful API:-
+
+            1. Naming the resources Use Nouns, Not Verbs in URLs. Ex:- GET    /users  
+            2. Use the Correct HTTP Methods
+            3. Statelessness --> Every API call should contain all the information it needs.
+            4. Use JSON for Responses
+            5. Use Proper Status Codes.
+            6. Version Your APIs.
+            7. Use Query Parameters for Filtering/Searching
+            8. Authentication and Security
+                .Use JWT or OAuth 2.0 for stateless authentication.
+
+                .All communication over HTTPS.
+
+                .Implement rate limiting, IP throttling, and input sanitization.
+
+            9. Monitoring
+            10.Documentation
+            11.Error Handling --> Structured, meaningful HTTP codes and JSON errors
             
+            12. Idempotency
+                .Ensure PUT, DELETE, and GET requests are idempotent (multiple identical requests should result in the same state).
 
 
+Q. Rest API endpoint :-  Ex. of Cart
+Ans :-
+        .Get current user's cart --> GET	/api/v1/cart
+        .Add item to cart	     --> POST	/api/v1/cart/items
+        .Update item quantity	 --> PUT	/api/v1/cart/items/:itemId
+        .Remove item from cart	 --> DELETE	/api/v1/cart/items/:itemId
+        .Clear the cart	         --> DELETE	/api/v1/cart
+        
+        .router.post("/changepassword",auth,changePassword);
 
 
+Q. What boilerplate or additional setup do you include when starting a React application?
+Ans:-
+    .they’re usually testing your:-
+
+            .Architectural thinking
+
+            .Experience with large-scale React apps
+
+            .Awareness of real-world needs like security, performance, scalability, and collaboration
 
 
+    .When starting a new React application, beyond the base boilerplate provided by tools like create-react-app or Vite, I always include some key structural and tooling enhancements to ensure the app is scalable, maintainable, and production-ready.
 
+    .my setup ensures the application is developer-friendly, scalable, performant, and ready for collaborative team work in a production environment.
 
+        1.Project Structure
+            /src
+                /api
+                /assets
+                /components
+                /contexts
+                /hooks
+                /pages or /views
+                /routes
+                /services
+                /store (Redux or Zustand, etc.)
+                /utils
+            .env
+            App.jsx
+            index.js
 
+        2. Routing
+        3. State Management
+        4. API Integration
+        5. Authentication Handling(JWT token storage)
+        6. Styling Framework(Tailwind css or styled component)
+        7. Form Handling & Validation
+        8. Testing Setup
+        9. Performance Optimization
+        10.Error Boundaries
+        11.Logging / Monitoring Tools
+        12.Documentation
 
+Q. Child Process in nodeJs?
+Ans :-
+    .In Node.js, a child process allows us to run system-level commands or external scripts outside the main thread. 
+
+    .This helps offload heavy CPU tasks, avoid blocking the event loop, and enable parallel processing. 
+    .I often use exec() or spawn() for shell commands, and fork() when I need inter-process communication with another Node.js script.
+
+    .Executing shell commands (e.g., ls, git, python script.py)
+
+    .Real-world Use Cases:-
+        Running a Python or Java program from a Node.js server
+
+        Image or video processing (e.g., using ffmpeg)
+
+        File compression/decompression
+
+        Large data transformations
+
+        Worker-based parallel processing with communication
+
+    .There are four methods in child process :-
+
+        .exec()      --> 
+                .Run a command in a shell (buffer-based) 
+                .buffers the output .
+                ex:- like ls, git --version
+
+        .execFile()  --> 
+                .Run a file directly (without a shell)
+                .Executes an executable file directly.
+                .Faster and more secure than exec() for known scripts/executables.
+                .Output is still buffered.
+
+          ex:- .exe, .sh
+
+        .swapn()     --> 
+                .Stream-based command execution
+                .Streams stdout and stderr, great for large output (e.g., big files).
+                .handle data as it comes.
+
+                ex:- e.g., video processing, streaming logs
+
+        .fork()      --> used to run another Node.js script
+
+Q. What is clustering in NodeJs?
+Ans :-
+    .Clustering in Node.js is a way to create multiple instances (workers) of your Node.js application to take advantage of multi-core CPUs, enabling concurrent request handling and better performance under load.
+
+    .By default, Node.js runs on a single thread, which means it can only use one CPU core — even if the server has 4, 8, or more cores.
+    .Clustering solves this by forking child processes, each running on its own core, and sharing the same server port.
+
+    .Key Features:
+        All workers share the same port.
+
+        Each worker runs in its own memory space (not shared memory).
+
+        Can be combined with load balancers, PM2, or Docker for production scaling.
+
+        Can gracefully handle crashes — restart dead workers automatically.
+
+Q. worker_threads
+Ans :-
+    .The worker_threads module allows multi-threading within a single process. Each thread shares memory  and runs independently.
+
+    .It's mainly used for CPU-intensive tasks like image processing, compression, etc., that would block the event loop.
+
+    .Key points:
+        Uses threads, not processes
+
+        Multi-thread architecture
+
+        Shared memory possible
+
+        Good for offloading heavy computation
+
+    .cluster is used to horizontally scale your Node.js application across multiple processes, useful for I/O-heavy workloads.
+    .worker_threads allows for parallel execution of CPU-heavy JavaScript code in threads, useful to avoid blocking the main thread in single-process scenarios.
+
+    .When to Use What?
+        .Use cluster when:
+            You want to scale a Node.js HTTP server across CPU cores.
+
+            You are handling many concurrent I/O-bound requests.
+
+            You want independent processes, isolated and robust.
+
+        .Use worker_threads when:
+            You need to do CPU-intensive processing (e.g., image resizing, encryption).
+
+            You want to offload blocking tasks from the main thread.
+
+            You need shared memory or faster inter-thread communication.
 
 
 <!-- Pending topic -->
 1. Redis
+2. Docker
 
 
 <!-- Scenario based question -->
