@@ -279,19 +279,21 @@ Ans:-
         }
 
 Q. what is React Element?
-Ans:- A React Element is a plain JavaScript object that describes what you want to see on the screen.
-    -Once created, a React element cannot be changed.
+Ans:- 
+    .A React Element is a plain JavaScript object that describes what you want to see on the screen.
+    .Once created, a React element cannot be changed.
 
 Ex :-  const element = React.createElement('h1', null, 'Hello, world!');
 
 Q. Difference b/w React Element and React Component.
 Ans:- 
     
-    React Element	                                        React Component
-A plain JavaScript object that represents a DOM node  A function or class that returns React elements
-Static description of the UI	                      Reusable logic and UI blueprint
-React.createElement()               	              function MyComponent() or class MyComponent
-Renders a DOM node	                                  Renders one or more React Elements
+  .An react is a plain Object describing what you want to see on the screen in terms of the DOM nodes or the other components.
+  .Element can contain other elements in their props.
+
+  .whereas a component can be declared in several different ways.
+  .It can be defined as class or defined as function.
+  .In either case, it takes props as an input and return a jsx as the output.
 
 Q. Babel :- 
 Ans :- 

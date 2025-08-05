@@ -1005,7 +1005,252 @@ Priority	            Higher 	                                        Lower
              such as reading files or network communications.
 
 
+<!-- Qns asked in Interview -->
+
+Q. How can we connect microservices?
+Ans:-
+    1. HTTP REST APIs :- API integration.
+    2. Using Kafka :-
+            [Producer Microservice]
+                    ↓
+                [Kafka Broker]
+                    ↓
+            [Consumer Microservice(s)]
+
+    3. Redis :-
+            [Publisher Microservice]
+                    ↓
+                [Redis Channel]
+                    ↓
+            [Subscriber Microservice(s)]
+
+    4. gRPC 
+    5. GraphQL API Gateway
+
+Q. How can we do the monitoring in Nodejs
+Ans :-
+    Monitoring in a Node.js application is essential for tracking performance, catching errors, and ensuring the app runs smoothly in production.
+
+   | Category              | What to Monitor                                |
+| --------------------- | ---------------------------------------------- |
+| **Performance**       | Response time, memory usage, CPU load          |
+| **Errors**            | Uncaught exceptions, rejected promises         |
+| **Logs**              | Info, warnings, errors                         |
+| **HTTP metrics**      | Request rate, status codes, response size/time |
+| **Uptime**            | Is the app online or crashed?                  |
+| **External services** | DB, APIs, Redis, etc.                          |
+
+
+.Monitoring Tools for Node.js :-
+
+        1.Built-in Node.js Tools :- process.memoryUsage(),process.cpuUsage()
+        2.Logging with Winston.
+        3.Grafana(for metrics) and kibana
+        4.Telemetry
+
+Q. What is Telemetry in Node.js
+Ans :-
+    Telemetry refers to collecting, transmitting, and analyzing metrics, logs, traces, and events from your application to monitor its health, performance, and usage.
+
+        In Node.js, telemetry is used to:
+
+            .Log structured data
+
+            .Trace requests across services
+
+            .Monitor CPU/memory usage
+
+            .Track API call performance
+
+            .Detect errors automatically
+
+Q. How can we do the security in Nodejs
+Ans :-
+    .Security in Node.js: What You Need to Protect
+
+    | Area                 | Examples                                  
+| -------------------- | ----------------------------------------- |
+| **Data**             | User passwords, tokens, confidential info |
+| **APIs & Endpoints** | Authentication, rate-limiting, validation |
+| **System**           | File access, process control              |
+| **Dependencies**     | Vulnerable packages, supply-chain attacks |
+| **Communication**    | Man-in-the-middle attacks (HTTP vs HTTPS) |
+
+
+    .Major Ways to Secure Node.js Applications :-
+
+        1..JWT :-
+
+        | Purpose                                |  Description           
+| ------------------------ | ----------------------------------------------------------------- |
+| ✅ **Authentication**     | Verifying that the user is who they say they are (login).         |
+| ✅ **Authorization**      | Granting access to protected routes (e.g., admin-only pages).     |
+| ✅ **Stateless Sessions** | No need to store session in database or server memory.            |
+| ✅ **Token-based APIs**   | Secure communication between frontend & backend or microservices. |
+
+
+        2. Input Validation & Sanitization
+        3. Authentication & Authorization
+
+                Use libraries like:-
+
+                    .jsonwebtoken – for token-based auth (JWT)
+
+                    .bcryptjs – for password hashing
         
+        4. Environment Variable Protection --> 
+            .Use .env to store secrets, never hardcode passwords or API keys.
+            .Use libraries like dotenv
+
+        5. Rate Limiting & Brute Force Protection
+            .Control request rate per IP to protect the API
+
+        6. Helmet for Setting Secure Headers.
+
+        7. CORS Protection.
+
+        8. Use HTTPS Only :- Always encrypt communication using TLS/SSL(HTTPS)
+
+Q. What is SSL/TLS?
+Ans:-
+    .SSL (Secure Sockets Layer) and TLS (Transport Layer Security) are cryptographic protocols used to:
+
+        .Encrypt communication between the client (browser/app) and the server.
+
+        .Prevent man-in-the-middle attacks (MITM).
+
+        .Verify identity of the server (via certificate authority).
+
+    Note :- Today, TLS has replaced SSL — but people still call it “SSL certificate” out of habit.
+
+Q. How can we document the NodeJs API?
+Ans :-
+
+    .OpenAPI / Swagger for API Documentation 
+
+        .What is Swagger? :-Swagger (now part of OpenAPI spec) is used for documenting REST APIs.
+
+        .Tools to Use:
+            .swagger-ui-express
+            .swagger-jsdoc
+
+        .npm install swagger-ui-express swagger-jsdoc
+
+        const express = require('express');
+        const swaggerUi = require('swagger-ui-express');
+        const swaggerJsdoc = require('swagger-jsdoc');
+
+        const app = express();
+
+        const options = {
+        definition: {
+            openapi: '3.0.0',
+            info: {
+            title: 'My API',
+            version: '1.0.0',
+            },
+        },
+        apis: ['./routes/*.js'], // files to scan for annotations
+        };
+
+        const swaggerSpec = swaggerJsdoc(options);
+
+        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+        app.listen(3000, () => console.log('Docs at http://localhost:3000/api-docs'));
+
+    .Folder/Files
+            .route/user.js
+            .docs/swagger.js
+            .app.js           -->   # Main entry file (import and serve docs here)
+
+
+                const swaggerUi = require('swagger-ui-express');
+                const swaggerSpec = require('./docs/swagger');
+
+                app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+Q. Different ways to handle error handling in nodejs?
+Ans :-
+        1.Synchronous Error Handling (try-catch)
+        2.Asynchronous Error Handling (Promises)
+        3.Async/Await with try-catch
+        4.Express Error Handling Middleware  :- Use middleware for centralized error handling
+
+                app.use((err, req, res, next) => {
+                    console.error(err.stack); // log for debugging
+                    res.status(err.status || 500).json({
+                        message: err.message || 'Internal Server Error',
+                    });
+                });
+
+        5.Global Error Handling (Process Events)
+
+            process.on('uncaughtException', (err) => {
+                console.error('Uncaught Exception:', err);
+                process.exit(1); // or graceful shutdown
+            });
+
+            process.on('unhandledRejection', (reason, promise) => {
+                console.error('Unhandled Rejection:', reason);
+            });
+
+        
+        6.Custom Error handlers 
+
+Q. Where you store a token?
+Ans :-
+        .In a Frontend Application :-
+                .In cookies (on the browser)
+                .Local Storage(window.localStorage)
+                .Session Storage
+
+        .In a Backend Application :-
+                .Do not save the token on the server unless you are implementing:
+
+                    .Blacklisting
+
+                    .Refresh token storage
+
+                    .Session management
+
+                .If you use refresh tokens, you may store them in:-
+
+                    .A database (MongoDB, Redis, etc.)
+
+                    .Or secure HTTP-only cookies
+
+
+Q. In nodejs where we authenticate the token and where we implement the token 
+Ans :-
+
+        1. Where to "implement the token" (i.e., generate/send) :-
+
+            -> We generate and send the token during login or signup .
+
+                // Generate token
+                const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+                    expiresIn: '1h',
+                });
+
+                res.json({token})
+
+        2. Where to "authenticate the token" (i.e., verify) :-
+
+            -> We authenticate the token using a middleware function --> placed before protected routes.
+
+            
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Pending topic -->
 1. Redis

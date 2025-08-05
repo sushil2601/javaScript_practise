@@ -475,7 +475,14 @@ Ans:-
         Ex:- promise1.then((data)=>console.log(data))
              .catch((err)=>console.log(err))
 
-Q. Exmaple of memoization --> sum and fibonacci        
+Q. Exmaple of memoization --> sum and fibonacci  
+
+
+<!-- TypeScript -->
+
+Q. TypeScript :-
+Ans:-
+    
       
 
 

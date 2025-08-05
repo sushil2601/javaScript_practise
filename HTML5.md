@@ -271,6 +271,30 @@ Ans:-
             }
         </style>
 
+    
+Q. Documentation purpose:-
+Ans :-
+    .What is JSDoc?
+        .JSDoc is a popular tool for writing documentation directly in your code comments. It generates HTML docs automatically.
+
+        .Install JSDoc :- npm install --save-dev jsdoc.
+
+        .Add JSDoc comments to your code :-
+
+                /**
+                    * Adds two numbers
+                    * @param {number} a
+                    * @param {number} b
+                    * @returns {number} Sum of a and b
+                */
+                    function add(a, b) {
+                    return a + b;
+                    }
+        
+        .Generate documentation :- npx jsdoc yourFile.js -d docs
+
+
+
 
 
 
