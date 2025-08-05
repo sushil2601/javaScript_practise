@@ -53,42 +53,6 @@ Ans :-
 
     Ex:- $lte, $gte
 
-Q. What is projection in MongoDB? How to implement it?
-Ans :-
-    Projection is the way of specifying which fields should be returned in the query results.
-
-    Projection can be implemented by using the project method.
-
-        ex:- const cursor2 = collection.find({}).project({name : 1});
-
-Q. What are Indexes in MongoDB? How indexing make data retrieval faster?
-Ans :-
-    Indexes are data structure that improve the speed of data retrieval operations on collections.
-
-    By default, index is automatically created on _id field.
-
-    Ex:- user collection
-
-        [
-            {"_id":1,"name":"sushil","age":23},     --> Before creating index, data is directly
-            {"_id":2,"name":"suman","age":23},             retrieved.
-            {"_id":3,"name":"Taaj","age":23}
-        ]
-
-        creating index on "name" field.(MongoDB will create a separate index data structure(index tree))
-
-        {   Ascending
-            "Sushil":[1],
-            "Suman" :[2],        ===> index tree
-            "kumar" :[3]
-        }
-
-        -> After creating index, data is retrieved via indexes.
-
-    MongoDB automatically update the index tree as documents are inserted,updated or deleted ensuring the index remains accurate.
-
-    When querying with indexed fields, MongoDB uses the index to efficiently locate matching documents, avoiding a full collection scan.
-
 Q. What are Mongoose? What are the advantages of using it?
 Ans :-
     Mongoose is an Object Data Modeling library for MongoDB and Node.js.
@@ -135,9 +99,23 @@ Q. Query()
 
 Q. Aggregation
 Ans :-
-    Aggregation is a way of processing a large number of documents in a collection and returning computed results — like filtering, grouping, sorting, and transforming data.
+    Aggregation in MongoDB is a powerful data processing and transformation framework used to perform operations like:
 
-    Aggregation uses a pipeline pattern: each stage processes the documents and passes the result to the next stage.
+    Filtering ($match)
+
+    Grouping ($group)
+
+    Sorting ($sort)
+
+    Joining ($lookup)
+
+    Projecting specific fields ($project)
+
+    Calculating totals, averages, counts, etc.
+
+    .MongoDB uses an aggregation pipeline, which is a sequence of stages, where each stage processes and passes results to the next.
+
+    .Each stage is a JSON object with a specific operator.
 
     Stage	                                   Purpose
     $match	                                    Filters documents (like find)
@@ -150,6 +128,84 @@ Ans :-
     $lookup	                                    Performs joins with other collections
     $count	                                    Counts number of documents
     $addFields	                                Adds new fields to documents
+
+Q. Indexing :-
+Ans :-
+    Indexing in MongoDB is a technique used to speed up query performance. Without indexes, MongoDB performs a collection scan — it checks every document to find matches, which is inefficient for large datasets.
+
+    .index is automatically created on _id field.
+
+    .With indexes, MongoDB can quickly locate documents that match query conditions, just like an index in a book helps you find specific topics fast.
+
+    Ex:- user collection
+
+        [
+            {"_id":1,"name":"sushil","age":23},     --> Before creating index, data is directly
+            {"_id":2,"name":"suman","age":23},             retrieved.
+            {"_id":3,"name":"Taaj","age":23}
+        ]
+
+        creating index on "name" field.(MongoDB will create a separate index data structure(index tree))
+
+        {   Ascending
+            "Sushil":[1],
+            "Suman" :[2],        ===> index tree
+            "kumar" :[3]
+        }
+
+        -> After creating index, data is retrieved via indexes.
+
+    MongoDB automatically update the index tree as documents are inserted,updated or deleted ensuring the index remains accurate.
+
+    When querying with indexed fields, MongoDB uses the index to efficiently locate matching documents, avoiding a full collection scan.
+
+    .How to Create Indexes :-
+        . Single Field Index :- 
+            ex:- db.users.createIndex({ email: 1 })  // 1 = ascending, -1 = descending
+
+        .Compound Index :-
+            ex:- db.orders.createIndex({ userId: 1, createdAt: -1 })
+
+    .How to View Indexes :-
+        .db.users.getIndexes()
+
+    .How to Drop Indexes :-
+        .db.users.dropIndex("email_1")
+
+    .Use .explain() to analyze performance:-
+        db.users.find({ email: "john@example.com" }).explain("executionStats")
+
+    It will show if an index was used or if a full scan was performed.
+
+    .When NOT to Use Indexes
+        Too many indexes = overhead during writes/updates
+
+        Indexes use extra storage
+
+        Unused indexes slow down write operations
+
+Q. What is Projection in MongoDB?
+Ans:-
+    .In MongoDB, projection means specifying which fields to include or exclude in the result set of a query. It allows you to retrieve only necessary data, making queries more efficient in terms of performance and bandwidth.
+
+    Ex:- const cursor2 = collection.find({}).project({ name: 1 });
+         const cursor2 = collection.find({}).project({ name: 1, _id: 0 }); //exlude id.
+
+    .Why Use Projection?
+        .Reduces data transfer between MongoDB and your app
+
+        .Optimizes memory usage by retrieving only what’s needed
+
+        .Speeds up queries especially when documents are large
+
+    .Best Practices
+        .Always use projection to limit data sent to the client.
+
+        .Avoid fetching sensitive or unnecessary fields like password, tokens, etc.
+
+        .Use projections for performance tuning and better security.
+
+
 
 Q. What is transactions? How to perform transactions?
 Ans :-
@@ -1107,26 +1163,9 @@ Q.DB operation:-
 
 --------------------------------------------------------------------------------------------------
 
-3. Projection :-
----------------
-
-
----------------------------------------------------------------------------------------------------
-
-4. Aggregation :-
----------------
-
-
----------------------------------------------------------------------------------------------------
-
 5. QUERY() contructor :-
 -----------------------
 
-
----------------------------------------------------------------------------------------------------
-
-6. Indexing :-
--------------
 
 
 
