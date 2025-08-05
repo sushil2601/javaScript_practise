@@ -478,11 +478,20 @@ Ans:-
 Q. Exmaple of memoization --> sum and fibonacci  
 
 
-<!-- TypeScript -->
-
-Q. TypeScript :-
-Ans:-
-    
+<!-- JavaScript Important topics -->
+.Closures
+.Callback
+.Promises
+.Async/Await
+.Bubbling,capturing and delegation.
+.Debouncing and Throttling
+.Hoisting
+.Temporal Dead Zone
+.Currying
+.Equality Operator
+.Event Loop
+.JavaScript Engines
+.How JavaScript works
       
 
 

@@ -1416,6 +1416,21 @@ Ans :-
 
             You need shared memory or faster inter-thread communication.
 
+Q. To upload file/image :-
+Ans:-
+    To handling image/file uploads
+
+        .multer
+        .cloudinary
+
+            | Library      | Use Case                                      |
+    | ------------ | --------------------------------------------- |
+    | `formidable` | Alternative to multer, supports file parsing  |
+    | `busboy`     | Lower-level library used by other middlewares |
+    | `sharp`      | Resize/compress images after upload           |
+    | `cloudinary` | Cloud-based image storage and optimization    |
+
+
 
 <!-- Pending topic -->
 1. Redis
