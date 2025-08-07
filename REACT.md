@@ -1938,8 +1938,9 @@ Module :-
         .Progress page(Initiate,validation,Approval,Clearence and final settlement)--> resignation in which stage show
         .Initiator page
         .validation page(By HR)
+        .Approve by approver1 page
+        .Approve by approver2 page
         .Employee details page(for both screen1 and screen2) --> here all parsonal details
-        .Approver page(For both screen1 and screen2 page)
         .Employee rehire page(Employee can be eligible for rehire or not)
         .Notice period page --> NP detail,Notice Cost
         .Declaration page

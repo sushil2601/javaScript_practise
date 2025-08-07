@@ -69,17 +69,16 @@ Ans :-
 
 Q. Http server
 Ans:-   
-    To create an HTTP server in Node.js, you use the built-in http module, which allows Node.js to transfer data over the Hyper Text Transfer Protocol (HTTP).
+    An HTTP server in Node.js is a core feature provided by the http module that allows your application to handle HTTP requests and send responses.
 
     const http = require('http');
 
     // Create the server
     const server = http.createServer((req, res) => {
-        // Set the response header (status code and content type)
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        
+        res.writeHead(200, { 'Content-Type': 'text/plain' }); // Set the response header (status code and content type)
 
-        // Send the response body
-        res.end('Hello, World!\n');
+        res.end('Hello, World!\n'); // Send the response body
     });
 
     // Start the server on port 3000
@@ -88,78 +87,89 @@ Ans:-
     });
 
 
-    Term	                                              Description
-http module	          A core Node.js module used to build HTTP-based applications like APIs and websites.
-
-http.createServer()	  A method to create a new web server instance. It takes a callback with request and response objects.
-
-req (Request Object)  Represents the incoming HTTP request. You can access method, headers, URL, body, etc.
-
-res (Response Object)	Represents the server’s response to the client. You use it to send data back.
-
-res.writeHead()	        Sets the HTTP status code and response headers. E.g., 200 = OK, 'Content-Type': 'text/html'.
-
-res.end()	            Ends the response process and sends data back to the client. You can pass a message string.
-
-req.on() :-             In Node.js, HTTP requests stream the data into the server. That means the   full data doesn't arrive all at once. You use req.on('data') and req.on('end') to collect and handle the full body of a request.
+| Term                  |      Description                                     |
+------------------------------------------------------------------------------ |
+`http` module         -> Built-in module to create web servers and APIs.  
+`http.createServer()` -> Creates an HTTP server. Takes a callback with `req` & `res`.
+`req` (Request)       -> Represents incoming request; has method, headers, URL, etc.
+`res` (Response)      -> Used to send response to the client.  
+`res.writeHead()`     -> Sets status code & headers (e.g., 200 OK, content type).
+`res.end()`           -> Ends response and sends optional data.          
+`req.on()`            -> Handles streaming data (e.g., for POST body). Use `'data'` and `'end'` events.
 
 
 
-Q. Difference b/w NodeJS(Http server) vs Express.js
+Q. Difference b/w Http server vs Express.js
 Ans :-
     
-    Feature / Task            Node.js (Without Express)                                                          | Express.js    
-                                                            |
-| **Setup Simplicity**              | low-level setup required to create and manage an HTTP server manually. | One line to set up the server. `app.listen()`  
+    HTTP server                                        Express.js                                  
+low-level setup required to create and manage an HTTP server manually.  One line to set up the server. `app.listen()`  
                        |
-| **Routing**                       | Manually parse `req.url` and `req.method` to handle different routes.              | Built-in routing methods like `app.get()`, `app.post()`, etc.  
-       |
-| **Request Parsing (body)**        | manually handle and parse JSON | Use middleware like `express.json()` 
-      |
+Manually parse `req.url` and `req.method` to handle different routes.  Built-in routing methods like `app.get()`, `app.post()`, etc.
 
-| **Middleware Support**            | No built-in middleware support. You have to build everything from scratch.         | Easy and powerful middleware pattern support           
-               |
-| **Code Readability**              | Can become cluttered and hard to manage for multiple routes and logic.             | Clean and modular code using route handlers and middleware  
-          |
-| **Error Handling**                | Requires custom logic to catch and handle errors.                                  | Centralized error handling with middleware                            |
+manually handle and parse JSON.                        Use middleware like `express.json()` 
 
-| **Routing Parameters / Query**    | Manual extraction from the URL.                                                    | Automatically handled and accessible via `req.params` and `req.query` |
+No built-in middleware support. You have to build everything from scratch. Has middleware supports.
 
-| **Third-party Integrations**      | Manual configuration for any external libraries.                                   | Easily integrates with tools like Mongoose, Passport, JWT, etc.       |
+Requires custom logic to catch and handle errors.      Centralized error handling with middleware.
 
-| **Maintainability & Scalability** | Poor scalability and code gets harder to manage as app grows.                      | Easy to scale and organize using routers and middleware.              |
+Manual extraction from the URL.                        Automatically handled and accessible via `req.params` and `req.query`.
+
+Manual configuration for any external libraries.       Easily integrates with tools like Mongoose, Passport, JWT, etc.
+
+Poor scalability and code gets harder to manage as app grows.   Easy to scale and organize using routers and middleware.     
 
 
 Q. What is Middleware in Express.js and when to use them?
 Ans :-
-    Middleware functions are functions that have access to the request (req) and response (res) objects and the next function in the request-response cycle. They are used to modify requests and responses, run code, handle errors, and terminate requests.
+    .Middleware are functions in Express.js that have access to req, res, and next(). They sit between the request and response, used to handle logic like authentication, logging, parsing, etc.
 
-    Middleware can:-
+    .What Middleware Can Do:-
+        .Execute any logic.
 
-        Execute any code
+        .Modify req or res.
 
-        Modify req or res
+        .End the request-response cycle.
 
-        End the request-response cycle
+        .Call next() to move to the next middleware.
 
-        Call next() to pass control to the next middleware
+   .Common Examples:
+        .express.json() – Parses JSON bodies.
 
-    Ex:-
-        .express.json() – parses incoming JSON requests.
-        .app.use(cors)  - Enable cors.
+        .app.use(cors()) – Enables CORS.
 
-    Why Use Middleware?
+        .app.use(authMiddleware) – Custom auth check.
 
-        Code reusability: Centralize logic like logging, auth,body parsing, cors handling and validation.
+        .app.use(cookieParser()) ->cookie-parser middleware.
 
-        Separation of concerns: Keep route handlers clean.
+    .Why Use Middleware?
+        .Reusability: Centralize logic like auth, validation, etc.
 
-    .Middleware is executed in the order it's registered.
+        .Cleaner Code: Keeps route handlers focused.
+
+    .Order Matters: Middleware runs in the order it's declared.
     
-
+    
 Q. What is the purpose of the app.use() function in Express.js?
 Ans :-
-    The app.use() method is used to execute(mount) middleware functions globally.
+    .The app.use() method is used to execute middleware functions globally.
+
+    .It is executed in the order it's defined.
+
+    .Works for all HTTP methods (GET, POST, PUT, etc.).
+
+    .Can be used for:
+
+        .Logging
+
+        .Authentication
+
+        .Body parsing
+
+        .CORS
+
+        .Error handling
+
 
 Q. What is the purpose of the next parameter in Express.js?
 Ans :-
@@ -167,31 +177,80 @@ Ans :-
 
 Q. What is the difference b/w application-level & route-level middleware?
 Ans :-
-    .Application-level middleware applies globally to all incoming requests in the entire Express.js application.
+    .Application-level Middleware:-
+        .Registered using app.use() or app.METHOD().
 
-    .Route-level middleware applies only to specific routes, not for all incoming requests.
+        .Applies globally to all incoming requests, regardless of the route or method.
+
+        .Commonly used for:
+
+            .Logging
+
+            .Body parsing
+
+            .CORS
+
+            .Authentication (when needed for all routes)
+
+    .Route-level Middleware:-
+        .Applied directly to individual routes or route groups.
+
+        .Used when you want specific logic to run only for certain endpoints.
 
 Q. What is Routing in Express.js?
-Ans :-
-    Routing is the process of directing incoming HTTP requests to the appropriate handler functions based on the request's method and the URL path.
+Ans:-
+    .Routing in Express.js refers to the mechanism of defining how an application responds to client requests for a particular HTTP method (GET, POST, PUT, DELETE, etc.) and a URL path.
 
-Q. How to implement routing? How do you define routes in Express.js?
-Ans :-
-    To implement routing first define the routes.
+    .It is the process of mapping incoming requests to the appropriate handler functions (controllers).
 
-    .In Express.js,routes are defined using the app.METHOD() functions, where METHOD is the HTTP request method(eg:- GET,POST,PUT,DELETE) and app is the instance of the Express application.
+    .Each route is defined by:
+
+        .HTTP method (e.g., GET, POST)
+
+        .URL path (e.g., /users, /api/login)
+
+        .Callback function(s) that handle the request.
+
+Q. How do you implement routing in Express.js? How are routes defined?
+Ans:-
+    .In Express.js, routing is implemented using the app.METHOD() functions, where METHOD corresponds to an HTTP method like GET, POST, PUT, or DELETE.
+
+    .This allows the application to handle specific HTTP requests to defined URL paths.
+
+    app.METHOD(PATH, HANDLER)
+        .METHOD: HTTP method (GET, POST, PUT, DELETE, etc.)
+
+        .PATH: Route endpoint
+
+        .HANDLER: Callback function to handle the request
 
 Q. What is express.Router() in Express.js?
 Ans :-
-    express.Router() is a class in Express.js that returns a new router object.
+    .express.Router() is a built-in class in Express.js that allows you to create modular, mountable route handlers. 
 
-Q. What is REST and RESTful API?
-Ans :-
-    .REST(Representational State Transfer) is an architectural style for designing networked applications(REST is a set of guidelines for creating API's).
+    .used to handle routing in a cleaner and more organized way.
 
-    .REST uses HTTP to allow communication b/w clients and servers.
+    .Why use express.Router()?
+        .Helps organize routes into separate files/modules
 
-    .RESTful API is a service which follow REST principles/guidelines.
+        .Promotes modularity and scalability
+
+        .Useful for grouping related routes (e.g., all /user routes in one file)
+
+        const express = require('express');
+        const router = express.Router();
+
+        router.get('/profile', (req, res) => {
+        res.send('User profile');
+        });
+
+        module.exports = router;
+
+Q. What is cookie-parser in Node.js (Express)?
+Ans :- 
+    cookie-parser is a middleware in Express used to parse cookies from the HTTP request header and make them easily accessible in your route handlers.
+
+    Cookies are automatically parsed and stored in req.cookies.
 
 Q. What is differences b/w REST API and SOAP API?
 Ans :-
@@ -237,165 +296,176 @@ Ans :-
 
 Q. What is CORS in RESTful APIS?
 Ans :-
-    CORS(Cross-Origin Resource Sharing) is a security feature implemented in a web browsers that restricts web pages from making to a different domain than the one that served the web page.
+    .CORS stands for Cross-Origin Resource Sharing.
+    .It’s a browser security feature that controls which websites are allowed to access your backend APIs.
+
+    .Why is CORS needed?
+        .By default, browsers block requests made from one domain (like example.com) to another domain (like api.example.com).
+        .CORS is used to allow or deny these requests.
+
+    .How to enable CORS in Express.js:-
+    
+        const cors = require('cors');
+        app.use(cors()); // allows all origins
+
+        app.use(cors({ origin: 'http://localhost:3000' })); //allow only specific origin
+
+    .Common CORS Headers:
+        .Access-Control-Allow-Origin
+
+        .Access-Control-Allow-Methods
+
+        .Access-Control-Allow-Headers
+
 
 Q. What is Token based and JWT authentication?
 Ans :-
-    JWT stands for JSON web token.
+    JWT stands for JSON Web Token.
+    It is used for authentication and authorization in web applications.
 
-    JWT is widely used for authentication and authorization in web applications.
+    It helps the server and client share information securely in a compact, encoded format.
 
-    It contain JSON objects which have the information that needs to be shared b/w client and server.
+    What’s Inside a JWT?
+        .A JWT is a string made of three parts:
 
-    These tokens are then sent on every HTTP requests, which allows the server to authenticate the user.
+            .Header – Contains the token type (JWT) and algorithm used (like HS256).
 
-    Each JWT is also signed using cryptography to ensure that the json contents cannot be altered by the client or a malicious party.
+            .Payload – Holds the actual user data like user ID, email, or role.
 
-    . Structure of a JWT :-
+            .Signature – Verifies that the token wasn’t changed. It's created using the header + payload + secret key.
 
-            .HEADER     --> Contains information about the type of token and algorithm.Alogrithm(HS256) and token type(JWT)
+        .Format:- (Header.Payload.Signature)
 
-            .PAYLOAD    --> Contains the actual data (claims) you want to transmit, such as user ID or email.
+    .Why is the Signature Important?
+        .The signature ensures security – if someone tries to change the token data (payload), the signature won’t match, and the server will reject it.
 
-            .SIGNATURE  --> Verify Signature(Used to verify that the token hasn’t been altered.)
+    .Where is the Token Stored on Client?
+        On the frontend, JWT can be stored in:-
 
-            A 'Signature' section, that is the result of header and payload, concatenated and then encrypted with the private key.
+            .Cookies – safer if using httpOnly
 
+            .localStorage or sessionStorage – easier to use but more exposed to XSS attacks
 
-    . On client-side, tokens can be stored in two different ways :
-            .Stored in a cookie
-            .Stored in the sessionStorage or localStorage of the browser.
+   .How JWT Works (Step-by-Step):-
+        Example: Shopping Website Login
+        
+        .Step 1: Login (Token Issued)
 
-    Working:-
-    ---------
-            Real Web App Example: Login & Auth
+            You log in with your email and password.
 
-                Imagine you're using a shopping website.
+            Backend verifies credentials.
 
-                Step 1: Login (Issue Token)
+            If correct, it creates a token .
 
-                    You enter email and password.
+            The server signs it with a secret key and sends it to the browser.
 
-                    Backend verifies your credentials.
+        .Step 2: Browser Stores Token
 
-                    If correct, server generates a JWT like:
+            The token is saved in localStorage, sessionStorage, or a cookie.
 
-                    {
-                    "userId": "101",
-                    "role": "buyer"
-                    }
+        .Step 3: Making Authenticated Requests
 
-                    Server signs it with a secret key and sends it to your browser.
+            .Once the token is stored in the browser (e.g., after login),
+            .the browser includes it in the headers of every request to the server.
 
-                    Your browser stores this token in localStorage or cookies.
+                Authorization: Bearer <your_token>
+            .This helps the server identify and authenticate the user for protected routes like viewing profile, adding to cart, etc.
 
-                Step 2: Making Requests (Send Token)
+            
+        .Step 4: Server Verifies Token
 
-                        Every time you:
+            .Server checks the token’s signature.
 
-                        View your profile
+            .If valid and not expired → request is allowed.
 
-                        Add items to cart
+            .If invalid or expired → returns 401 Unauthorized.
 
-                        Make a purchase
+        .Step 5: Token Expiration
 
-                    The browser sends the JWT in the Authorization header:
+            .JWTs have an expiry time (exp).
 
+            .After expiration (e.g., 1 hour), the user must log in again.
 
-                    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6...
+            .Helps prevent misuse if a token is stolen.
 
-                Step 3: Server Verifies Token
-                    On the backend:
-
-                    Server reads the token, verifies the signature, and decodes the payload.
-
-                    If valid and not expired:
-
-                    Server allows you to proceed (e.g., view profile).
-
-                    If invalid/expired:
-
-                    Server returns 401 Unauthorized.
-
-                Step 4: Token Expiration
-
-                    Tokens usually have a time limit (exp).
-
-                    Once expired (e.g., after 1 hour), you must log in again.
-
-                    This prevents someone from misusing a token if stolen.
-
-Q. Child process
-Ans :-
-    In Node.js, the child-process modules allows you to create and control system-level processes.
-
-    such as running shell commands, executing other node scripts.
-
-    This is useful for :-
-        . Running external tools(eg:- Git,Python,FFmpeg).
-        . Performing CPU intensive tasks outside the main thread.
-        . Creating worker processes.
-        . Auotmating Devops or system Scripts.
-
-    const {exec,spawn,fork,execFile} = require('child-process')
  
 Q. What is V8 engine and how it works?
 Ans :-
-    An open-source, high-performance JavaScript engine built by Google, written in C++, and used in Google Chrome and Node.js.
+    V8 is an open-source, high-performance JavaScript engine developed by Google.
 
-    V8 is responsible for converting JavaScript code into fast machine code that your computer can execute directly.
+    It is written in C++ and is used in:
 
-    Why is V8 important in Node.js?
-        .Node.js is not a browser, but it can run JavaScript outside the browser due to V8.
-    
-    .V8 engine consists:-
-            .call stack
-            .memeory heap
-            .Garbage collector
-            .Interpreter
-            .compiler
+        Google Chrome (for running JS in the browser)
+
+        Node.js (to run JS outside the browser)
+
+    Why is V8 Important in Node.js?
+        Node.js is not a browser, yet it runs JavaScript — due to the V8 engine.
+
+        V8 converts JavaScript into fast machine code that your computer can execute directly.
+
+    .Main Components of V8 Engine:
+        Call Stack
+
+        Memory Heap
+
+        Garbage Collector
+
+        Interpreter (Ignition)
+
+        Compiler (TurboFan)
 
     Working:-
 
-        Whnever we run the code in nodeJs,
+        Whenever you run JavaScript in Node.js:-
 
-            .NodeJs gives that code to V8 Engine
+            .Node.js hands the code to the V8 engine.
 
-            .V8 engine reads the code.
+            .Parsing Stage:
 
-                    1. Parse the code
+                Lexical Analysis (Tokenization): Code is broken into tokens.
 
-                        .do the lexical analysis(Tokenization -> break down the code in to token)
-                        .and then syntax analysis is happen to this tokens and the Token's is converted to a AST.
+                Syntax Analysis: Tokens are converted into an Abstract Syntax Tree (AST).
 
-                    2. Interpreter(Ignition Interpreter)
+            .Interpretation:
 
-                        .based on the  AST , the Interpreter interpret the AST and convert in to byte code then byte code is executed.
+                The Ignition interpreter reads the AST and converts it into bytecode.
 
-                        In b/w compiling is happening, In b/w garbage collection is happening.
+                This bytecode is immediately executed.
 
-                        Now in b/w of this ,if ignition interpreter finds the oppurtunity to optimize the code.It will pass that to turbofan.This step is known as optimization.
+                While running, Garbage Collection also takes place to free memory.
 
-                        and now turbofan compiler will compile this code and convert it to optimized machine code and now it is finally executed.
+            .Optimization (JIT Compilation):
 
-                        Now there is one more step involved which is known as deoptimization. And when the deoptimization happens the ignition interpreter again converts it to byte code and then the code is executed.
+                If V8 sees repetitive patterns, it sends that part to the TurboFan compiler.
 
+                TurboFan compiles it into highly optimized machine code.
+
+            .De-optimization (if needed):
+
+                If V8 realizes the optimization is no longer valid (e.g., due to dynamic JS behavior), it de-optimizes the code.
+
+                It goes back to the bytecode from Ignition and resumes execution.
         
-        .Garbage collection is happening parallely along with ignition interpreter and turbo fan compiler.
+        .Extra Notes:
+            .V8 uses a Just-In-Time (JIT) compilation method (combination of interpreter and compiler).
 
-        .Compilation method in JS is known as JIT compilation.
+            .JavaScript is both interpreted and compiled.
 
-        .JavaScript has interpretter as well as compiler.
-
-        .Earlier CrankShaft compiler are used but now turbofan comiper are used.
+            .Earlier, V8 used Crankshaft as the compiler, but now it uses TurboFan (more efficient).
 
 Q. Interpreted V/S Compiled
 Ans :-
-        Interpreted                                              Compiled
-    .start reading the code line-by-line and           .code is converted into machine code and then
-    executed.                                           machine code is executed.
+    Interpreted                            | Compiled    
 
-    .Fast initial execution.                           .Initially heavy but later executed fast.
+Code is executed line by line.      Code is fully converted to machine code first, then executed.
+
+Faster to start, slower overall.    Slower to start, but runs faster once compiled.
+
+Errors are shown during execution.  Errors are shown before execution, at compile time.
+
+JavaScript, Python                  C, C++, Java (after compilation to bytecode)
+
 
 Q. Different type of Garbage collector in V8 engine
 Ans:-
@@ -405,72 +475,39 @@ Ans:-
     .scavenger
     .M-compact
 
-Q. What is cookie-parser in Node.js (Express)?
-Ans :- 
-    cookie-parser is a middleware in Express used to parse cookies from the HTTP request header and make them easily accessible in your route handlers.
-
-    Cookies are automatically parsed and stored in req.cookies.
-
 Q. What is modules?
 Ans:-
-    A module in Node.js is just a separate file that contains some code (like functions, variables, or logic) that you can reuse in other files by importing it using require().
+    .A module in Node.js is just a separate file that contains code (like functions, variables, or logic) that you can reuse in other files using require().
 
-    Modules are protected by default.It protects their variables and function from leaaking.
+    Key Points:-
+        Modules encapsulate code, meaning their variables and functions don’t leak outside by default.
 
-    ex:- HTTP module,HTTPs module,File System module,Stream module and Buffer module.
+        They help organize, reuse, and separate code for better project structure.
 
-    If we want to access of variables and functions from one modules to another modules we will have to export and import that modules.
+    Common Built-in Modules:
+        http
+        https
+        fs (File System)
+        stream
+        buffer
 
-        module.exports = calculateSum;
+    Exporting & Importing:
+        To use code from one module in another:
 
-        and const calculateSum = require('./sum.js')  --> to import in another module.
+        Export in one file
 
-    Ex:- 
-    
-        const obj = require('./xyz.js');      --> It will run first
+        Import in another file
 
-        var name = 'Namaste Nodejs' --> Then it will run
+    Module Execution Flow Example:
+        const obj = require('./xyz.js'); // This runs first
+        var name = 'Namaste Nodejs';     // Then this
         var a = 20;
         var b = 10;
 
-
     Why Use Modules?
-        .To organize your code into smaller pieces
-
-        .To reuse code without repeating it
-
-        .To keep your project clean and manageable
-
-Q. Different ways to import and export the modules.
-Ans :-
-
-    1. for more than one we want(older ways)
-
-        module.exports = {
-                            X :x,
-                            calculateSum : calculateSum
-        }
-
-        const {x,calculateSum} = require('./Sum.js')
-            or
-        const obj = require('./Sum.js')
-
-        console.log(obj.x)
-
-    2. Newer way
-
-        module.exports = { x,calculateSum};
-
-        const {calculteSum,x} = require('./calculateSum.js')
-
-    module.exports  => is an empty object.
-
-    console.log(module.exports); //{}
-
-    module.exports.x = x
-    module.exports.calculateSum = calculateSum
-
-    const util = require("node:util"); --> core thing of node.
+        Organize code into smaller, focused parts.
+        Reuse code without repetition.
+        Keep projects clean, readable, and maintainable.
 
 Q. commonJs modules V/S ES Modules(ES6 module)
 Ans:-
@@ -485,58 +522,91 @@ Ans:-
 
 Q. How are variables and function private in different modules?
 Ans :-
-    IIFE and require statement wrapped code inside IIFE.
+    .In Node.js, every module is wrapped inside a special function (IIFE) internally.
+    .This is done by Node.js itself when a file is loaded using require().
 
-    (function(modules,require){
+    (function(exports, require, module, __filename, __dirname) {
+        // Your module code lives here
+    })();
 
-    })(module.exports={});
+    .Why is this important?
+        .It creates a local scope for each module.
+        .Variables and functions inside one module can’t be accessed directly from another module.
+        .This is how privacy and encapsulation are achieved in Node.js.
+
+    .Only exported variables/functions are accessible outside.
 
 Q. How do you get access to module.exports?
 Ans :-
-    NodeJs passes module as one of the parameter to the IIFE.
+    .In Node.js, when you create a module (i.e., a file), Node automatically wraps your code inside a function using IIFE.
+
+    .Because of this:
+        The module object is passed as a parameter to every module.
+
+        This gives you access to module.exports, which you can use to export variables, functions, or objects from that file. 
 
 Q. Work flow of --> require('./path')
 Ans:-
-        1. Resolving the module
-            
-            -> ./locationPath
-            ->./json
-            -> node:module
+    .When you use require('./path'), Node.js goes through 5 main steps behind the scenes:
 
-        2. loading the module
+    1.Resolving the Module
+        Node finds the actual file using the path you gave.
 
-            -> file content is loaded acc. to file type.
+        It tries:
+            ./locationPath.js
+            ./locationPath.json
 
-        3. compile step --> wraps inside IIFE
+    2.Loading the Module
+        Once found, Node reads the file’s content based on the type:- .js, .json, .node
 
-        4. Evaluation   --> code is executed and returns the module.exports outside.
+    3.Compiling
+        For JavaScript files:- Node wraps the code inside an IIFE
 
-                . module.exports happen
+    4.Evaluating
+        The code is executed line by line.
 
-        5. caching :- means Node caches requires
+        The result of module.exports is returned to the file where you called require().
 
-                        means code will run only once whenever the code is required in another modules,it will just return from the cache.
+    5.Caching
+        Once a module is loaded, Node caches it.
+
+        Next time you require() the same file, Node will just return it from cache.
+
+        This means:
+            .The file executes only once
+            .Improves performance
 
 Q. What is Thread?
 Ans:-
-    A thread is the smallest unit of execution within a process in an
-    operating system. 
-    It represents a single sequence of instructions
-    that can be managed independently by a scheduler. Multiple
-    threads can exist within a single process, sharing the same
-    memory space but executing independently. This allows for
-    parallel execution of tasks within a program, improving efficiency
-    and responsiveness.
+    .A thread is the smallest unit of execution inside a process.
+    .It’s like a lightweight sub-task that runs a set of instructions.
+    .A process can have one or more threads.
 
-    Threads can be either:
-        1. Single-threaded
-        2. Multi-threaded
+    Key Points:
+        Threads share the same memory of the process.
+        They run independently, allowing tasks to happen in parallel.
+        Threads are managed by the OS scheduler.
+
+    Why are Threads Useful?
+        They improve: Performance,Responsiveness
+
+    Helpful in handling multiple tasks at once (like downloading a file while using an app).
+
+    Types of Threads:
+        .Single-threaded – Only one task runs at a time (e.g., JavaScript in Node.js).
+
+        .Multi-threaded – Multiple tasks run at the same time (e.g., Java, C++ apps).
 
 Q. What type of threading does JavaScript use?
 Ans:-
-    JavaScript is a synchronous, single-threaded language, meaning there is only
-    one thread in which the JavaScript engine (such as the V8 engine) runs. In
-    JavaScript, code is executed line by line within this single thread.
+    .JavaScript is a single-threaded and synchronous language.
+
+    .This means it can run only one task at a time in a single thread.
+
+    .Code runs line by line, one after another.
+
+    .Why Single-threaded?
+        .Because JavaScript was mainly designed to run in the browser, where simplicity and responsiveness are important.
 
 Q. What is a Synchronous System?
 Ans:-
@@ -546,7 +616,7 @@ Q. What is an Asynchronous System?
 Ans:-
     In this system, tasks are completed independently.
 
-Q. can javaScript handle asynchronous task?
+Q. Can javaScript handle asynchronous task?
 Ans:-
     So, JavaScript itself is synchronous, but with the power of Node.js, it can
     handle asynchronous operations, allowing JavaScript to perform multiple tasks
@@ -554,222 +624,247 @@ Ans:-
 
 Q. what are the portions inside the JS engine and How synchronous code is executed By JS Engine ?
 Ans:-
-    The JavaScript engine operates with a single call stack, and all the code you
-    write is executed within this call stack. The engine runs on a single thread,
-    which perform one operation at a time.
+    .Main Parts of the JS Engine (like V8):
+        .Call Stack
+            Executes your code line by line (synchronously).
+            Handles function calls in a Last In, First Out (LIFO) order.
 
-    In addition to the call stack, the JavaScript engine also includes a memory
-    heap. This memory heap stores all the variables, numbers, and functions that
-    your code uses.
+        .Memory Heap
+            Stores variables, objects, and functions.
+            It's a large, unstructured memory space.
 
-    One key feature of the JavaScript V8 engine is its garbage collector. The
-    garbage collector automatically identifies and removes variables that are no
-    longer in use, freeing up memory automatically.
+        .Garbage Collector
+            Automatically removes unused variables to free memory.
+            Keeps your app memory-efficient.
+
+    .How Synchronous Code is Executed:
+            All your code is run inside the Call Stack.
+            JS is single-threaded, so it does one task at a time.
+            Functions are pushed to the stack when called, and popped when finished.
 
 Q. How asynchronous code executed? (Libuv)
 Ans:-
 
-    .The JavaScript engine cannot execute asynchronous operation alone ,it needs superpowers. This is where Node.js comes into the picture.
-    
-    .The JS engine gains its superpowers from Node.js. Node.js grants these powers
-    through a library named Libuv.
+    JavaScript Alone Can’t Handle Async Tasks
+        .JavaScript by itself (like in the browser) can’t handle asynchronous operations such as reading a file or waiting for a timer.
 
+        .That’s where Node.js comes in to picture it gives JS "superpowers" through a library called Libuv.
 
-    steps:-
-            1. In Node.js, the JavaScript code we write is first passed to the V8 engine.The V8 engine starts reading and executing the code line-by-line (synchronously)
+    Steps of Async Execution in Node.js:
+        step 1.
+            .When we run JS in Node.js, our code is first passed to the V8 engine.
+            .V8 begins to execute the code line-by-line (synchronously).
 
-            2. When the V8 engine encounters an asynchronous operation in the code, it delegates that task to Libuv, which manages it using the event loop and thread pool.
+        step 2.
+            .When V8 encounters an asynchronous function (like setTimeout() or fs.readFile()), it passes that task to Libuv.
 
-                Ex:- fs.readFile() and setTimeout() are asynchronous.
+            .Libuv manages async tasks using:
+                .Event loop
+                .Thread pool
 
-                .Remaining Synchronous Code Runs.
-            
-            3. Libuv registers all asynchronous operations, along with their associated callback functions, in its event loop.
+            .Meanwhile, the rest of the synchronous code keeps running.
 
-            This allows the V8 engine to continue executing the remaining code without waiting for the API call to complete.
+        step 3.
+            .Libuv registers the async tasks and their callback functions.
+            .These tasks are handled in the background without blocking the main code.
 
-            4. Once the asynchronous operation (like a timer or file read) finishes, its callback function is added to the callback queue (also known as the event queue), waiting to be executed by the event loop.
+        step 4.
+            .After an async task (like file read or timer) finishes, its callback is pushed to the callback queue.
 
-            5. The event loop continuously monitors the call stack and the callback queue.
-                Whenever it finds the call stack empty, it:
+        step 5.
+            .Event Loop Executes Callback
+            .The event loop constantly checks
+                .Is the call stack empty?
+                .Are there callbacks in the callback queue?
 
-                    Picks one task from the callback queue (based on priority and phase)
+            If the stack is empty:
+                .It takes one callback from the queue
+                .Pushes it into the call stack
+                .The V8 engine executes it
 
-                    Pushes it onto the call stack for execution by the V8 engine
-
-                    Repeats this process continuously, enabling non-blocking, asynchronous execution.
+            This loop continues, enabling non-blocking asynchronous execution in Node.js.
 
 Q.What is Libuv?
 Ans:-
-    Libuv is a multi-platform c library and cross-platform  that provides support for asynchronous I/O capabilities to Node.js using an event-driven, non-blocking architecture.
+    .Libuv is a C library used by Node.js that helps it perform asynchronous operations in a non-blocking way using an event-driven architecture.
 
-    Async I/O made simple.
+    .It works across platforms (Windows, Linux, macOS etc.).
 
-    Ex:- Read/write files,Handle network requests,Manage timers,Connect to databases  --> handled asynchronously using Libuv.
+    .Why is Libuv Needed?
+        JavaScript itself can’t handle tasks like:
 
-    .Main Components of Libuv
+            Reading or writing files
+            Managing timers
+            Handling network requests
+            Connecting to databases
 
-        1. Event loop
-        2. Thread pool
-        3. Callback Queue
+        So, Libuv helps Node.js handle all these asynchronously (without blocking other code).
+    
+        Libuv = “Async I/O made simple”
 
+    .Main Components of Libuv:
+        .Event Loop
+        → Watches the call stack and callback queue to decide what runs next.
+
+        .Thread Pool
+        → Runs blocking tasks (like file operations) in the background.
+
+        .Callback Queue
+        → Stores completed async tasks’ callbacks, ready to be executed.
 
 Q. Explain the Event loops in NodeJs?
 Ans:-
-    .The event loop also known as semi-infinite loop, written in 'C' langauage.
+    .The event loop (also called semi-infinite loop) is written in C language.
+    .It is the heart of Libuv and is how Node.js handles asynchronous operations.
+    .It allows Node.js to perform non-blocking I/O, even though JavaScript is single-threaded.
 
-    .The event loop in libuv is the heart of how Node.js handles asynchronous operations.
-    It allows Node.js to perform non-blocking I/O operations, even though
-    JavaScript is single-threaded.
+    .What does the Event Loop do?
+        .The callback queue stores callbacks after an asynchronous operation completes.
+        .The event loop checks the call stack:
+        .If the call stack is empty, it picks the next callback from the callback queue and executes it.
+        .The event loop keeps running, always checking if the call stack is empty or not.
 
-    .The callback queue is where callbacks are stored after an asynchronous
-    operation is completed. The event loop processes this queue to execute the
-    callbacks when the call stack is empty.
+    .Phases of the Event Loop in Libuv
+        .The event loop has 4 major phases:
 
-    .Event loop keeps running and meanwhile also checking callstack is empty or not.
+        1. Timers Phase:
+            Executes callbacks from:-setTimeout,setInterval
 
-    .The event loop in LIBUV operates in four major phases:-
+            If their time has expired, their callbacks are moved to the callback queue.
 
-        1. Timers Phase: In this phase, all callbacks that were set using setTimeout or
-        setInterval are executed. These timers are checked, and if their time has
-        expired, their corresponding callbacks are added to the callback queue for
-        execution.
+        2. Poll Phase:
+            Important phase that handles I/O callbacks (like fs.readFile).
+            It checks for completed I/O operations and executes their callbacks.
+            Responsible for all I/O-related tasks.
 
-        2. Poll Phase: After timers, the event loop enters the Poll phase, which is crucial
-        because it handles I/O callbacks. For instance, when you perform a file read
-        operation using fs.readFile , the callback associated with this I/O operation will
-        be executed in this phase. 
-        
-        The Poll phase is responsible for handling all I/O-
-        related tasks, making it one of the most important phases in the event loop.
+        3. Check Phase:
+            Executes callbacks scheduled by setImmediate().
+            Used to run code right after the poll phase.
 
-        3. Check Phase: Next is the Check phase, where callbacks scheduled by the
-        setImmediate function are executed. This utility API allows you to execute
-        callbacks immediately after the Poll phase, giving you more control over the
-        order of operations.
+        4. Close Callbacks Phase:
+            Executes callbacks related to closing operations (like socket closures).
+            Used for cleanup tasks and releasing resources.
 
-        4. Close Callbacks Phase: Finally, in the Close Callbacks phase, any callbacks
-        associated with closing operations, such as socket closures, are handled. This
-        phase is typically used for cleanup tasks, ensuring that resources are properly
-        released.
+    .Microtasks Before Each Phase
+            Before entering each main phase (Timers, Poll, Check, Close), microtasks are executed first.
 
+            These include:- process.nextTick(),Promise callbacks
 
-.Before the event loop moves to each of its main phases (Timers, I/O Callbacks,Poll, Check,and 
-Close Callbacks), it first processes any pending microtasks.
+            This ensures microtasks are handled quickly before moving on.
 
-Microtasks include tasks scheduled using process.nextTick() and Promise callbacks. 
+    .When Does the Event Loop Wait?
+            If:-
+                .The callback queue is empty
+                .The call stack is empty
 
-This ensures that these tasks are handled promptly before moving on to the next phase.
-
-
-.If everything has done, callback queue is empty, call stack is empty, event loop wait over poll phase for any poll event occur.
-
+            Then:- The event loop waits at the Poll phase for any new events.
 
 Q. Thread pool :-
 Ans:-
-    .The Thread Pool in Node.js is a pool of worker threads, managed by Libuv, used to handle expensive or blocking operations in the background — without blocking the main (single) JavaScript thread.
+    .The Thread Pool in Node.js is a pool of worker threads, managed by Libuv.
+    .It is used to handle heavy or blocking operations in the background — without blocking the main JavaScript thread.
 
-    Whenever you perform tasks like file system (fs) operations, DNS lookups
-    (Domain Name System), or cryptographic methods, libuv uses the thread pool.
+    .When is Thread Pool Used?
+        It is used when you perform tasks like:
+            File System operations (fs)
+            DNS lookups
+            Cryptographic methods
 
-    In Node.js, the default size of the thread pool is 4 threads
+    These are offloaded to the Libuv thread pool.
 
-    UV_THREADPOOL_SIZE=4
+    Node.js has a default thread pool size of 4. --> UV_THREADPOOL_SIZE=4
 
-    ex:- suppose you make 5 simultaneous file reading calls. What happens is that 4
-        file calls will occupy 4 threads, and the 5th one will wait until one of the threads is
-        free.
+    Example:-
+        You make 5 file read calls at once:
+
+        4 calls occupy the 4 available threads
+
+        The 5th call waits until a thread becomes free
 
 Q. Can you change the size of the thread pool?
 Ans:-
-    Yes, you can change the size of the thread pool by setting the UV_THREADPOOL_SIZE
-    environment variable. For example, you can set it to 8 like this:
+    Yes, you can change the thread pool size in Node.js by setting the UV_THREADPOOL_SIZE environment variable.
 
         process.env.UV_THREADPOOL_SIZE = 8;
 
 Q. What process.exit(1) Does:
 Ans :-
+    .process.exit() is a method in Node.js used to immediately stop the running process.
 
-    process.exit() is a Node.js method that immediately stops the Node process.
+    .It takes a status code as an argument:
 
-    It takes a status code:
-=
-    0 = success
+        .process.exit(0) → Success (no error)
 
-    1 or any non-zero number = error/failure
+        .process.exit(1) (or any non-zero) → Failure/Error
 
 Q. What is Socket?
 Ans:-
-    In socket, you made a connections, complete your task and close the connection.
-    It takes less resources.
+    .A socket is a connection between a client and server.
+    .You connect → do your task → then close the connection.
+    .It uses fewer system resources.
 
-    When a user makes a request to a website, a socket connection is established
-    between the client and the server. This connection is typically used for a single
-    request-response cycle: the client sends a request, the server processes it, sends
-    back the response, and then the socket is closed. This process involves opening a
-    new connection for each request.
+    .How a Socket Works:
+        When a client makes a request to a server:
 
-    In the libuv library, when it interacts with the OS for networking tasks, it uses
-    sockets. Networking operations occur through these sockets. Each socket has a
-    socket descriptor, also known as a file descriptor (although this has nothing to do
-    with the file system).
+            .A socket connection is created.
+            .The client sends a request.
+            .The server sends back a response.
+            .The socket is closed.
 
-    When an incoming request arrives on a socket, and you want to write data to this
-    connection, it involves blocking operations. To handle this, a thread is created for
-    each request. However, creating a separate thread for each connection is not
-    practical, especially when dealing with thousands of requests.
-    Instead, the system uses efficient mechanisms provided by the OS, such as epoll
-    (on Linux) or kqueue (on macOS). These mechanisms handle multiple file
-    descriptors (sockets) without needing a thread per connection.
+        .This happens for every reques
 
-    Here’s how it works:-
+    .How Libuv Handles Sockets:
+        .Libuv (used in Node.js) interacts with the OS using sockets for networking.
+        .Each socket has a socket descriptor (aka file descriptor – unrelated to files).
 
-    epoll (Linux) and kqueue (macOS) are notification mechanisms used to
-    manage many connections efficiently.
+    .Problem with Threads for Each Request:
+        .Writing to a socket is a blocking operation.
+        .Creating a thread per connection is not scalable (too costly for many users).
 
-    When you create an epoll or kqueue descriptor, it monitors multiple file
-    descriptors (sockets) for activity.
+    .Solution: Efficient OS-Level Mechanisms
+        .Instead of creating threads for each connection, systems use:
 
-    The OS kernel manages these mechanisms and notifies libuv of any changes
-    or activity on the sockets.
+            Linux -->	epoll
+            macOS -->	kqueue
 
-    This approach allows the server to handle a large number of connections
-    efficiently without creating a thread for each one.
-
-    The kernel-level mechanisms, like epoll and kqueue , provide a scalable way to
-    manage multiple connections, significantly improving performance and resource
-    utilization in a high-concurrency environment.
+        .These do the following:
+            .Monitor multiple socket connections at once.
+            .Notify Libuv when activity (read/write) happens.
+            .No thread is needed per connection – saves resources.
+            .This enables high concurrency without overloading the system.
 
 Q.What is Web-socket?
 Ans:-
-    Web-socket :-
-                .When a user makes a connection, it stays for a long time.
-                .It takes more resources.
+    A WebSocket is a type of connection between a client and server that:
+        .Stays open for a long time (persistent connection)
+        .Uses more system resources than a regular socket
 
-                WebSockets introduce a more efficient method by allowing the
-                connection to remain open. This means that after the initial connection is
-                established, it stays active, allowing for continuous communication between the
-                client and server. Both the client and server can send and receive data at any time
-                without the need to re-establish the connection. This persistent connection is
-                ideal for real-time applications, where continuous interaction is required, such as
-                in chat applications, online gaming, or live updates.
+    .How WebSocket Works:
+        .After the initial connection is made 
+        .It remains open
+        .Both client and server can:
+        .Send data
+        .Receive data
+        .At any time, without reconnecting
+    
+    .WebSockets are ideal for real-time applications, such as: Chat apps,Online games,Live updates.
 
 Q. What is server?
 Ans:-
-    A server means nothing but a remote computer.you can assume that it is a computer, It's a cpu working remotely.
+    .A server is simply a remote computer — You can think of it as a CPU working remotely.
+    .It can be accessed remotely over a network
+    .It provides resources and services to other computers or programs (called clients)
 
-    You can access servers remotely over a network to provide resources and services to another computer program.
-
-    Hardware:- A physical machine (computer) that provides resources and
-                services to other computers (clients) over a network.
-
-    Software:- An application or program that handles requests and delivers
-                data to clients.
+    .Hardware:-
+        .A physical machine (computer) that provides resources and services to clients over a network
+    .Software:-	
+        .A program or application that handles requests and sends data back to the clients
             
 Q. What is a protocol?
 Ans:-
-    A protocol is a set of rules that define how computers communicate with each
-    other. Protocols determine the format in which data is sent between devices.
+    .A protocol is a set of rules that define how computers communicate with each
+    other. 
+    .Protocols determine the format in which data is sent between devices.
 
     ex:- FTP (File Transfer Protocol): Used for transferring files.
          SMTP (Simple Mail Transfer Protocol): Used for sending emails.
@@ -785,225 +880,225 @@ Ans:-
 Q. File Descriptors (fds) and Socket Descriptors
 Ans:-
 
-    File Descriptors (FDs) are integral to Unix-like operating systems, including Linux
-    and macOS. They are used by the operating system to manage open files,
-    sockets, and other I/O resources.
+    .File Descriptors (FDs):
+        .Used in Unix-like systems (e.g., Linux, macOS)
+        .They are integers used by the OS to keep track of
+            .Open files
+            .Sockets
+            .Other I/O resources
+        .File Descriptors manage general I/O
 
-    Socket descriptors are a special type of file descriptor used to manage network
-    connections. They are essential for network programming, allowing processes to
-    communicate over a network.
+    .Socket Descriptors:
+        .A type of file descriptor
+        .Specifically used for network connections
+        .Help processes communicate over a network (like client-server communication)
+        .Socket Descriptors manage network I/O
 
 Q. app.use() and app.all()
 Ans:-
     .app.use():-
-    ------------
+        .Used to apply middleware functions.
+        .Runs for all HTTP methods (GET, POST, etc.).
+        .Can be applied to:
+            .All routes or
+            .Specific route prefixes
 
-            .app.use() is used to apply middleware functions that run for all HTTP methods (GET, POST, etc.) and optionally for specific route prefixes.
+        .Common Uses:- Logging, Authentication, Error handling, Body parsing (express.json())
 
-            Main Purposes:-
-            ---------------
-                Handle:
-
-                    .Logging
-
-                    .Authentication
-
-                    .Error handling
-
-                    .Body parsing (express.json())
     .app.all():-
-    -------------
+        .Used to handle all HTTP methods for a specific route.
+        .Not for middleware, but for route handling.
 
-            .app.all() is used to define a route handler that matches all HTTP methods (GET, POST, etc.) for a specific route path.
-
-            Main Purposes:-
-            ----------------
-                    .Create a catch-all handler for a specific route.
+        .Common Uses:-Creating a catch-all route handler, e.g., for /api/* or /404
 
 Q. What is process.nextTick()?
 Ans:-
-    process.nextTick() is a function provided by Node.js to schedule a callback function to be executed after the current operation completes but before the event loop continue.
+    .process.nextTick() is a Node.js function used to schedule a callback to run after the current operation finishes, but before the event loop continues to the next phase.
 
     Use Case:
-        .To delay execution of a function until the current stack clears.
-
-        .Useful for cleanup tasks or manipulating data just before continuing.
-
+        .Delay execution until the current call stack is cleared
+        .Useful for:
+            .Cleanup tasks
+            .Final modifications to data before continuing
+            .Avoiding blocking behavior by deferring heavy logic
 
 Q. Difference b/w process.nextTick() and setImmediate.
 Ans:-
+    .process.nextTick() :-
+        .process.nextTick() runs before the event loop continues.
+        .process.nextTick() executes before I/O operations and timers.
+        .process.nextTick() is a microtask.
+        .process.nextTick() has higher priority and runs sooner.
 
-    Concept	                     process.nextTick()	                           setImmediate()
-Event Loop Phase	    Runs before event loop continues (microtask)	Runs in check phase of the event loop (macrotask)
-
-Order of Execution	    Executes before I/O and timers	                Executes after I/O events
-
-Type of Task	        Microtask	                                    Macrotask
-
-Priority	            Higher 	                                        Lower 
-
+    .setImmediate() :-
+        .setImmediate() runs in the check phase of the event loop.
+        .setImmediate() executes after I/O events.
+        .setImmediate() is a macrotask.
+        .setImmediate() has lower priority and runs later.
 
 <!-- File System,Stream and Buffer -->
 
 .File System :-
+        .The File System (fs) module in Node.js allows interaction with the file system.
+            .const fs = require('fs'); // for callback-based API
+            .const fsPromises = require('fs').promises; // for promise-based API
 
-        .The Node.js File System module (fs) provides a set of methods for working with the file system on your computer.
-
-        .It allows you to perform file I/O operations in both synchronous and asynchronous ways.
-
-        .const fs = require('fs');
-
-    .promise-based versions of the File System API
-
-        .const fs = require('fs').promises;
-
-    .common use cases :-
-        .Read and write files
-        .Create and delete files
-        .Create and remove directories
-
-.'utf8' – ensures it returns text instead of a buffer.
-
-1. Reading Files :-
-
-        .readFile :-  asynchronous
-
-                .Callback based
-                .Uses callback functions to handle results or errors. 
-                
-                ex:-
-                    const fs = require('fs');
-                    fs.readFile('myfile.txt', 'utf8', (err, data)){}
+        .'utf8' ensures the content is returned as text (not buffer).
         
-        .readFileAsync :- asynchronous  (Node.js 10.0.0+)
+        .Common Use Cases:-
+            .Read and write files
+            .Create and delete files
+            .Create and remove directories
 
-                .Promises based
-                .use async/await to handles results or errors.
+        .Reading Files:-
+            .readFile (Async, Callback-based)
+            . readFileAsync (Async, Promise-based – Node.js 10+)
+            .readFileSync (Sync)
 
-                ex:-
-                    const fs = require('fs').promises;
-                    const data = await fs.readFile('myfile.txt', 'utf8');
+        .Creating and Writing Files :-
+            .writeFile (Callback-based)
+            .writeFileAsync (Promise-based)
+            .appendFile: Appends data to a file (creates it if not exists)
 
-        .readFileSync :- synchronous
+            .writeFileSync :- Overwrites or creates file, Blocks the event loop
+            .appendFileSync
 
-                .Reading a file synchronously.
-                
-                ex:-
-                    const fs = require('fs')
-                    const data = fs.readFileSync('myfile.txt', 'utf8');
+        .Open & Close Files:-
+            .fs.open() – Open file for writing (creates if doesn't exist)
+            .fs.close() – Close the file
+            .fs.openSync(), fs.closeSync() – Synchronous versions
 
-2. Creating and Writing Files :-
+        .When opening files, you can specify modes:-
 
-        .Asynchronous :-
+            .'w'   - Write (create or truncate)
+            .'wx'  - Write (fail if exists)
+            .'w+'  - Read + Write (truncate if exists)
+            .'a'   - Append (create if not exists)
+            .'ax'  - Append (fail if exists)
+            .'r+'  - Read + Write (must exist)
 
-            .writeFile      :- callback based      
-            .writeFileAsync :- promise based
+        .File Management:-
+            .fs.access() – Check if a file exists
+            .fs.rename() – Rename or move files
 
-                .Creates a new file or overwrites an existing file with the specified content.
-                Ex:- fs.writeFile('myfile.txt', 'Hello, World!', 'utf8');
+        .Deleting Files
+            .fs.unlink()                 – Delete a single file
+            .Promise.all() + fs.unlink() – Delete multiple files
+            .fs.rm()                     – Delete directories
 
-            .appendFile :- Appends to a file; creates it if it doesn't exist.
-
-        .Synchronous :-
-            
-            .writeFileSync :- 
-
-                .Creates a new file or overwrites an existing file with the specified content.
-                .It block the event loop until the file operation is complete.
-                .fs.writeFileSync(path, data, options)
-
-            .appendFileSync :- Appends to a file; creates it if it doesn't exist.
-
-        .fs.open :- Opens a file for writing and creates it if it doesn't exist.
-
-        .fs.close :- close file.
-
-        .openSync , closeSync
-
-        .File Flags :- When opening files, you can specify different modes:
-
-            ->  'w'  - Open for writing (file is created or truncated or replace)
-            ->  'wx' - Like 'w' but fails if the path exists
-            ->  'w+' - Open for reading and writing (file is created or truncated)
-            ->  'a'  - Open for appending (file is created if it doesn't exist)
-            ->  'ax' - Like 'a' but fails if the path exists
-            ->  'r+' - Open for reading and writing (file must exist)
-
-.For writing large amounts of data, use streams to avoid high memory usage:
-
-        .fs.access() :- Check if destination file already exists.
-
-        .fs.rename() :-  method can be used for both renaming and moving files.
-
-    .Delete :-
-
-        .fs.unlink() :- to delete a single file.
-
-        .To delete multiple files, you can use Promise.all() with fs.unlink():
-
-        .fs.rm :- to delete directories.
+        .For Large Data - Use Streams instead of read/write to avoid memory overload.
 
 .Stream :-
-------------
-        .Streams in Node.js are objects that facilitate reading from or writing to a data
-        source in a continuous fashion. Streams are particularly useful for handling large
-        amounts of data efficiently.
-
-        .They allow you to process data in chunks as it becomes available, rather than loading everything into memory at once.
-
-        .uses:-
-            .File system operations (reading/writing files)
-            .HTTP requests and responses
-            .Data compression and decompression
-            .Database operations
-            .Real-time data processing
+        .Streams are objects that allow you to read or write data continuously.
+        .Ideal for handling large amounts of data efficiently.
+        .Data is processed in chunks, not all at once — this improves memory and time efficiency.
 
         .Why Use Streams?
+            .Memory Efficient – No need to load everything into memory.
+            .Time Efficient – Start processing as soon as data is available.
 
-                .Memory Efficiency
-                .Time Efficiency
+            .Without Streams:- Large files may crash the process due to memory overload
+            .With Streams:-    Data is processed chunk by chunk (e.g., 64KB)
+        
+        .Common Use Cases
+            .Reading/writing large files
+            .Handling HTTP requests/responses
+            .Streaming real-time data
+            .Data compression/decompression
+            .Working with databases
 
-        .Without streams:- You'd crash the process attempting to load the entire file into memory
-        .With streams:-    You process the file in small chunks (e.g., 64KB at a time)
+        .Types of Streams:-
+            .Readable	--> Stream you can read from (e.g., file input)
+            .Writable	--> Stream you can write to (e.g., file output)
+            .Duplex	    --> Can both read and write (e.g., TCP sockets)
+            .Transform	--> Duplex + modifies data while streaming (e.g., compression)
 
+        .Readable Streams :- fs.createReadStream()
+            .Reading from a file
+            .HTTP responses (client-side)
+            .HTTP requests (server-side)
 
-    .Stream Type	                 
+        .Flowing Mode: Data flows automatically and emits events.
+        .Paused Mode: You manually read chunks using stream.read().
 
-        .Readable      --> Streams from which data can be read (data source).
+        .Writable Streams :- fs.createWriteStream()
+            .Writing to a file
+            .Sending HTTP requests
+            .Sending HTTP responses
 
-        .Writable      --> Streams to which data can be written (data destination).
+        .stream.pipe()
+            .The .pipe() method connects a readable stream to a writable stream.
+            .It handles data flow and backpressure automatically.
 
-        .Duplex        --> Streams that are both Readable and Writable.
-
-        .Transform     --> Duplex streams that can modify or transform data as it's written and read.
-
-    1. Readable Streams :-
-
-            Ex:- Reading from a file ,HTTP responses on the client ,HTTP requests on the server
-
-            .createReadStream :- Create a readable stream from a file.
-
-
-        .Flowing Mode:- Data is read from the source and provided to your application as quickly as possible using events.
-
-        .Paused Mode:-  You must explicitly call stream.read() to get chunks of data from the stream.
-
-    2. Writable Streams :-
-
-            Ex:- Writing to a file ,HTTP requests on the client ,HTTP responses on the server
-
-            .createWriteStream :- Create a writable stream to a file.
-
-    .The pipe():-  It connects a readable stream to a writable stream, automatically managing the flow of data and handling backpressure.
-
-
+            Ex:-
+                const readStream = fs.createReadStream('input.txt');
+                const writeStream = fs.createWriteStream('output.txt');
+                readStream.pipe(writeStream);
 
 .Buffer :-
------------
-            .Buffers are used to handle binary data in Node.js. They provide a way to work
-             with raw memory allocations and are useful for operations involving binary data,
-             such as reading files or network communications.
+        .A Buffer is a built-in object in Node.js used to store and handle binary data (raw memory).
+        .It helps when you're working with data that is not necessarily in string format, like:
+            Files, Streams, TCP packets, Images, Encryption/decryption
 
+        .Why Do We Need Buffers?
+
+            .JavaScript typically handles strings and objects, but sometimes you deal with binary data (like in file systems or network I/O).
+
+            .In such cases, Node.js uses Buffer to give you direct access to memory — which is fast and efficient.
+
+        .Key Features
+            .Fixed size (defined at creation).
+            .Global object – no need to import from a module.
+            .Works with bytes – each element is a number between 0 and 255.
+
+        .When to Use Buffers
+            .Reading/writing binary files (images, videos)
+            .Working with fs and stream modules
+            .Handling TCP/UDP streams
+            .Processing binary protocols
+            .Encryption, compression, or encoding data
+
+        .Creating Buffers:-
+          .const buf = Buffer.alloc(10); // Creates a buffer of 10 bytes
+          .const buf2 = Buffer.from('Hello'); //Creates a buffer from a string
+          .const buf3 = Buffer.allocUnsafe(10); //Buffer with uninitialized memory (faster, but unsafe)
+
+
+        Ex:- 
+            const buf = Buffer.from('Hello');
+            console.log(buf.length); //5
+            console.log(buf.toString()); // Hello
+            console.log(buf[0]); // 72
+
+            // Write to buffer
+            buf.write('Hi');
+            console.log(buf.toString()); // Hi...
+
+
+    .Buffer vs Stream in Node.js :-
+        .Buffer Loads entire data into memory while Stream Processes data in chunks, as it arrives.
+        .Buffer Uses more memory for large files while Stream uses less memory (processes piece by piece).
+        .Buffer Slower for large files (waits to load) while Stream	Faster, starts processing immediately.
+        .Buffer -> Small files or data you need all at once.	
+         Stream -> Large files (videos, logs) or real-time data.
+
+    .When to Use Buffer
+        .Use Buffer when:
+            .You're working with small files
+            .You need the entire data before processing (e.g., converting a file into a base64 string, reading an entire config file)
+            .You want random access to data (like reading a specific byte)
+
+        .Avoid Buffer when:
+            .You're working with large files (e.g., videos, logs, CSVs)
+            .You're building a web server that streams files to users
+            .You're doing real-time processing (e.g., live video/audio, chat apps)
+
+        .Because loading everything into a Buffer means the app will consume too much memory and might crash or slow down.
+
+        .Use Stream instead of Buffer when:
+            .You want to read/write large files efficiently
+            .You want to pipe data from one source to another (e.g., file to HTTP response)
+            .You care about performance and scalability
 
 <!-- Qns asked in Interview -->
 
@@ -1241,9 +1336,11 @@ Ans :-
 
 Q. What is Restful API and what is the rule to create it?
 Ans :-
-    A RESTful API is an architectural style for building networked applications, particularly web services, based on stateless client-server communication over HTTP.
+    .REST (Representational State Transfer):-
+        .REST is an architectural style for designing networked applications, especially web services. It defines a set of rules and constraints to create scalable and stateless services using HTTP.
 
-    It allow clients to communicate with a server over HTTP using standard methods.
+    .RESTful API:
+        .A RESTful API is an API that follows the REST principles. It allows clients (like frontend apps or other services) to interact with backend services using standard HTTP methods.
 
     Rule to create Restful API:-
 
@@ -1268,7 +1365,6 @@ Ans :-
             12. Idempotency
                 .Ensure PUT, DELETE, and GET requests are idempotent (multiple identical requests should result in the same state).
 
-
 Q. Rest API endpoint :-  Ex. of Cart
 Ans :-
         .Get current user's cart --> GET	/api/v1/cart
@@ -1290,8 +1386,8 @@ Ans:-
 
             .Awareness of real-world needs like security, performance, scalability, and collaboration
 
-
-    .When starting a new React application, beyond the base boilerplate provided by tools like create-react-app or Vite, I always include some key structural and tooling enhancements to ensure the app is scalable, maintainable, and production-ready.
+    .When starting a new React application, I follow a structured setup beyond the default boilerplate (like CRA or Vite) to ensure the project is:
+            .Scalable, Maintainable, Developer-friendly, Production-ready, Team-collaboration friendly
 
     .my setup ensures the application is developer-friendly, scalable, performant, and ready for collaborative team work in a production environment.
 
@@ -1323,99 +1419,94 @@ Ans:-
         11.Logging / Monitoring Tools
         12.Documentation
 
-Q. Child Process in nodeJs?
+Q. Child Process in nodeJs? :- Real world example :- auto update features
 Ans :-
-    .In Node.js, a child process allows us to run system-level commands or external scripts outside the main thread. 
+    .A child process allows Node.js to:
+        .Run external scripts or system commands (like Python, shell commands).
+        .Handle heavy CPU tasks without blocking the main thread.
+        .Enable parallel processing using multiple Node.js processes.
 
-    .This helps offload heavy CPU tasks, avoid blocking the event loop, and enable parallel processing. 
-    .I often use exec() or spawn() for shell commands, and fork() when I need inter-process communication with another Node.js script.
+    .Why Use Child Processes?
+        .To offload compute-heavy work
+        .To interact with external tools (e.g., Python, ffmpeg)
+        .To process large data without blocking the event loop
+        .To enable multi-threading-like behavior
 
-    .Executing shell commands (e.g., ls, git, python script.py)
+    .Real-World Use Cases:
+        .Run external programs like Python, Java, .sh, .exe
+        .Process images or videos (e.g., ffmpeg)
+        .Perform file compression/decompression
+        .Execute CLI commands like ls, git --version
+        .Large data processing or transformation
+        .Worker processes for parallel execution
 
-    .Real-world Use Cases:-
-        Running a Python or Java program from a Node.js server
+    .Methods in child_process Module:
+        1. exec() :-
+                .Runs a command in a shell
+                .Buffers the entire output (not suitable for large data)
+                .Best for small commands (e.g., ls, git)
 
-        Image or video processing (e.g., using ffmpeg)
+        2. execFile() :-
+                .Executes a file directly (without using a shell)
+                .Faster and more secure than exec() (no shell injection)
+                .Still buffers the output
+                .Best for running known scripts or executables
 
-        File compression/decompression
+                .Example: run .exe or .sh file directly
 
-        Large data transformations
+        3. spawn() :-
+                .Runs a command as a new process with streaming
+                .Best for large output (e.g., logs, videos)
+                .Streams stdout and stderr as the data comes
+            
+        4. fork() :-
+                .Special case of spawn() used to run another Node.js script
+                .Enables inter-process communication (IPC)
+                .Best for worker threads using Node.js
 
-        Worker-based parallel processing with communication
-
-    .There are four methods in child process :-
-
-        .exec()      --> 
-                .Run a command in a shell (buffer-based) 
-                .buffers the output .
-                ex:- like ls, git --version
-
-        .execFile()  --> 
-                .Run a file directly (without a shell)
-                .Executes an executable file directly.
-                .Faster and more secure than exec() for known scripts/executables.
-                .Output is still buffered.
-
-          ex:- .exe, .sh
-
-        .swapn()     --> 
-                .Stream-based command execution
-                .Streams stdout and stderr, great for large output (e.g., big files).
-                .handle data as it comes.
-
-                ex:- e.g., video processing, streaming logs
-
-        .fork()      --> used to run another Node.js script
-
-Q. What is clustering in NodeJs?
+Q. Clustering :-
 Ans :-
-    .Clustering in Node.js is a way to create multiple instances (workers) of your Node.js application to take advantage of multi-core CPUs, enabling concurrent request handling and better performance under load.
+    .Clustering allows Node.js to run multiple instances (workers) of your app across different CPU cores, improving performance and concurrency.
 
-    .By default, Node.js runs on a single thread, which means it can only use one CPU core — even if the server has 4, 8, or more cores.
-    .Clustering solves this by forking child processes, each running on its own core, and sharing the same server port.
+    .Why Clustering?
+        .Node.js runs on a single thread, using only one CPU core by default.
+        .Clustering forks child processes, each handling requests independently.
+        .All workers can share the same port and distribute load among cores.
+
+    .Key Features of Clustering:
+        .Multi-core Usage: Utilizes all available CPU cores for better performance.
+
+        .Same Port Sharing: All workers listen on the same port.
+
+        .Isolated Memory: Each worker has its own memory (no shared memory).
+
+        .Improved Reliability: Dead workers can be automatically restarted.
+
+        .Scalable: Works well with tools like PM2, Docker, or Nginx.
+
+        .Better Request Handling: Handles multiple requests in parallel.
+
+Q. Worker-threads :-
+Ans :-
+    .The worker_threads module enables multi-threading in Node.js, allowing you to run JavaScript code in parallel within the same process — great for CPU-heavy tasks that would otherwise block the main thread.
 
     .Key Features:
-        All workers share the same port.
-
-        Each worker runs in its own memory space (not shared memory).
-
-        Can be combined with load balancers, PM2, or Docker for production scaling.
-
-        Can gracefully handle crashes — restart dead workers automatically.
-
-Q. worker_threads
-Ans :-
-    .The worker_threads module allows multi-threading within a single process. Each thread shares memory  and runs independently.
-
-    .It's mainly used for CPU-intensive tasks like image processing, compression, etc., that would block the event loop.
-
-    .Key points:
-        Uses threads, not processes
-
-        Multi-thread architecture
-
-        Shared memory possible
-
-        Good for offloading heavy computation
-
-    .cluster is used to horizontally scale your Node.js application across multiple processes, useful for I/O-heavy workloads.
-    .worker_threads allows for parallel execution of CPU-heavy JavaScript code in threads, useful to avoid blocking the main thread in single-process scenarios.
-
+        .Uses threads (not separate processes like cluster)
+        .Supports shared memory via SharedArrayBuffer
+        .Enables parallel execution within a single Node.js process
+        .Ideal for CPU-bound operations (e.g., image processing, data encryption)
+    
     .When to Use What?
-        .Use cluster when:
-            You want to scale a Node.js HTTP server across CPU cores.
-
-            You are handling many concurrent I/O-bound requests.
-
-            You want independent processes, isolated and robust.
-
         .Use worker_threads when:
-            You need to do CPU-intensive processing (e.g., image resizing, encryption).
+            .You need CPU-intensive processing (e.g., image resizing, JSON parsing).
+            .You want to offload blocking tasks from the main thread.
+            .You need shared memory or fast communication between threads.
 
-            You want to offload blocking tasks from the main thread.
-
-            You need shared memory or faster inter-thread communication.
-
+        .Use cluster when:
+            .You want to scale your HTTP server across multiple CPU cores.
+            .You're handling many I/O-bound concurrent requests.
+            .You want separate, crash-resistant processes.
+            
 Q. To upload file/image :-
 Ans:-
     To handling image/file uploads
