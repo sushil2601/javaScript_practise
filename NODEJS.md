@@ -1522,6 +1522,64 @@ Ans:-
     | `cloudinary` | Cloud-based image storage and optimization    |
 
 
+Q.Difference between Monolithic and Microservices Architectures
+Ans :-
+    .Monolithic Architecture:
+        .All components of an application are combined into a single, unified codebase.
+        .Easy to develop initially but can become complex and hard to maintain as the app grows.
+        .Scaling requires scaling the entire application.
+        .Tight coupling between components.
+
+    .Microservices Architecture:
+        .The application is broken down into smaller, independent services, each responsible for a specific functionality.
+        .Easier to maintain, develop, and deploy services independently.
+        .Each service can be scaled independently.
+        .Promotes loose coupling and better fault isolation.
+
+Q. How does Node.js handle memory management?
+Ans :-
+    .Node.js uses V8 JavaScript engine for memory management.
+
+    .V8 manages memory allocation for objects, strings, and closures on the heap.
+
+    .It uses garbage collection (GC) to automatically free up memory that is no longer referenced.
+
+    .Node.js allocates memory in different segments: stack for function calls and primitive values, and heap for objects.
+
+    .Developers should manage memory leaks by avoiding global variables, cleaning up event listeners, and properly handling asynchronous code.
+
+Q. How would you scale an API to handle millions of requests per second?
+Ans:-
+    .Key strategies to scale an API:
+
+    1.Load Balancing:
+        .Distribute incoming traffic across multiple servers to avoid overloading any single server.
+
+    2.Horizontal Scaling:
+        .Add more servers or instances rather than relying on a single powerful machine.
+
+    3.Caching:
+        .Use caching layers (e.g., Redis, Memcached, CDN) to serve repeated requests faster and reduce load on the backend.
+        
+    4.Database Optimization:
+        .Use database sharding and replication.
+        .Optimize queries and use indexing effectively.
+
+    5.Asynchronous Processing:
+        .Offload heavy or non-immediate tasks to background jobs or message queues (e.g., RabbitMQ, Kafka).
+
+    6.API Gateway & Rate Limiting:
+        .Use API gateways to manage traffic, enforce security, and implement rate limiting to protect the system.
+
+    7.Use Efficient Protocols & Compression:
+        .Optimize data transfer using HTTP/2, gRPC, and data compression (gzip).
+
+    8.Microservices Architecture:
+        .Break down the API into smaller, independently scalable services.
+
+    9.Monitoring and Auto-Scaling:
+        .Use monitoring tools to track performance and auto-scale based on demand.
+
 
 <!-- Pending topic -->
 1. Redis
