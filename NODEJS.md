@@ -811,7 +811,7 @@ Ans:-
             .The server sends back a response.
             .The socket is closed.
 
-        .This happens for every reques
+        .This happens for every request
 
     .How Libuv Handles Sockets:
         .Libuv (used in Node.js) interacts with the OS using sockets for networking.

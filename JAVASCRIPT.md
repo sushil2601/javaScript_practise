@@ -260,160 +260,288 @@ Ans :-
       3. Using .catch() method with promises.
       4. Throwing Custom Errors
 
+Q. Q. What is a Callback in JavaScript?
+Ans:-
+    .A callback is a function passed as an argument to another function, which is then executed after the completion of that function's task.
+    .It’s often used for asynchronous operations like reading files, making API calls, or handling events.
+
+    .Helps manage asynchronous code execution.
+    .Avoids blocking the main thread while waiting for tasks to complete.
+
+    .Can lead to callback hell if nested too deeply, which is why Promises and async/await are preferred in modern code.
+
 Q. What is a callback hell in javascript?
 Ans:-
-  Callback hell is a term used to describe a situation where multiple callbacks are nested within one another, making the code difficult to read, debug, and maintain. It often arises when dealing with asynchronous operations, such as making HTTP requests or working with databases.
+  .Callback Hell happens when multiple callbacks are nested inside each other, creating deeply indented, hard-to-read code.
+  .Common in asynchronous JavaScript (e.g., API calls, file reading, DB queries).
 
+  .Hard to read (pyramid-shaped code)
+  .Hard to debug (logic is scattered)
+  .Hard to maintain (changes break flow)
+
+Q. Promise :-
+Ans :-
+      . Promise is an object that represents the eventual completion (or failure) of an asynchronous operation.
+      .Acts as a placeholder until the async task finishes.
+      .Can only settle once — either fulfilled or rejected.
+
+      .States of a Promise :- 
+            .Pending – Initial state, still waiting for the result.
+            .Fulfilled – Operation completed successfully.
+            .Rejected – Operation failed with an error.
+
+      .Why Promises?
+            .Handle asynchronous data more cleanly.
+            .Avoid callback hell (deeply nested callbacks).
+            .Solve inversion of control issues (control stays with you, not the callback provider).
+
+      .Creating a Promise
+                  const promise1 = new Promise((resolve, reject) => {
+                      resolve('Promise Resolved...');
+                      reject('Promise Rejected...');
+                  });
+
+      .Consuming a Promise
+                  promise1
+                    .then(data => console.log(data))   // for success
+                    .catch(err => console.log(err));   // for error
+
+Q. Asyn/Await :-
+  Ans:-
+      .async and await are syntactic sugar over Promises for writing cleaner, synchronous-looking async code.
+      .Makes asynchronous code easier to read and maintain.
+
+      .Usage
+          .async
+              .Declares a function as asynchronous.
+              .Automatically returns a Promise.
+
+          .await
+              .Pauses execution until the Promise resolves or rejects.
+              .Can only be used inside an async function.
+
+      .Example
+            async function fetchData() {
+                try {
+                    const data = await fetch('https://api.example.com/data');
+                    const json = await data.json();
+                    console.log(json);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            fetchData();
 
 Q. What is the purpose of the "use strict" statement in JavaScript?
 Ans:-
-  The "use strict" statement is used to enable strict mode in JavaScript, which helps to prevent common errors and make the code more secure. It prevents things like use of undeclared variable, use of keywords as variable name, using duplicate property names in objects, etc.
+  .enables strict mode in JavaScript.
+  .Makes code safer and less error-prone.
+
+  .Prevents use of undeclared variables.
+  .Disallows duplicate property names in objects.
+  .Blocks usage of reserved keywords as variable names.
 
 Q. What is AJAX?
 Ans:-
-  AJAX (Asynchronous JavaScript and XML) is a technique to create more dynamic and interactive web pages. It allows a web page to update content without requiring the page to reload. With AJAX, data is sent to and from the server in the background, using JavaScript and other data formats like JSON. This makes web applications more seamless and responsive, providing users with a faster and more engaging browsing experience.
+  .AJAX = Asynchronous JavaScript and XML
+  .Technique to update web page content without reloading the page.
+
+  .Purpose
+        .Send and receive data from the server in the background.
+        .Make web pages faster, more interactive, and seamless.
+
+  .Key Points
+        .Uses JavaScript for requests.
+        .Data can be in JSON, XML, HTML, or text.
+        .Works with APIs for dynamic content updates.
 
 Q. What is the difference between the DOM and HTML?
 Ans:-
-  HTML is a markup language used to define the structure and content of a web page, while the DOM is an interface that represents that structure and content as a tree-like structure. The DOM provides a way to access and manipulate the content and structure of a web page, while HTML is simply a static markup language.
+    .HTML :- HyperText Markup Language
+
+        .Defines the structure and content of a web page.
+        .Static – cannot change itself after loading.
+
+    .DOM :- Document Object Model
+
+        .A tree-like representation of the HTML (and other elements) in memory.
+        .Dynamic – can be accessed and modified using JavaScript.
 
 Q. What is the difference between innerHTML and innerText?
 Ans:-
-  The main difference between innerText and innerHTML in the DOM is that innerText returns only the visible text content of an element, excluding any HTML tags, while innerHTML returns the complete HTML content of an element, including any nested elements and tags.
+    .innerText
+        .Returns only the visible text inside an element.
+        .Ignores HTML tags.
+        .Affected by CSS (e.g., hidden elements are not returned).
+
+    .innerHTML
+        .Returns HTML content inside an element (including tags).
+        .Can be used to insert or modify HTML structure.
+        .Not affected by CSS visibility rules.
+
+Q. setTimeout, setInterval, clearInterval, clearTimeout
+Ans:-
+    1. setTimeout()
+        .Executes a function once after a given delay (in milliseconds).
+
+        .Syntax:- setTimeout(() => console.log("Hello"), 2000); // runs after 2s
+
+2. setInterval()
+        .Executes a function repeatedly at a fixed interval.
+
+        .Syntax:- setInterval(() => console.log("Ping"), 1000); // runs every 1s
+
+3. clearTimeout()
+        .Stops a timer started by setTimeout().
+
+        .Example:- let timer = setTimeout(() => console.log("Hello"), 2000);
+                    clearTimeout(timer);
+
+4. clearInterval()
+        .Stops a timer started by setInterval().
+
+        .Example:- let interval = setInterval(() => console.log("Ping"), 1000);
+                    clearInterval(interval);
 
 Q. What is the role of the Window object in the DOM?
 Ans:-
-  The Window object in the DOM represents the browser window or tab that displays the web page. It provides methods and properties for controlling and manipulating the browser window.
+    .Window Object
+          .Represents the browser window/tab.
+          .Top-level object in the DOM — all global variables & functions belong to it.
+          .Provides methods to control the window (e.g., alerts, timers, navigation).
 
-Q. What is the use of setTimeOut() in javascript?
-Ans:-
-  setTimeout() is a built-in function in JavaScript that allows you to schedule a function to be executed after a specified amount of time has elapsed.
-
-Q. What is the use of setInterval() in javascript?
-Ans:-
-  setInterval() is a function in JavaScript that allows you to repeatedly execute a given function at a specified interval. It works by calling the function repeatedly with a specified time delay between each call, until the interval is cancelled.
-
-Q. What is the purpose of clearTimeout method and clearInterval?
-Ans:-
-  The clearTimeout method is a built-in function in JavaScript that is used to cancel a timer created by the setTimeout function and clearInterval method is a built-in function in JavaScript that is used to cancel a recurring timer created by the setInterval function.
-
-Q. How do you redirect new page in javascript?
-Ans:-
-  To redirect to a new page using JavaScript, you can use the window.location object's assign or replace methods. Example:
-
-  // Redirect to a new page
-  window.location.assign("https://www.example.com");
-
-  // Redirect to a new page and replace the current page in the browser history
-  window.location.replace("https://www.example.com");
+    .Redirecting to a New Page
+          .window.location.assign(url) → Loads a new page, keeps current page in history.
+          .window.location.replace(url) → Loads a new page, replaces current page in history (no back navigation).
 
 Q. What is the difference between dot notation and bracket notation when accessing properties of an object?
-Ans:-
-  Dot Notation only allows static keys while Bracket Notation accepts dynamic keys. Static key here means that the key is typed directly, while Dynamic key here means that the key is evaluated from an expression.
+Ans :-
+      .Dot Notation (obj.key)
+            .Used when property name is known & static.
+            .Faster & cleaner syntax.
 
-Q. What is the difference between Object.prototype and Object.__proto__ in JavaScript?
-Ans:-
-  In other words, Object.prototype is the object that provides default properties and methods that all objects in JavaScript inherit from. On the other hand, Object.__proto__ is the object that the Object constructor itself inherits from, and it provides the properties and methods that are specific to the Object constructor.
+      .Bracket Notation (obj["key"] / obj[variable])
+            .Supports dynamic keys (from variables or expressions).
+            .Required when key contains spaces, special characters, or is stored in a variable.
 
-Q. What is the window.location object in JavaScript?
-Ans:-
-  The window.location object is a built-in object in JavaScript that contains information about the current URL of the webpage. It is a property of the global window object and provides several properties and methods to work with URLs.
+Q. What is global execution context and function execution context?
+Ans :-
+    .Global Execution Context (GEC)
+        .The first execution context created by the JavaScript engine before any code runs.
+        .Created when a script first loads.
+        .Only one GEC exists at a time (JS is single-threaded).
 
-Q. What is global execution context?
-Ans:-
-  The global execution context is the default or first execution context that is created by the JavaScript engine before any code is executed(i.e, when the file first loads in the browser). All the global code that is not inside a function or object will be executed inside this global execution context. Since JS engine is single threaded there will be only one global environment and there will be only one global execution context.
+    .Function Execution Context (FEC)
+        .The execution environment created each time a function is called.
+        .Created for specific function call.
 
-Q.What is function execution context?
-Ans:-
-  In JavaScript, the function execution context refers to the environment in which a function is executed or called. Each time a function is invoked, a new execution context is created specifically for that function. It consists of two main components: the variable environment and the scope chain.
+        .Includes:
+            .Variable Environment (local variables, parameters).
+            .Scope Chain (access to outer variables).
+            .this binding.
 
 Q. What are the different ways to debug JavaScript code?
 Ans:-
-  To debug JavaScript code, you can use console.log() statements to print values and messages to the console, browser developer tools for breakpoints, stepping through code, and variable inspection, the debugger statement to trigger breakpoints, exception handling to catch and log errors, linters and code analyzers to detect potential issues, and remote debugging for debugging code running in a different environment.
+    .console.log() – Print values/messages to the browser console.
+    .Browser DevTools – Use breakpoints, step-through execution, inspect variables.
+    .debugger statement – Forces code to pause (if DevTools are open).
+    .Exception Handling – Use try...catch to log and handle errors.
 
 Q. What are the advantages of using closures in JavaScript?
 Ans:-
-  Closures in JavaScript allow for encapsulation, data privacy, and the creation of private variables and functions that are inaccessible from the outside scope.
+    .Encapsulation – Groups related data and functions together.
+    .Data Privacy – Keeps variables private and inaccessible from outside.
+    .State Preservation – Remembers values even after the outer function has finished.
+    .Function Factories – Create multiple functions with their own private state.
+    .Callback Functions – Useful in event handlers, timers, and asynchronous code.
 
 Q. Can you access DOM in nodejs?
 Ans:-
-  No, you cannot directly access the DOM in Node.js. Node.js is a runtime environment for running JavaScript outside of web browsers, and it does not have a built-in DOM implementatio
+  No, you cannot directly access the DOM in Node.js. Node.js is a runtime environment for running JavaScript outside of web browsers, and it does not have a built-in DOM implementation
 
 Q. What is the difference b/w an event object and a custom event in javaScript?
 Ans :-
-       .
+    .Event Object: The built-in object automatically passed to event handlers, containing details about the event (e.g., type, target, coordinates).
+
+    .Custom Event: A user-defined event created with the CustomEvent constructor, allowing you to pass custom data and trigger events programmatically using dispatchEvent().
 
 Q. How do you optimize performance in javaScript applications?
 Ans :-
-
       .Debouncing and Throttling
       .Memoization
       .Clean up event listeners, intervals, timeouts, and DOM references properly.
       .Lazy Load Data
       .code splitting
 
+Q. Memoization:-
+Ans:-
+    .Optimization technique where results of expensive function calls are cached and returned when the same inputs occur again.
+
+    .Improves performance for functions with repetitive calculations.
+
+Q. Pure Function
+Ans:-
+    .A pure function always returns the same output for the same inputs.
+    .It has no side effects (does not modify external state or variables).
+    .Easy to test and debug.
+
+    function add(a, b) {
+        return a + b;
+    }
+
+  .Impure Function:-
+      .An impure function may return different outputs for the same inputs.
+      .It causes side effects, like modifying external variables, I/O operations, or changing data outside the function.
+
+      let count = 0;
+      function increment() {
+        count++;
+        return count;
+      }
+
 Q. Deep copy and shallow copy
 Ans :-
+    .1. Normal Copy (Reference Copy)
+          .Both variables point to the same memory reference.
+          .Change in one → change in other.
 
-    .Normal copy :- both object point the same memory refernece.
+          Example:-
+                    var obj1 = { name: 'sushil' };
+                    var obj2 = obj1;
 
-        Ex:- var obj1 = {
-          name : 'sushil'
-        }
+    2. Shallow Copy
+          .Creates a new object/array but nested objects/arrays still share references.
+          .Changes in nested objects affect both copies.
 
-        var obj2 = obj1;
-        console.log(obj2.name)
-        console.log(obj1.name)
+          Examples:
+                    // Using Object.assign or spread operator
+                    var obj1 = { name: 'sushil', address: { city: 'Delhi' } };
+                    var obj2 = { ...obj1 };
+                    obj2.address.city = 'Noida'; // affects obj1 too
+                    Methods:
 
-    .shallow copy :- 
-   -----------------
-       .A shallow copy creates a new object or array, but it only copies the references to the elements of the original.
+                    Object.assign({}, obj)
 
-       .If the original object or array contains nested objects or arrays, the shallow copy will still point to the same nested objects/arrays in memory as the original.
+                    { ...obj } (Spread syntax)
 
-        Ex:- var obj1 = {
-          name : 'sushil',
-          address : {
-            street : 'Nehru road',
-            city : 'Delhi'
-          }
-        }
+                    Array.prototype.slice() / concat() for arrays
 
-        <!-- var obj2 = Object.assign({},obj1); -->
-        var obj2 = {...obj1}
+    3. Deep Copy
+            .Creates a completely independent copy, including nested objects/arrays.
+            .No shared references; changes in one do not affect the other.
 
-        obj2.address.city = 'Noida';
-        console.log(obj2.address.city); //Noida
-        console.log(obj1.address.city); //Noida
+            Examples:
+                    // Using JSON method (limitations: no functions, undefined, dates, etc.)
+                    var obj1 = { name: 'sushil', address: { city: 'Delhi' } };
+                    var obj2 = JSON.parse(JSON.stringify(obj1));
 
-    .Deep copy :-
-   ---------------
-          .A deep copy creates a completely new, independent copy of the original object or array, including all nested objects and arrays.
+                    // Using lodash for full deep copy (handles functions, dates, etc.)
+                    var obj2 = _.cloneDeep(obj1);
+                    Methods:
 
-          .All values, including those in nested structures, are duplicated, ensuring no shared references between the original and the copy.
+                    JSON.parse(JSON.stringify(obj)) (simple, but loses functions & special types)
 
-        Ex:- var obj1 = {
-          name : 'sushil',
-          address : {
-            street : 'Nehru road',
-            city : 'Delhi'
-          }
-        } 
-
-        var obj2 = JSON.parse(JSON.Stringify(obj1))
-
-        obj2.address.city = 'Mumbai'
-        console.log(obj2.address.city); //Mumbai
-        console.log(obj1.address.city); //Delhi
-
-        var obj1 = {
-          name : 'sushil',
-          address : function(){}       //not acceptable in deep copy also
-        } 
-
-        //use cloneDeep to resolve above issue
-
-        var obj2 = lodash.cloneDeep(obj1)
+                    _.cloneDeep(obj) (lodash – safe & reliable)
 
 Q. Polyfill for bind :-
 Ans :-
@@ -438,62 +566,43 @@ Ans :-
       console.log(this.fName + ''+this.lName+''+'lives in'+city1+'and'+city2);
     }
 
-Q. Promise :-   in the starting it is an empty object({}).
-Ans:-
-    .The Promise Object represents the eventual completion(or failure) of an asynchronous operation and its resulting value.
+Q. Event Bubbling
+Ans :-
+  .The event starts from the deepest target element and bubbles up to its ancestors (parent elements).
+  .Events trigger on the target first, then propagate upwards to the document root.
+  .Default event propagation mode in browsers.
 
-      or,
+Q. Event Capturing
+Ans :-
+  .The event starts from the outermost ancestor (document) and captures down to the target element.
+  .Events trigger first on ancestors, then on the target.
+  .Less commonly used, but can be enabled with addEventListener(type, listener, true) (third parameter true enables capturing).
 
-    .Promise object is a placeholder for a certain period of time until we receive a value from a asynchronous operation.
+Q. Event Delegation
+Ans :-
+  .A technique of attaching a single event listener to a parent element instead of multiple listeners to child elements.
+  .Takes advantage of event bubbling to handle events from child elements via the parent.
+  .Improves performance and simplifies code, especially for dynamic elements.
 
-    .Promise object can only be resolved once,either it will be success or a failure.
+Q. Exmaple of memoization --> fibonacci  
+Ans :-
+      function memoizedFibonacci() {
+        const cache = {};
 
-            .Three stage of promise
-                1.pending    --> This is the initial state,which we start from.
-                2.fulfilled  --> promise has been fulfilled successfully.
-                3.rejected   --> promise has been rejected, there was an error.
+        function fib(n) {
+          if (n <= 1) return n;
+          if (n in cache) return cache[n];
 
-    .use  :- handled asynchronous data
+          cache[n] = fib(n - 1) + fib(n - 2);
+          return cache[n];
+        }
 
-    .Need of promises :-
-            .Promises are created to avoid callback hell.
+        return fib;
+      }
 
-        
-    .callback hell(pyramid of doom) :- calling one callback in another callback and so..on
-    .Inversion of control :- 
+const fib = memoizedFibonacci();
 
-
-    .producing promises :-
-
-        Ex:- const promise1 = new Promise((resolve,reject)=>{                
-              resolve('Promise Resolved...')
-                reject('Promise is rejected..')
-            })
-
-    .consuming promises :-
-
-        Ex:- promise1.then((data)=>console.log(data))
-             .catch((err)=>console.log(err))
-
-Q. Exmaple of memoization --> sum and fibonacci  
-
-
-<!-- JavaScript Important topics -->
-.Closures
-.Callback
-.Promises
-.Async/Await
-.Bubbling,capturing and delegation.
-.Debouncing and Throttling
-.Hoisting
-.Temporal Dead Zone
-.Currying
-.Equality Operator
-.Event Loop
-.JavaScript Engines
-.How JavaScript works
-      
-
+console.log(fib(6));
 
 ---------------------------------------------------------------------------------------------------
 <!-- GIT Operation -->
