@@ -1560,7 +1560,7 @@ Ans:-
 
     3.Caching:
         .Use caching layers (e.g., Redis, Memcached, CDN) to serve repeated requests faster and reduce load on the backend.
-        
+
     4.Database Optimization:
         .Use database sharding and replication.
         .Optimize queries and use indexing effectively.
@@ -1580,10 +1580,32 @@ Ans:-
     9.Monitoring and Auto-Scaling:
         .Use monitoring tools to track performance and auto-scale based on demand.
 
+---------------------------------------------------------------------------------------------------
+1. Redis :-
+Ans :-
+    .Redis (Remote Dictionary Server) is an open-source, in-memory data structure store used as a database, cache, and message broker.
+    .It stores data in memory, allowing very fast read and write operations.
+    .Supports data structures like strings, hashes, lists, sets, sorted sets, bitmaps, hyperloglogs, and streams.
 
-<!-- Pending topic -->
-1. Redis
-2. Docker
+    .Why do we use Redis :-
+        .Fast Performance
+        .Caching
+
+2. Docker :-
+Ans :-
+    .Docker is a platform that allows us to create, deploy, and run applications inside containers. 
+    .Containers are lightweight, portable, and consistent environments that package our application along with all its dependencies (libraries, tools, configurations), so it can run anywhere without compatibility issues.
+
+    .Docker Image :-
+        .A Docker Image is a lightweight, read-only template that contains everything needed to run a piece of software — code, runtime, libraries, environment variables, and config files.
+        .Think of it as a blueprint or snapshot for creating Docker containers.
+        .Images are immutable and stored in registries (like Docker Hub).
+    
+    .Docker Container :-
+        .A Docker Container is a runnable instance of a Docker image.
+        .It is a live, isolated environment where your application runs.
+        .Containers can be started, stopped, moved, and deleted.
+        .Containers are created from images and add a writable layer on top.
 
 
 <!-- Scenario based question -->
