@@ -988,6 +988,9 @@ Ans:-
 
         .For Large Data - Use Streams instead of read/write to avoid memory overload.
 
+        .Safe limit: A few hundred MB (e.g., 100–500 MB) is okay for most systems without issues.
+        .Streams are preferred for files larger than ~100 MB,
+
 .Stream :-
         .Streams are objects that allow you to read or write data continuously.
         .Ideal for handling large amounts of data efficiently.
