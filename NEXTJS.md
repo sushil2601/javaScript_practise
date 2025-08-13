@@ -375,6 +375,14 @@ Ans :-
 .In Next.js, forms are handled like in React on the client, and submitted to API routes for server-side processing. I use both client-side validation (for instant feedback) and server-side validation (for security), often with libraries like react-hook-form and Yup.
 
 
+.Disadvantage :-
 
+        .Slow Builds for Big Sites – If you use static generation with many pages, building the site can take a long time. We can fix this with ISR, but without it, deployments are slower.
+
+        .More Load on the Server with SSR – Server-side rendering makes fresh pages for every request, which is great for real-time data but also slows down responses and costs more to host. In one project, we solved this by adding good caching.
+
+        .Extra Setup for Advanced Features – For things like custom image domains, redirects, or special webpack changes, we have to edit next.config.js. It’s powerful, but adds complexity.
+
+        .No Built-in State Management – Next.js doesn’t handle app state by itself, so for complex UIs we still need tools like Redux or Zustand."
 
 
