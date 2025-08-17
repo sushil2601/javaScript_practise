@@ -432,10 +432,7 @@ Ans:-
 Q. ReactDOM  and index.js file in react?
 Ans:-
     .ReactDOM is a javaScript library that renders components to the DOM or browser.
-    .It renders React components onto the web page.
     .Acts as a bridge between React (virtual DOM) and the browser’s real DOM.
-    .Updates the real DOM when your component state or props change.
-    .Ensures only the changed parts of the DOM are updated — improving performance.
 
     .index.js in React:-
         .The index.js file is the entry point of a React app.
