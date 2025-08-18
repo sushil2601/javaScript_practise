@@ -323,7 +323,7 @@ Ans :-
     JWT stands for JSON Web Token.
     It is used for authentication and authorization in web applications.
 
-    It helps the server and client share information securely in a compact, encoded format.
+    It helps the server and client share information securely in a encoded format.
 
     What’s Inside a JWT?
         .A JWT is a string made of three parts:
@@ -417,7 +417,7 @@ Ans :-
 
     Working:-
 
-        Whenever you run JavaScript in Node.js:-
+        Whenever we run JavaScript in Node.js:-
 
             .Node.js hands the code to the V8 engine.
 
@@ -1612,7 +1612,6 @@ Ans :-
 
 
 <!-- Scenario based question -->
-
 
 
 

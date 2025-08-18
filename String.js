@@ -414,6 +414,94 @@ If the result is positive (a - b > 0), then b comes before a.*/
     // counter.decrement()
     // counter.log();
 
+    //Q. arr = [10,20,35,20,22,20,35,27,20] , output : [10,20,35] 
+
+    // const arr = [10,20,35,20,22,20,35,27,10];
+
+    // function uniqueCount(arr){
+
+    //     const count = {};
+    //     const output = [];
+
+    //     arr.forEach((item)=>{
+    //         return count[item] = (count[item] || 0) +1
+    //     })
+
+    //     console.log(count)
+
+    //     for(let item in count){
+    //         if(count[item]>1){
+    //             output.push(Number(item))
+    //         }
+    //     }
+
+    //     console.log(output)
+    // }
+
+    // uniqueCount(arr)
+
+    // let string = "Sabyasachi, Techno Exponent Techno I Sabyasachi";
+
+    // function uniqueString(arr){
+
+    //     const words = arr.replace(/,/g, '').split(' ')
+    //     console.log(words)
+
+    //     const results = {};
+
+    //     words.forEach((item)=>{
+    //         results[item] = (results[item] || 0) + 1
+    //     })
+
+    //     console.log(results)
+
+    // }
+
+    // const arr = [10,20,35,20,22,20,35,27,10];
+
+    // const output = [...new Set(arr.filter(num => arr.indexOf(num) !== arr.lastIndexOf(num)))];
+
+    // console.log(output)
+
+    // uniqueString(string)
+
+    //Q. flatten aaray : [1,2,[3,4,[5,6,7]]] , output : [1,2,3,4,5,6,7]
+
+    // const flatArr = [1,2,[3,4,[5,6,7]]]
+
+    // function flatten(flatArr) {
+    //     const out = [];
+    //     (function rec(x) {
+    //         for (const v of x) Array.isArray(v) ? rec(v) : out.push(v);
+    //     })(flatArr);
+    //     // return out;
+    //     console.log(out)
+    // }
+
+    // flatten(flatArr)
+
+    // function flatten(flatArr){
+
+    //     let result = [];
+
+    //     function rec(x){
+    //         for(let item of x){
+    //             if(Array.isArray(item)){
+    //                 rec(item)
+    //             }else{
+    //                 result.push(item)
+    //             }
+    //         }
+    //     }
+
+    //     rec(flatArr)
+
+    //     console.log(result)
+    // }
+
+    // flatten(flatArr)
+
+    
     //3. IIFE -> immediate invoked function expression
         //self invoked function --> one time create hoga aur one time hi run hoga.
     // (function abc(a){
@@ -454,8 +542,6 @@ If the result is positive (a - b > 0), then b comes before a.*/
     // }
 
     // hello('Hello').then((val)=>console.log(val)).catch((err)=>console.log(err))
-
-
 
 
 //     const promise = function(args){
