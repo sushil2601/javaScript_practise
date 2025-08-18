@@ -501,6 +501,16 @@ If the result is positive (a - b > 0), then b comes before a.*/
 
     // flatten(flatArr)
 
+    // Q. input = [1,2,3,4,5,6,7,8]
+
+        //input : [3,7]
+        //output : [1,2,4,5,6,7,3,8]
+
+        //input : [7,3]
+        //output : [1,2,7,3,4,5,6,8]
+
+        //rank 
+
     
     //3. IIFE -> immediate invoked function expression
         //self invoked function --> one time create hoga aur one time hi run hoga.
