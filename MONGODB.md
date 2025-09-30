@@ -17,14 +17,19 @@ Ans :-
 Q. When to use RDBMS and when to use NoSQL DB in your applications?
 Ans :-
     .RDBMS (Relational Database):
-        .Best for applications needing complex transactions and strong data integrity (ACID compliance).
-        .Ideal for structured data with fixed schemas.
+        Use when:-
+            .Structured data – Your data has a fixed schema with tables, rows, and columns.
+            .ACID compliance is critical – You need strong transaction support (e.g., banking systems).
+            .Complex relationships – Data has multiple relations (one-to-many, many-to-many) that benefit from foreign keys.
 
-        Examples: Banking, finance systems, traditional e-commerce platforms.
+            .Ex:- Banking applications, Inventory and accounting systems, ERP systems,
+                  Applications with consistent and structured data
 
     .NoSQL Database:
-        .Best for large volumes of data with high-speed reads/writes.
-        .Ideal for unstructured or semi-structured data and flexible schemas.
+        .Flexible schema – Your data structure may change frequently, or you have hierarchical/nested data.
+        .High scalability – You expect huge amounts of data and want horizontal scaling (sharding).
+        .JSON-like documents – Storing semi-structured data such as logs, events, or JSON objects.
+        .Big data / real-time analytics – Storing large volumes of unstructured or semi-structured data.
 
         Examples: Social media platforms, IoT apps, gaming applications.
 
