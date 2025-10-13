@@ -17,6 +17,7 @@ npm run dev
 --------------------------------------------------------------------------------------------------
 
 Q. what is React ?
+
 Ans :- 
 
       .React is a JavaScript library developed by Facebook for building user interfaces.
@@ -24,6 +25,7 @@ Ans :-
       .Works with a virtual DOM for fast rendering.
 
 Q.key features of React.
+
 Ans :-  
         
         .Declarative UI
@@ -44,6 +46,7 @@ Ans :-
         .React is not good choice for very small applications.
 
 Q. JSX ?
+
 Ans:- 
 
         .JSX stands for javaScript XML.
@@ -62,6 +65,7 @@ Ans:-
                 .code reusability.
 
 Q.What is Virtual DOM ?
+
 Ans :-  
 
         .A lightweight copy of the real DOM.
@@ -132,7 +136,9 @@ Ans :-
 
 
 Q. Difference b/w Virtaul DOM and Real DOM 
+
 Ans :- 
+
         Virtual DOM	                                Real DOM
 
     	    In memory	                                In browser (on-screen)
@@ -140,7 +146,9 @@ Ans :-
             Used by React                               Used by Angular
 
 Q. Difference b/w DOM and Virtual DOM.
+
 Ans :- 
+
         DOM                                                       Virtaul DOM
 
     .is actual representation of actual page.                 .is light weight copy of the DOM.
@@ -149,7 +157,9 @@ Ans :-
     .Suitable for static websites and simple appln.           .Ideal for dynamic and complex SPA.
 
 Q.What is component?
+
 Ans:-
+
     .Component is a reusable building block of code for creating react application.
     .It takes props as input and return a JSX as the o/p.
 
@@ -189,7 +199,9 @@ Ans:-
             .this keyword is used to refer to the instance of the class.
 
 Q.“In React, everything is a component.” Explain.
+
 Ans:-
+
     .A component is a small, reusable piece of UI.
     .It’s like a building block of your application.
 
@@ -197,23 +209,31 @@ Ans:-
     .we can break the UI into multiple independent components.
 
 Q. Why is it necessary to start component names with a capital letter?
+
 Ans:-
+
     .React treats lowercase names as HTML tags (like <div>, <p>).
     .Always start your component names with a capital letter (like Header, App, MyButton, etc.).
 
 Q. How would you prevent a component from rendering in React?
+
 Ans:-
+
     .Use conditional rendering.
         .We decide when to show or hide a component 
 
 Q. Why React uses className over class attribute?
+
 Ans:-
+
     .JavaScript, class is a reserved keyword (used for creating classes).
     .Since JSX is JavaScript, using class would cause errors.
     .So, React uses className instead of class to avoid conflicts.
 
 Q. SPA (Single Page Application).
+
 Ans :-
+
     .A Single Page Application (SPA) is a web app that loads a single HTML page and dynamically updates content without reloading the page.
 
     .How it Works:
@@ -233,6 +253,7 @@ Ans :-
         .Solution:-   Use SSR (Server Side Rendering) or frameworks like Next.js
 
 Q. SPA(Single Page Application) vs MPA(Multi Page Application)
+
 Ans :- 
 
   Feature	               SPA (Single Page App)	       MPA (Multi Page App)
@@ -244,7 +265,9 @@ Ans :-
 
 
 Q.Difference b/w declarative and imperative appraoch
+
 Ans:- 
+
         .Declarative appraoch:-  focus on describing the desired result without specifying the step-by-step process.
 
         .JSX in react is used to write declarative appraoch.
@@ -263,6 +286,7 @@ Ans:-
         }
 
 Q. what is React Element?
+
 Ans:- 
     .A React Element is a plain JavaScript object that describes what you want to see on the screen.
     .Once created, a React element cannot be changed.
@@ -270,6 +294,7 @@ Ans:-
 Ex :-  const element = React.createElement('h1', null, 'Hello, world!');
 
 Q. Difference b/w React Element and React Component.
+
 Ans:- 
     
   .An react is a plain Object describing what you want to see on the screen in terms of the DOM nodes or the other components.
@@ -280,6 +305,7 @@ Ans:-
   .In either case, it takes props as an input and return a jsx as the output.
 
 Q. Babel :- 
+
 Ans :- 
 
     .It is a JS compiler.
@@ -289,7 +315,9 @@ Ans :-
 
 
 Q.How React App load and display the components in browser?
+
 Ans:- 
+
     1.index.html
         .A basic HTML file with a single <div id="root"></div>.
         .This is the mounting point for the entire React app.
@@ -310,6 +338,7 @@ Ans:-
     .React takes over the empty HTML page and builds your UI by rendering components dynamically.
 
 Q. Difference b/w React and Angular
+
 Ans :- 
 
             React :-
@@ -327,18 +356,22 @@ Ans :-
                 .Angular is a complete framework , therefore it provide built-in support for features like routing, forms , validation and HTTP requests.
 
 Q. What are stateful and state management terms?
+
 Ans :- 
 
     Stateful and state management means,when a user performs some actions on the UI then the react application should be able to update and re-render that data or state on the UI.
 
 Q. Props
+
 Ans:-
         .Props(Properties) are the way to pass data from a parent component to a child component.
         .Props are read-only and cannot be modified within the component.
         .one way communication from parent to child.
 
 Q. State
+
 Ans :-
+
         The state in ReactJS is a JavaScript object that stores data specific to a component. It represents the current state of the component and can be updated over time. 
 
         state is local and managed within the component.
@@ -346,6 +379,7 @@ Ans :-
         React provides the useState() hook to manage state in function components.
 
 Q. What are the difference b/w state and props?
+
 Ans:-
     
     Feature	            Props	                             State
@@ -354,32 +388,44 @@ Ans:-
     Usage	        Communication between components	Store component data
 
 Q. What happens when you call setState?
+
 Ans:-
+
     setState is used to update the state of a component and trigger a re-render.
 
 Q. What are stateless components?
+
 Ans:-
+
     If the behaviour of a component is independent of its state then it can be a stateless component. 
 
 Q.What are stateful components?
+
 Ans:-
+
     If the behaviour of a component is dependent on the state of the component then it can be termed as stateful component. These stateful components are either function components with hooks or class components.
 
 Q. Does React re-render all components and sub components every time setState is called?
+
 Ans:-
+
     .No,
     .When you call setState(), React only re-renders the component where the state changed.
     .It also re-renders its child components — but only if necessary (based on props/state changes).
     .React uses a Virtual DOM to detect what actually changed, and updates only the parts of the UI that need to change.
 
 Q.What are Default Props?
+
 Ans:-
+
     .Default props are used to set default values for props in a component.
     .They ensure the component still works even if no value is passed from the parent.
     .Helps avoid undefined values and improves reliability.
 
 Q. Is React a library or a Framework and why?
+
 Ans:-
+
     .React is a JavaScript library, not a framework.
     .Focuses only on the "View" layer of an application (in MVC pattern).
     .Doesn't include built-in tools for:
@@ -394,24 +440,33 @@ Ans:-
     .Lightweight compared to a full-featured framework like Angular.
 
 Q. What are nested component in react?
+
 Ans:-
+
     In React, nested components refer to the idea of rendering components within other components. 
 
 Q. What are children props
-Ans :- 
-        .In React, children is a special prop used to pass elements or components between the opening and closing tags of a component.
 
-        .You can access it using props.children.
+Ans :- 
+
+        .In React, children props are a special type of props that enables components to receive and render other components or elements.By passing components as children.
+
+        .To access the children passed to a components,we use the props.children property.
+
+        .It return the content placed b/w the opening and closing tags of the components.
 
 
 Q. ReactDOM 
+
 Ans:-
     .ReactDOM is a javaScript library that renders components to the DOM or browser.
     .Acts as a bridge between React (virtual DOM) and the browser’s real DOM.
 
 
 Q. What is the role of Fragement in JSX?
+
 Ans :-
+
     .In React , fragement is a way to group multiple children's element.
 
     .Using a Fragement prevents the addition of unnecessary nodes to the DOM.
@@ -420,6 +475,7 @@ Ans :-
     . <Fragement> --> div tag ki tarah browser me rhta nhi hai , automatically gayab ho jayega.
 
 Q. What is the difference b/w Transpiler and compiler?
+
 Ans :-
 
     Transpiler :- is the tool that converts source code from one high-level programming language to another high-level programming langauage.
@@ -429,7 +485,9 @@ Ans :-
     Compiler :- is the tool that converts high-level programming in to a lower-level language(machine code or bytecode).
 
 Q. What is Prop Drilling in React?
+
 Ans :-
+
     Prop drilling is the process of passing props through multiple layers of component.
 
     .why to avoid Prop Drilling :-
@@ -446,7 +504,10 @@ Ans :-
         .Redux
 
 Q. Lifting state up :-
-Ans :- Lifting state up means moving shared state from multiple child components to their closest common parent, so that parent can manage the state and pass it down via props.
+
+Ans :-
+    
+    .Lifting state up means moving shared state from multiple child components to their closest common parent, so that parent can manage the state and pass it down via props.
 
         .Move the state up to a common parent
         .Let that parent control the data
@@ -457,13 +518,17 @@ Ans :- Lifting state up means moving shared state from multiple child components
             .One child needs to send data to another sibling
 
 Q. <React.StrictMode>
+
 Ans :-
+
         .React provides a special wrapper that helps you find bugs early.
         .warn about unsafe code.
         .works only in development not in production
 
 Q. Different way to pass data from Child to Parent.
+
 Ans :-
+
         .using callback function
         .Lifting up state
         .Context Api
@@ -471,7 +536,9 @@ Ans :-
         .Using Redux and Zustand
 
 Q. What is Shadow DOM?
+
 Ans :-
+
     .The Shadow DOM is a web standard that enables encapsulation of HTML, CSS, and JavaScript in custom elements (Web Components). 
 
     .It allows developers to create isolated DOM trees that don't clash with the main document's styles or scripts.
@@ -479,7 +546,9 @@ Ans :-
 <!-- Routing -->
 
 Q. What is routing and Router in React?
+
 Ans :-
+
     .Routing:-
         .Routing allows navigation between different pages or views in a Single Page Application (SPA).
         .It updates the URL and renders different components — without reloading the entire page.
@@ -490,7 +559,9 @@ Ans :-
         .This makes your app feel like a multi-page site, even though it's a single-page app.
 
 Q. How to implement Routing in React?
+
 Ans :-
+
         .Install React Router
         .Import Router Components
         .Wrap App with <BrowserRouter>
@@ -498,7 +569,9 @@ Ans :-
         .Define Routes in App
 
 Q. What is Routes and Route component in React Routing?
+
 Ans :-
+
     .Routes Component:
         .Acts as a container for all your routes.
         .Wraps multiple <Route /> components.
@@ -513,7 +586,9 @@ Ans :-
         .You can access the value using useParams() hook.
 
 Q. What is the role of Switch components in React Routing?
+
 Ans :-
+
     Switch components ensures that only the first matching <Route> is rendered and rest are ignored.
 
     .Switch is commonly used to handle 404 or 'not found' routes.
@@ -524,7 +599,9 @@ Ans :-
          </Switch>
 
 Q. What is the role of exact prop in React Routing?
+
 Ans :-
+
     .exact prop is used with the <Route> component to match exactly to the provided path.
 
     Ex:- <Route path='/about' exact component={About} />
@@ -532,19 +609,25 @@ Ans :-
     .without exact default behaviour :- match /about, /about/team , /about/contact
 
 Q.What is BrowserRouter?
+
 Ans:-
+
     .It uses HTML5 history API (pushState, replaceState) to manage routing.
     .Keeps your app in sync with the URL.
     .Ideal when your server is configured to handle routing (e.g., Node.js server).
 
 Q. What is HashRouter?
+
 Ans :-
+
     .Uses the hash (#) part of the URL to manage routing (e.g., www.example.com/#/home).
     .No server setup needed – works well with static hosts like GitHub Pages.
     .Not ideal for SEO, but easy to set up.
 
 Q. Link,NavLink,Outlets
+
 Ans:-
+
     .Link :-
         .Replaces <a> tags for navigation in React.
         .Does not reload the page (SPA behavior).
@@ -560,20 +643,26 @@ Ans:-
         .Renders the child route inside a parent layout component.
 
 Q. URLSearchParams():- 
+
 Ans:-
+
     .URLSearchParams() is used to read and manipulate URL query parameters.
 
     .Useful in React apps for routing, filters, pagination, auth tokens, etc.
 
 Q. useParams() :-
+
 Ans :-
+
     .useParams() is a React Router hook used to access URL parameters from the current route.
 
     .It returns an object containing key-value pairs of the dynamic parameters from the URL.
 
 
 Q. shimmer UI :-
+
 Ans :-
+
     .We load fake page,until we get actual data from API.
     .Display a skeleton UI that matches the shape of your real content.
     .Replace it with real content once loading is complete.
@@ -582,6 +671,7 @@ Ans :-
 <!-- Hook -->
 
 Q. What are React Hook?
+
 Ans:- 
 
     .Functions that let you use state and lifecycle methods in functional components.
@@ -596,7 +686,9 @@ Ans:-
     Ex:- useState,useEffect,useContext,useReducer,useCallback,useMemo,useRef,useLayoutEffect
 
 Q. What is the role of useState() hook and how it works?
+
 Ans:-
+
     .The useState hook enables functional components to manage state.
     
     .Working :- 
@@ -610,7 +702,9 @@ Ans:-
     .never create useState variable inside if--else,for loop, fn.Due to this inconsistency will create in your program.
 
 Q. useEffect.
+
 Ans :-
+
     .The useEffect Hook in react is used to perform side effects in functional components.
     
     .Ex:- data fetching, subscriptions, or DOM manipulation  or any other operation that needs to be performed after the component has been rendered.
@@ -640,23 +734,31 @@ Ans :-
                                                         Unsubscribing from services.
 
 Q. componentWillMount :-
+
 Ans :-
+
     componentWillMount() Called just before the component mounts (before render()) – Deprecated.
 
 Q. useLayoutEffect :-
+
 Ans :-
+
     .useLayoutEffect is similar to useEffect,but it fires synchronously after all DOM mutations.
 
 
 Q. useEffect vs Lifecycle Methods (class components)
+
 Ans:- 
+
         Class Component	                       useEffect Equivalent
             componentDidMount	                 useEffect(() => {...}, [])
             componentDidUpdate	                 useEffect(() => {...}, [dep])
             componentWillUnmount	             Cleanup function inside useEffect 
 
 Q.Life cycle methods.
+
 Ans :- 
+
         .Lifecycle methods in ReactJS are special methods that are invoked at different stages of a component's lifecycle. They allow developers to perform specific actions at certain points, such as initializing state, updating the UI, or cleaning up resources.
 
         1. Mounting Phase (when the component is created and added to the DOM)
@@ -679,12 +781,15 @@ Note :- .Lifecycle methods are mostly used in class components
         .In modern React, we use Hooks (useEffect, useState, etc.) for lifecycle logic
 
 Q. What are constructors in class components? when to use them
+
 Ans:-
+
     constructor is a special method that is called when an instance of the class is created.
 
     Costructor is used for initializing the component's state or performing any setup that is needed before the component is rendered.
 
 Q. What is the role of super keyword in constructor?
+
 Ans :- 
 
         .super keyword is used in the constructor of a class component to call the constructor of the parent class.
@@ -692,11 +797,13 @@ Ans :-
         .This is necessary to ensure that the initialization logic of the parent class is executed.
 
 Q. What is the role of render() method in component life cycle?
+
 Ans :- 
     
     .Render() method returns the react elements that will be rendered to the DOM.
 
 Q. How the state can be maintained in a class component?
+
 Ans :-
 
     .this.setState() method is used to update the state.
@@ -704,11 +811,13 @@ Ans :-
     .this.state property is used to render the updated state in DOM.
 
 Q. What is the role of useContext() hooks?
+
 Ans:- 
     
     useContext in react provides a way to pass data from parent to child component without using props.
 
 Q. What is createContext() method? what are Provider and Consumer properties?
+
 Ans :- 
 
     .createContext() is a function in React used to create a context.
@@ -736,6 +845,7 @@ Ans :-
         Ex:- const value = useContext(MyContext);
 
 Q. When to use useContext() hook instead of props in real applications?
+
 Ans :- 
 
         Use useContext() instead of props when you want to avoid prop drilling and access context values directly within deeply nested component.
@@ -746,6 +856,7 @@ Ans :-
                .Notification System.
 
 Q. What are controlled components in react?
+
 Ans :- 
 
     .A controlled component is a component whose form elements(like input fields or checkbox) are controlled by the state of the application.
@@ -755,6 +866,7 @@ Ans :-
     .This allows react to have full control over the form data making it easier to manage and validate the i/p.
 
 Q. What are unControlled components in react?
+
 Ans :-
 
     .It store form data within the DOM itself rather than in the component's state.
@@ -764,6 +876,7 @@ Ans :-
     .It donot offer the same level of control over the form data as controlled components.
 
 Q. Characteristics of controlled components
+
 Ans :- 
 
     .State control
@@ -772,21 +885,25 @@ Ans :-
     .Re-rendering
 
 Q.How to handled forms in React?
+
 Ans :-
 
     .The preferred and recommended approach for handling forms in React is by using controlled components.
 
 Q. How can you handle multiple input fields in a controlled form?
+
 Ans :- 
 
    .Maintain separate state variables for each input field and update them individually using the onChange event.
 
 Q. How do you handle form validation in a controlled component?
+
 Ans :-
 
     .By using conditional rendering based on the state and validate input values before updating the state.
 
 Q. Custom hook :- 
+
 Ans :-
 
     .A custom hook is simply a user defined JavaScript function whose name starts with use.
@@ -798,6 +915,7 @@ Ans :-
 <!-- Code Splitting -->
 
 Q. What is code Splitting in React?
+
 Ans :- 
 
     .Code Splitting means breaking your JavaScript bundle into smaller parts (chunks).
@@ -808,6 +926,7 @@ Ans :-
         .Reducing initial load time.
 
 Q. How to implement Code Splitting in React?
+
 Ans :-
 
     .Use React.lazy() to load components on demand.
@@ -815,6 +934,7 @@ Ans :-
     .Make sure your bundler (e.g., Webpack) supports dynamic imports.
 
 Q. Explain the concept of lazy loading in React.
+
 Ans:-
 
     .Lazy loading = Load components only when needed.
@@ -824,12 +944,14 @@ Ans:-
     .Benefit: Makes your app faster by avoiding unnecessary code loading.
 
 Q. What is the role of Suspense methods in React?
+
 Ans :-
 
     .Suspense is used to wrap lazy-loaded components.
     .It shows a fallback UI (like a spinner) while the component is loading.
 
 Q. What are the pros and cons of code Splitting?
+
 Ans :- 
 
     Pros :-
@@ -850,17 +972,20 @@ Ans :-
                 .Lazy-loaded components may fail to load → need to handle fallback properly.
 
 Q. What is the role of the import() function in code splitting?
+
 Ans :-
 
     .import() is a dynamic import function that loads a module only when needed.
     .It returns a Promise, making it ideal for lazy loading components.
 
 Q. What is the purpose of the fallback prop in suspense?
+
 Ans:-
 
     .The fallback prop is used to show a loading indicator or placeholder UI while a lazy-loaded component is being fetched.
     
 Q. How do you inspect and analyze the generated chunks in a React application?
+
 Ans :-
 
     ..Use tools like Webpack Bundle Analyzer to:
@@ -869,6 +994,7 @@ Ans :-
         .Optimize performance
 
 Q. What are the 5 ways to style React components? Explain Inline Styles?
+
 Ans :-
 
     .Inline Styles
@@ -878,6 +1004,7 @@ Ans :-
     .CSS Frameworks
 
 Q. What are the differences b/w React and React Native?
+
 Ans :- 
 
     React                                                          React Native
@@ -890,6 +1017,7 @@ Ans :-
 
 
 Q. What are the ways to achieve state managements? When to use What in React?
+
 Ans :-
 
     useState Hook :- Simple componet-level state.
@@ -901,6 +1029,7 @@ Ans :-
                      Centralized store.
 
 Q. What is the use of React Profiler?
+
 Ans:-
 
     .React Profiler is a set of tools in React that allows developers to profile(analyze) the performance of a React application.
@@ -911,6 +1040,7 @@ Ans:-
 
                                     
 Q. Popular testing library for React?
+
 Ans:- 
 
     .Jest
@@ -919,6 +1049,7 @@ Ans:-
     .React Testing library
 
 Q. How can you Optimize Performance in a React applications?
+
 Ans :- 
 
     .Memoization with useMemo and useCallback.
@@ -930,11 +1061,13 @@ Ans :-
     .Code Splitting.
     
 Q. How to pass data from child component to parent component in React?
+
 Ans :-
 
    .Parent provides a callback function to child and then child component can then invoke this callback to pass data back to the parent.
 
 Q. How to Know If There’s a Performance Issue
+
 Ans:-
 
     .Symptoms in the UI :-
@@ -1023,12 +1156,14 @@ Ans:-
 
 
 Q What is Memoization?
+
 Ans :- 
 
     .In programming,memoization is an optimization technique that makes applications more efficient and hence faster.
     .It does this by storing computation results in cache, and retrieving that same information from the cache the next time it's needed instead of computing again.
 
 Q. What is a Higher-Order Component in React?
+
 Ans :-
 
     .A Higher-Order Component is a component which takes another component as an argument and adds extra features to that another component and return a new component.
@@ -1036,6 +1171,7 @@ Ans :-
     Ex:- ReactMemo
 
 Q. useMemo
+
 Ans :-
 
     .The useMemo hook is used in React to optimize performance by memoizing (caching) the result of an expensive computation so that it does not re-run on every render unless necessary.
@@ -1049,6 +1185,7 @@ Ans :-
 
 
 Q .useCallback
+
 Ans :-
 
     .useCallback is a React Hook used to memoize functions, so the function reference doesn’t change unless its dependencies change.
@@ -1071,6 +1208,7 @@ Ans :-
                 .Performance issues in deeply nested components.
 
 Q. useRef :-
+
 Ans :-
 
     The useRef hook in React is used to:
@@ -1086,6 +1224,7 @@ Ans :-
 
 
 Q. ReactMemo :- 
+
 Ans :-
 
     .React.memo is a higher-order component (HOC) that memoizes a functional component.
@@ -1114,6 +1253,7 @@ Ans :-
             .By default, React.memo does a shallow comparison.
 
 Q. Pure Component
+
 Ans:-
 
     .PureComponent is similar to component but it skips re-renders for same props and state.
@@ -1124,11 +1264,13 @@ Ans:-
             }
         } 
 Q. purpose of shouldComponentUpdate method
+
 Ans :- 
 
     .is a lifecycle method that determines if a component should re-render.Developer can use it to optimize performance by preventing unnecessary renders.
 
 Q. Difference b/w useMemo and react.Memo
+
 Ans :-
 
         useMemo                                            React.Memo
@@ -1143,6 +1285,7 @@ Q.
 <!-- Redux -->
 
 Q. Redux
+
 Ans :-
 
     Redux is an open-source JavaScript library used for state management.
@@ -1152,11 +1295,13 @@ Ans :-
     Redux Store comes from reduxjs/toolkit package.
 
 Q. Redux Toolkit.
+
 Ans :- 
     
     .Redux Toolkit is the official, recommended way to write Redux logic. It simplifies store setup and reduces boilerplate.
 
 Q .What is the flow of data in React while using Redux?
+
 Ans :-
 
     .Component (e.g., AddItem)
@@ -1170,11 +1315,13 @@ Ans :-
             .This is called subscribing to the store
 
 Q .What is reducer in redux.
+
 Ans :-
 
     .A reducer is a pure function that takes the previous state and an action as arguments and returns the new state of the application.
 
 Q. useReducer :-
+
 Ans :-
 
     .useReducer is used for complex state logic or when state depends on previous state.
@@ -1187,6 +1334,7 @@ Ans :-
         .The reducer returns the new state.
 
 Q. Core principle of redux.
+
 Ans :-
 
     .single source of truth :- All state lives in a single javaScript object(the store).
@@ -1200,6 +1348,7 @@ Ans :-
         .Reducers take the current state and an action, and return a new state
 
 Q. Difference b/w local component state and Redux state.
+
 Ans :-
 
     local component state                                           Redux state
@@ -1213,6 +1362,7 @@ Ans :-
   .Simpler to setup and manage                      .Comparatively complex to manage.
 
 Q. What are the disadvantages while using Redux?
+
 Ans :-
 
     .Too Much Boilerplate
@@ -1222,6 +1372,7 @@ Ans :-
     .Global State for Local Needs
 
 Q. Provider
+
 Ans :-
 
     .The Provider is a special component comes from the react-redux library.
@@ -1229,6 +1380,7 @@ Ans :-
     .This allows any component to access the store using hooks like useSelector() and useDispatch().
 
 Q. Explain the concept of middleware in react-redux?
+
 Ans :-
 
     .Middleware is like a middle layer between dispatching an action and reaching the reducer.
@@ -1248,6 +1400,7 @@ Ans :-
             .Inside that function, you can do things like fetch data and then dispatch real actions.
 
 Q. useSelector :- 
+
 Ans :- 
 
     .Comes from the react-redux package.
@@ -1258,6 +1411,7 @@ Ans :-
         .Avoid selecting the entire state – only pick what you need.
 
 Q. UseDispatch :-
+
 Ans :-
 
     .Also comes from the react-redux package.
@@ -1268,6 +1422,7 @@ Ans :-
         .Dispatching an action updates the state via reducer.
 
 Q. Explain createSlice and the configuration it takes?
+
 Ans :-
 
     .createSlice is a helper function from the @reduxjs/toolkit package.
@@ -1281,6 +1436,7 @@ Ans :-
         .Automatically generated action creators
 
 Q. How can we access redux store outside  a react component?
+
 Ans :-
 
     1. Create and Export the Store
@@ -1299,6 +1455,7 @@ Ans :-
         .Preload data	--> Fetch something before the React tree loads
 
 Q. Client-side routing 
+
 Ans:-
 
     .Client-side routing is handled by the browser using JavaScript (without reloading the page).
@@ -1313,6 +1470,7 @@ Ans:-
     .SEO can be a challenge
 
 Q. Server-side routing
+
 Ans:-
 
     .Server-side routing is handled by the server.
@@ -1323,6 +1481,7 @@ Ans:-
         .Better SEO (search engines can crawl HTML pages easily)
 
 Q. SEO(Search Engine Optimization)
+
 Ans:-
 
     .SEO is the practice of improving a website to increase its visibility in search engine results (like Google).
@@ -1332,12 +1491,14 @@ Ans:-
         .Rank higher in search results
 
 Q. Render props
+
 Ans:- 
 
     .Render Props is a technique for sharing logic between components using a function as a child.
     .It allows one component to provide data or behavior to another via a render function.
 
 Q. Difference b/w JSON and JavaScript object
+
 Ans :-
 
     .JavaScript object :- A JavaScript Object is a data structure in JavaScript used to store key-value pairs.
@@ -1388,11 +1549,13 @@ Ans :-
             const parsedObj = JSON.parse(json); // back to JS object
 
 Q. React DevTools
+
 Ans :-
 
     .React DevTools is a browser extension that allows you to inspect the react components tree, view props and state and debug React app efficiently.
 
 Q. What is package.json and package-lock.json?
+
 Ans :-
     
     .package.json :-
@@ -1402,7 +1565,8 @@ Ans :-
     .package-lock.json :-
                         We have information about the specific or exact version of installed package
 
-Q. React19 features  
+Q. React19 features 
+
 Ans :-
 
     npm install react@latest react-dom@latest (using a modern bundler like Vite or Next.js 14+ ).
@@ -1450,6 +1614,7 @@ Ans :-
         Supports better concurrent rendering experience.
 
 Q. Server-side rendering or service-side rendering
+
 Ans :-
 
     .SSR means rendering React components on the server into HTML.
@@ -1477,6 +1642,7 @@ Ans :-
         .More complexity – Handling auth, API calls, and caching becomes harder.
 
 Q. Diiferent way to setup react project.
+
 Ans :-
 
      1. Using create-react-app
@@ -1492,6 +1658,7 @@ Ans :-
     4. Manual Setup with webpack,parcel and Babel
 
 Q. peventDefault().
+
 Ans :-
 
     .event.preventDefault() is a method that stops the default behavior of an event from happening.
@@ -1499,6 +1666,7 @@ Ans :-
     .Links: Prevent <a> tags from navigating to another page.
 
 Q. What are event handler?
+
 Ans :-
 
     .An event handler is a function that runs when a user interacts with a React component — like clicking, typing, or submitting a form.
@@ -1518,11 +1686,13 @@ Ans :-
         .Has useful properties like:- type, target, currentTarget
 
 Q. stopPropagation.
+
 Ans :-
 
     prevents an event from bubbling up the DOM tree.
 
 Q. What is event object?
+
 Ans :-
 
     .The event object is automatically passed to event handler functions. It contains all the details about what happened during the event (like a click or key press).
@@ -1535,12 +1705,14 @@ Ans :-
             .stopPropagation() → Prevents the event from bubbling up
 
 Q. What is the purpose of the "key" prop in ReactJS?
+
 Ans:-
 
     .key helps React identify which items have changed, been added, or removed in a list.
     .It makes rendering more efficient by tracking elements uniquely.
 
 Q. What is the impact of indexes as keys?
+
 Ans:-
 
     .Using indexes as keys can lead to:
@@ -1550,6 +1722,7 @@ Ans:-
     .Only use indexes if the list won't change
 
 Q. How does React handle event handling?
+
 Ans:-
 
     .React uses a system called Synthetic Events (a wrapper around browser events).
@@ -1557,23 +1730,27 @@ Ans:-
     .Events like onClick, onChange, onSubmit, etc., are used in JSX.
 
 Q. Explain the concept of "forwarding refs" in React.
+
 Ans:-
 
     .Forwarding refs allows a parent to access a child’s DOM node or component methods.
     .Useful for focus control, scrolling, or measuring size.
 
 Q. How do you clean up or release the resources associated with a ref in React?
+
 Ans:-
 
     .Use the useEffect hook to return a cleanup function.
     .Helps remove event listeners, timers, or clear values when the component unmounts.
 
 Q. How to apply validation on props in React?
+
 Ans:-
 
     .use the PropTypes library.
 
 Q. React Fiber :- 
+
 Ans :-
 
     .React Fiber is the new reconciliation method in React (introduced in React 16).
@@ -1594,6 +1771,7 @@ Ans :-
 
 
 Q. How do you handle authentication and authorization in React applications?
+
 Ans:-
 
     .Ways to Handle Auth in React:-
@@ -1615,11 +1793,13 @@ Ans:-
                 .Conditionally render components/pages based on roles.
         
 Q. Integration testing :-
+
 Ans :-
 
     Integration testing focuses on testing how different modules or components of an application work together.
 
 Q. End-To-End testing :-
+
 Ans :-
 
     E2E testing simulates real user scenarios by testing the entire application flow, from start to finish, as a user would.
@@ -1628,6 +1808,7 @@ Ans :-
 <!-- Fetch and axios -->
 
 Q. Axios :-
+
 Ans:-
 
     .Axios is a third-party JavaScript library designed for making HTTP requests. 
@@ -1664,6 +1845,7 @@ ex:-
     });
 
 Q. Fetch :-
+
 Ans :-
 
     .The Fetch API is a built-in JavaScript feature available in modern browsers. 
@@ -1715,6 +1897,7 @@ Ans :-
 <!-- Error boundary -->
 
 Q. What are error boundaries in react?
+
 Ans:-
 
     .Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
@@ -1773,6 +1956,7 @@ Note:-
 <!-- Webpack,Parcel -->
 
 Q. Webpack :-
+
 Ans :-
 
     Webpack is a module bundler for JavaScript applications (like React apps). It takes all your files — JS, CSS, images, fonts, etc. — and bundles them into optimized files for the browser to load efficiently.
@@ -1836,6 +2020,7 @@ Ans :-
 <!-- React Query -->
 
 Q. React Query   --> npm install @tanstack/react-query
+
 Ans :-
 
     React Query is a powerful data-fetching and state management library for React that helps you:
@@ -1883,6 +2068,7 @@ Ans :-
 <!-- RTK Query -->
 
 Q. RTK Query
+
 Ans :- 
 
     .RTK Query is a powerful data fetching and caching tool that comes built-in with Redux Toolkit.
@@ -1897,6 +2083,60 @@ Ans :-
             .Refetch when needed
 
             .Minimize boilerplate
+
+Q1. What is the MERN stack and why is it popular?
+
+Answer:-
+
+    MERN = MongoDB, Express.js, React.js, Node.js
+
+    MongoDB → NoSQL database (stores data in JSON-like documents).
+    Express.js → Lightweight backend web framework for Node.js.
+    React.js → Frontend library for building dynamic UIs.
+    Node.js → Runtime environment to run JavaScript on the server.
+
+    Why popular? - Full JavaScript stack (same language frontend & backend).
+
+        JSON everywhere (easy data exchange).
+        High performance (non-blocking Node.js).
+        Large ecosystem + open source.
+
+Q2. Describe the typical architecture and data flow in a MERN application.
+
+Answer:
+
+    Client (React) → Sends HTTP request (e.g., fetch API, Axios).
+    Server (Express + Node) → Handles routes, processes logic.
+    Database (MongoDB) → Stores/retrieves JSON data via Mongoose.
+    Response → Server sends JSON back → React updates UI.
+    Flow Example: User submits form → React → POST /api/users → Express → MongoDB → Response → React updates UI.
+
+Q3. How do the different components of the MERN stack interact?
+
+Ans :-
+
+    React (frontend) calls APIs (Axios/fetch).
+    Express (backend) defines routes and controllers.
+    Node.js executes backend logic, connects to MongoDB.
+    MongoDB stores application data.
+
+Q4. How do you deploy a MERN application?
+
+Ans:-
+
+    Frontend (React) → Vercel, Netlify, S3, or served by Express.
+    Backend (Express + Node) → Render, Heroku, AWS EC2, or Docker.
+    Database (MongoDB) → MongoDB Atlas (cloud).
+    Use reverse proxy (NGINX/PM2) for production.
+
+Q5. Benefits of MERN over other stacks?
+Ans:-
+
+    Single language (JS) → Faster development.
+    JSON end-to-end.
+    Large ecosystem + community.
+    Scalable with microservices.
+
 
 ---------------------------------------------------------------------------------------------------
 <!-- Project description -->
