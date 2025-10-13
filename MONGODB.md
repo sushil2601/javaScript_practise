@@ -1,5 +1,6 @@
 Q. What is mongoDB
 Ans :-
+
     .MongoDB is an open-source NoSQL database.
     .It stores data in JSON-like documents instead of traditional rows and columns.
     .It’s designed to handle large volumes of unstructured or semi-structured data.
@@ -7,6 +8,7 @@ Ans :-
 
 Q. What is NoSQL?
 Ans :-
+
     .NoSQL stands for "Not Only SQL".
     .It’s a type of database designed to store and manage structured, semi-structured, and unstructured data.
     .Unlike traditional relational databases, NoSQL databases don’t rely on fixed tables and schemas.
@@ -16,33 +18,28 @@ Ans :-
 
 Q. When to use RDBMS and when to use NoSQL DB in your applications?
 Ans :-
-    .RDBMS (Relational Database):
-        Use when:-
-            .Structured data – Your data has a fixed schema with tables, rows, and columns.
-            .ACID compliance is critical – You need strong transaction support (e.g., banking systems).
-            .Complex relationships – Data has multiple relations (one-to-many, many-to-many) that benefit from foreign keys.
+   
+   Feature	                                When to Use RDBMS
+Consistency	            ACID compliance is required (Banking, Financial Ledgers, E-commerce transactions).
+Data Structure	        Data is highly structured and relationships are complex and fixed (User Accounts, Inventory).
+Joins & Reports	        Frequent need for complex queries that join data across multiple tables (Business Intelligence).
+Scaling	                Prefer Vertical Scaling (scaling up one powerful server) over horizontal distribution.
 
-            .Ex:- Banking applications, Inventory and accounting systems, ERP systems,
-                  Applications with consistent and structured data
+Feature	                                    When to Use NoSQL
+Consistency	                BASE model is acceptable (Eventual Consistency), prioritizing availability.
+Data Structure	            Data is flexible, semi-structured, or changes frequently (CMS, User Profiles, IoT data).
+Scaling	                    Need for Horizontal Scaling (scaling out across many commodity servers) to handle massive load.
+Use Cases	                High-speed reads/writes (Caching, Real-time analytics, Session management, Big Data).
 
-    .NoSQL Database:
-        .Flexible schema – Your data structure may change frequently, or you have hierarchical/nested data.
-        .High scalability – You expect huge amounts of data and want horizontal scaling (sharding).
-        .JSON-like documents – Storing semi-structured data such as logs, events, or JSON objects.
-        .Big data / real-time analytics – Storing large volumes of unstructured or semi-structured data.
-
-        Examples: Social media platforms, IoT apps, gaming applications.
+Export to Sheets
 
 Q. What are Documents and Collections in NoSQL?
 Ans :-
-    .Document:
-        .Semi-structured data (usually in JSON format).
-        .Equivalent to a row in RDBMS.
 
-    .Collection:
-        .Group of related documents.
-        .Equivalent to a table in RDBMS.
+    .Document   :- A single record in MongoDB, represented as a BSON (Binary JSON) object.
 
+    .Collection :- A grouping of documents in a MongoDB database.
+    
 Q. What are crud operations in MongoDB?
 Ans :-
     .C – Create → Insert new documents into a collection.
@@ -85,6 +82,7 @@ Ans :-
 
 Q. Aggregation
 Ans :-
+
     .Aggregation in MongoDB is a data processing and transformation framework used to analyze, compute, and reshape data stored in collections.
 
     .Common Operations:
@@ -114,6 +112,7 @@ Ans :-
 
 Q. Indexing :-
 Ans :-
+
     .Indexing is a technique in MongoDB used to speed up query performance by allowing the database to quickly locate matching documents, instead of scanning the entire collection.
 
     .Without Index: MongoDB performs a collection scan (checks every document).
@@ -143,6 +142,7 @@ Ans :-
 
 Q. What is Projection?
 Ans :-
+
     .Projection is the process of selecting only the required fields from a document instead of fetching the entire document.
 
     .Why use it?
@@ -158,6 +158,7 @@ Ans :-
 
 Q. What is transactions? How to perform transactions?
 Ans :-
+
     .A transaction is a group of read/write operations executed as a single unit.
     .All succeed → Changes are committed.
     .Any fail → All changes are rolled back (ensuring data integrity).
@@ -168,6 +169,7 @@ Ans :-
 
 Q.DB operation:- 
 Ans :-
+
     1. Create (or Switch) Database :- use studentDB
         .Switches to studentDB (or prepares to create it if it doesn’t exist).
 

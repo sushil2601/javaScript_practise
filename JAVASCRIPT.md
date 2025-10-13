@@ -5,6 +5,7 @@ CodePen, JSFiddle, CodeSandbox, and JS Bin,Programiz,JavaScript playground
 
 Q. what is event loop?
 Ans:- 
+
   The JavaScript Event Loop is a core part of the JavaScript runtime that enables asynchronous behavior while still being single-threaded.
 
   What is the Event Loop?
@@ -255,6 +256,7 @@ Ans :-
 
 Q. Error handling in javaScript
 Ans :-
+
       1. Using Try...Catch.
       2. Global Error handling.
       3. Using .catch() method with promises.
@@ -262,6 +264,7 @@ Ans :-
 
 Q. Q. What is a Callback in JavaScript?
 Ans:-
+
     .A callback is a function passed as an argument to another function, which is then executed after the completion of that function's task.
     .It’s often used for asynchronous operations like reading files, making API calls, or handling events.
 
@@ -272,6 +275,7 @@ Ans:-
 
 Q. What is a callback hell in javascript?
 Ans:-
+
   .Callback Hell happens when multiple callbacks are nested inside each other, creating deeply indented, hard-to-read code.
   .Common in asynchronous JavaScript (e.g., API calls, file reading, DB queries).
 
@@ -281,6 +285,7 @@ Ans:-
 
 Q. Promise :-
 Ans :-
+
       . Promise is an object that represents the eventual completion (or failure) of an asynchronous operation.
       .Acts as a placeholder until the async task finishes.
       .Can only settle once — either fulfilled or rejected.
@@ -308,6 +313,7 @@ Ans :-
 
 Q. Asyn/Await :-
   Ans:-
+
       .async and await are syntactic sugar over Promises for writing cleaner, synchronous-looking async code.
       .Makes asynchronous code easier to read and maintain.
 
@@ -334,6 +340,7 @@ Q. Asyn/Await :-
 
 Q. What is the purpose of the "use strict" statement in JavaScript?
 Ans:-
+
   .enables strict mode in JavaScript.
   .Makes code safer and less error-prone.
 
@@ -343,6 +350,7 @@ Ans:-
 
 Q. What is AJAX?
 Ans:-
+
   .AJAX = Asynchronous JavaScript and XML
   .Technique to update web page content without reloading the page.
 
@@ -357,6 +365,7 @@ Ans:-
 
 Q. What is the difference between the DOM and HTML?
 Ans:-
+
     .HTML :- HyperText Markup Language
 
         .Defines the structure and content of a web page.
@@ -369,6 +378,7 @@ Ans:-
 
 Q. What is the difference between innerHTML and innerText?
 Ans:-
+
     .innerText
         .Returns only the visible text inside an element.
         .Ignores HTML tags.
@@ -381,6 +391,7 @@ Ans:-
 
 Q. setTimeout, setInterval, clearInterval, clearTimeout
 Ans:-
+
     1. setTimeout()
         .Executes a function once after a given delay (in milliseconds).
 
@@ -405,6 +416,7 @@ Ans:-
 
 Q. What is the role of the Window object in the DOM?
 Ans:-
+
     .Window Object
           .Represents the browser window/tab.
           .Top-level object in the DOM — all global variables & functions belong to it.
@@ -416,6 +428,7 @@ Ans:-
 
 Q. What is the difference between dot notation and bracket notation when accessing properties of an object?
 Ans :-
+
       .Dot Notation (obj.key)
             .Used when property name is known & static.
             .Faster & cleaner syntax.
@@ -426,6 +439,7 @@ Ans :-
 
 Q. What is global execution context and function execution context?
 Ans :-
+
     .Global Execution Context (GEC)
         .The first execution context created by the JavaScript engine before any code runs.
         .Created when a script first loads.
@@ -442,6 +456,7 @@ Ans :-
 
 Q. What are the different ways to debug JavaScript code?
 Ans:-
+
     .console.log() – Print values/messages to the browser console.
     .Browser DevTools – Use breakpoints, step-through execution, inspect variables.
     .debugger statement – Forces code to pause (if DevTools are open).
@@ -449,6 +464,7 @@ Ans:-
 
 Q. What are the advantages of using closures in JavaScript?
 Ans:-
+
     .Encapsulation – Groups related data and functions together.
     .Data Privacy – Keeps variables private and inaccessible from outside.
     .State Preservation – Remembers values even after the outer function has finished.
@@ -457,16 +473,19 @@ Ans:-
 
 Q. Can you access DOM in nodejs?
 Ans:-
+
   No, you cannot directly access the DOM in Node.js. Node.js is a runtime environment for running JavaScript outside of web browsers, and it does not have a built-in DOM implementation
 
 Q. What is the difference b/w an event object and a custom event in javaScript?
 Ans :-
+
     .Event Object: The built-in object automatically passed to event handlers, containing details about the event (e.g., type, target, coordinates).
 
     .Custom Event: A user-defined event created with the CustomEvent constructor, allowing you to pass custom data and trigger events programmatically using dispatchEvent().
 
 Q. How do you optimize performance in javaScript applications?
 Ans :-
+
       .Debouncing and Throttling
       .Memoization
       .Clean up event listeners, intervals, timeouts, and DOM references properly.
@@ -475,12 +494,14 @@ Ans :-
 
 Q. Memoization:-
 Ans:-
+
     .Optimization technique where results of expensive function calls are cached and returned when the same inputs occur again.
 
     .Improves performance for functions with repetitive calculations.
 
 Q. Pure Function
 Ans:-
+
     .A pure function always returns the same output for the same inputs.
     .It has no side effects (does not modify external state or variables).
     .Easy to test and debug.
@@ -501,6 +522,7 @@ Ans:-
 
 Q. Deep copy and shallow copy
 Ans :-
+
     .1. Normal Copy (Reference Copy)
           .Both variables point to the same memory reference.
           .Change in one → change in other.
@@ -545,6 +567,7 @@ Ans :-
 
 Q. Polyfill for bind :-
 Ans :-
+
       A Polyfill is a function which is created as a replacement to an existing function to make it compatible with all the browsers.
 
     Function.prototype.MyBind = function(obj,...args1){      //args1 = 'Mumbai'
@@ -568,24 +591,28 @@ Ans :-
 
 Q. Event Bubbling
 Ans :-
+
   .The event starts from the deepest target element and bubbles up to its ancestors (parent elements).
   .Events trigger on the target first, then propagate upwards to the document root.
   .Default event propagation mode in browsers.
 
 Q. Event Capturing
 Ans :-
+
   .The event starts from the outermost ancestor (document) and captures down to the target element.
   .Events trigger first on ancestors, then on the target.
   .Less commonly used, but can be enabled with addEventListener(type, listener, true) (third parameter true enables capturing).
 
 Q. Event Delegation
 Ans :-
+
   .A technique of attaching a single event listener to a parent element instead of multiple listeners to child elements.
   .Takes advantage of event bubbling to handle events from child elements via the parent.
   .Improves performance and simplifies code, especially for dynamic elements.
 
 Q. Exmaple of memoization --> fibonacci  
 Ans :-
+
       function memoizedFibonacci() {
         const cache = {};
 

@@ -3,6 +3,7 @@ Replit, W3Schools Spaces, CodeSandbox, and Codeanywhere,oneCompiler,JDoodle.
 
 Q. What is Node.js
 Ans :- 
+
     .is a c++ application with V8 embedded into it.
 
     .is a JavaScript runtime built on chrome's v8 JavaScript Engine.
@@ -15,6 +16,7 @@ Ans :-
 
 Q. What is global object in Node.Js?
 Ans:-
+
     global object in node.Js is 'global'.
 
     global is nodeJs things not v8 engine.
@@ -25,6 +27,7 @@ Ans:-
 
 Q. Node REPL?
 Ans:-
+
     REPL :- Read,Evaluate,Print,Loop.
     REPL doesnot work for production.
 
@@ -55,12 +58,14 @@ Ans:-
 
 Q. Difference b/w Runtime environment and Framework?
 Ans :-
+
     .Runtime Environment :- Primarily focus on providing the necessary infrastrucutre for code execution,including service like memory management and I/O operations.
 
     .Framework :- Primarily focuses on simplifying the development process by offering a structured set of tools,libraries.
 
 Q. Express.js
 Ans :- 
+
     .is a framework built on the top of Node.js
 
     .It is designed to simplify the process of building web applications and APIs by providing a set of features like routing system, middleware support etc.
@@ -68,7 +73,8 @@ Ans :-
     .Supports building REST APIs, real-time applications and single page applications.
 
 Q. Http server
-Ans:-   
+Ans:- 
+
     An HTTP server in Node.js is a core feature provided by the http module that allows your application to handle HTTP requests and send responses.
 
     const http = require('http');
@@ -122,6 +128,7 @@ Poor scalability and code gets harder to manage as app grows.   Easy to scale an
 
 Q. What is Middleware in Express.js and when to use them?
 Ans :-
+
     .Middleware are functions in Express.js that have access to req, res, and next(). They sit between the request and response, used to handle logic like authentication, logging, parsing, etc.
 
     .What Middleware Can Do:-
@@ -152,6 +159,7 @@ Ans :-
     
 Q. What is the purpose of the app.use() function in Express.js?
 Ans :-
+
     .The app.use() method is used to execute middleware functions globally.
 
     .It is executed in the order it's defined.
@@ -173,10 +181,12 @@ Ans :-
 
 Q. What is the purpose of the next parameter in Express.js?
 Ans :-
+
     The next parameter is a callback function which is used to pass control to the next middleware function in the stack.
 
 Q. What is the difference b/w application-level & route-level middleware?
 Ans :-
+
     .Application-level Middleware:-
         .Registered using app.use() or app.METHOD().
 
@@ -199,6 +209,7 @@ Ans :-
 
 Q. What is Routing in Express.js?
 Ans:-
+
     .Routing in Express.js refers to the mechanism of defining how an application responds to client requests for a particular HTTP method (GET, POST, PUT, DELETE, etc.) and a URL path.
 
     .It is the process of mapping incoming requests to the appropriate handler functions (controllers).
@@ -213,6 +224,7 @@ Ans:-
 
 Q. How do you implement routing in Express.js? How are routes defined?
 Ans:-
+
     .In Express.js, routing is implemented using the app.METHOD() functions, where METHOD corresponds to an HTTP method like GET, POST, PUT, or DELETE.
 
     .This allows the application to handle specific HTTP requests to defined URL paths.
@@ -226,6 +238,7 @@ Ans:-
 
 Q. What is express.Router() in Express.js?
 Ans :-
+
     .express.Router() is a built-in class in Express.js that allows you to create modular, mountable route handlers. 
 
     .used to handle routing in a cleaner and more organized way.
@@ -248,6 +261,7 @@ Ans :-
 
 Q. What is cookie-parser in Node.js (Express)?
 Ans :- 
+
     cookie-parser is a middleware in Express used to parse cookies from the HTTP request header and make them easily accessible in your route handlers.
 
     Cookies are automatically parsed and stored in req.cookies.
@@ -268,6 +282,7 @@ Ans :-
 
 Q. What are HTTP Verbs and HTTP methods?
 Ans:- 
+
     HTTP methods , also known as HTTP verbs, are a set of actions that a client can take on a resources.
 
          ex:- GET :-   Fetch data
@@ -278,6 +293,7 @@ Ans:-
 
 Q.Explain the concept of Idempotence in RESTful APIs.
 Ans :-
+
     Idempotence meaning performing an operation multiple time should have the same outcome as performing it once.
 
     Idempotence Methods :- GET,PUT,DELETE
@@ -285,6 +301,7 @@ Ans :-
 
 Q. What is the role of status codes in RESTful APIS?
 Ans :-
+
     100 -> continue
     200 -> ok, 201 -> Created, 202 -> Accepted, 204 -> No content,203 Non-Authoritative Information
     300 -> Multiple choices
@@ -296,6 +313,7 @@ Ans :-
 
 Q. What is CORS in RESTful APIS?
 Ans :-
+
     .CORS stands for Cross-Origin Resource Sharing.
     .It’s a browser security feature that controls which websites are allowed to access your backend APIs.
 
@@ -320,6 +338,7 @@ Ans :-
 
 Q. What is Token based and JWT authentication?
 Ans :-
+
     JWT stands for JSON Web Token.
     It is used for authentication and authorization in web applications.
 
@@ -391,6 +410,7 @@ Ans :-
  
 Q. What is V8 engine and how it works?
 Ans :-
+
     V8 is an open-source, high-performance JavaScript engine developed by Google.
 
     It is written in C++ and is used in:
@@ -456,6 +476,7 @@ Ans :-
 
 Q. Interpreted V/S Compiled
 Ans :-
+
     Interpreted                            | Compiled    
 
 Code is executed line by line.      Code is fully converted to machine code first, then executed.
@@ -469,6 +490,7 @@ JavaScript, Python                  C, C++, Java (after compilation to bytecode)
 
 Q. Different type of Garbage collector in V8 engine
 Ans:-
+
     .Mark & sweap
     .orinoco
     .oilpen
@@ -477,6 +499,7 @@ Ans:-
 
 Q. What is modules?
 Ans:-
+
     .A module in Node.js is just a separate file that contains code (like functions, variables, or logic) that you can reuse in other files using require().
 
     Key Points:-
@@ -522,6 +545,7 @@ Ans:-
 
 Q. How are variables and function private in different modules?
 Ans :-
+
     .In Node.js, every module is wrapped inside a special function (IIFE) internally.
     .This is done by Node.js itself when a file is loaded using require().
 
@@ -538,6 +562,7 @@ Ans :-
 
 Q. How do you get access to module.exports?
 Ans :-
+
     .In Node.js, when you create a module (i.e., a file), Node automatically wraps your code inside a function using IIFE.
 
     .Because of this:
@@ -547,6 +572,7 @@ Ans :-
 
 Q. Work flow of --> require('./path')
 Ans:-
+
     .When you use require('./path'), Node.js goes through 5 main steps behind the scenes:
 
     1.Resolving the Module
@@ -578,6 +604,7 @@ Ans:-
 
 Q. What is Thread?
 Ans:-
+
     .A thread is the smallest unit of execution inside a process.
     .It’s like a lightweight sub-task that runs a set of instructions.
     .A process can have one or more threads.
@@ -599,6 +626,7 @@ Ans:-
 
 Q. What type of threading does JavaScript use?
 Ans:-
+
     .JavaScript is a single-threaded and synchronous language.
 
     .This means it can run only one task at a time in a single thread.
@@ -610,20 +638,24 @@ Ans:-
 
 Q. What is a Synchronous System?
 Ans:-
+
     In a synchronous system, tasks are completed one after another.
 
 Q. What is an Asynchronous System?
 Ans:-
+
     In this system, tasks are completed independently.
 
 Q. Can javaScript handle asynchronous task?
 Ans:-
+
     So, JavaScript itself is synchronous, but with the power of Node.js, it can
     handle asynchronous operations, allowing JavaScript to perform multiple tasks
     concurrently.
 
 Q. what are the portions inside the JS engine and How synchronous code is executed By JS Engine ?
 Ans:-
+
     .Main Parts of the JS Engine (like V8):
         .Call Stack
             Executes your code line by line (synchronously).
@@ -686,6 +718,7 @@ Ans:-
 
 Q.What is Libuv?
 Ans:-
+
     .Libuv is a C library used by Node.js that helps it perform asynchronous operations in a non-blocking way using an event-driven architecture.
 
     .It works across platforms (Windows, Linux, macOS etc.).
@@ -714,6 +747,7 @@ Ans:-
 
 Q. Explain the Event loops in NodeJs?
 Ans:-
+
     .The event loop (also called semi-infinite loop) is written in C language.
     .It is the heart of Libuv and is how Node.js handles asynchronous operations.
     .It allows Node.js to perform non-blocking I/O, even though JavaScript is single-threaded.
@@ -761,6 +795,7 @@ Ans:-
 
 Q. Thread pool :-
 Ans:-
+
     .The Thread Pool in Node.js is a pool of worker threads, managed by Libuv.
     .It is used to handle heavy or blocking operations in the background — without blocking the main JavaScript thread.
 
@@ -783,12 +818,14 @@ Ans:-
 
 Q. Can you change the size of the thread pool?
 Ans:-
+
     Yes, you can change the thread pool size in Node.js by setting the UV_THREADPOOL_SIZE environment variable.
 
         process.env.UV_THREADPOOL_SIZE = 8;
 
 Q. What process.exit(1) Does:
 Ans :-
+
     .process.exit() is a method in Node.js used to immediately stop the running process.
 
     .It takes a status code as an argument:
@@ -799,6 +836,7 @@ Ans :-
 
 Q. What is Socket?
 Ans:-
+
     .A socket is a connection between a client and server.
     .You connect → do your task → then close the connection.
     .It uses fewer system resources.
@@ -835,6 +873,7 @@ Ans:-
 
 Q.What is Web-socket?
 Ans:-
+
     A WebSocket is a type of connection between a client and server that:
         .Stays open for a long time (persistent connection)
         .Uses more system resources than a regular socket
@@ -851,6 +890,7 @@ Ans:-
 
 Q. What is server?
 Ans:-
+
     .A server is simply a remote computer — You can think of it as a CPU working remotely.
     .It can be accessed remotely over a network
     .It provides resources and services to other computers or programs (called clients)
@@ -862,6 +902,7 @@ Ans:-
             
 Q. What is a protocol?
 Ans:-
+
     .A protocol is a set of rules that define how computers communicate with each
     other. 
     .Protocols determine the format in which data is sent between devices.
@@ -875,6 +916,7 @@ Ans:-
 
 Q. Suppose you have a server with many incoming requests, and users are hitting APIs. Do these APIs use the thread pool?
 Ans:-
+
     No
 
 Q. File Descriptors (fds) and Socket Descriptors
@@ -913,6 +955,7 @@ Ans:-
 
 Q. What is process.nextTick()?
 Ans:-
+
     .process.nextTick() is a Node.js function used to schedule a callback to run after the current operation finishes, but before the event loop continues to the next phase.
 
     Use Case:
@@ -924,6 +967,7 @@ Ans:-
 
 Q. Difference b/w process.nextTick() and setImmediate.
 Ans:-
+
     .process.nextTick() :-
         .process.nextTick() runs before the event loop continues.
         .process.nextTick() executes before I/O operations and timers.
@@ -939,6 +983,7 @@ Ans:-
 <!-- File System,Stream and Buffer -->
 
 .File System :-
+
         .The File System (fs) module in Node.js allows interaction with the file system.
             .const fs = require('fs'); // for callback-based API
             .const fsPromises = require('fs').promises; // for promise-based API
@@ -992,6 +1037,7 @@ Ans:-
         .Streams are preferred for files larger than ~100 MB,
 
 .Stream :-
+
         .Streams are objects that allow you to read or write data continuously.
         .Ideal for handling large amounts of data efficiently.
         .Data is processed in chunks, not all at once — this improves memory and time efficiency.
@@ -1039,6 +1085,7 @@ Ans:-
                 readStream.pipe(writeStream);
 
 .Buffer :-
+
         .A Buffer is a built-in object in Node.js used to store and handle binary data (raw memory).
         .It helps when you're working with data that is not necessarily in string format, like:
             Files, Streams, TCP packets, Images, Encryption/decryption
@@ -1107,6 +1154,7 @@ Ans:-
 
 Q. How can we connect microservices?
 Ans:-
+
     1. HTTP REST APIs :- API integration.
     2. Using Kafka :-
             [Producer Microservice]
@@ -1127,6 +1175,7 @@ Ans:-
 
 Q. How can we do the monitoring in Nodejs
 Ans :-
+
     Monitoring in a Node.js application is essential for tracking performance, catching errors, and ensuring the app runs smoothly in production.
 
    | Category              | What to Monitor                                |
@@ -1148,6 +1197,7 @@ Ans :-
 
 Q. What is Telemetry in Node.js
 Ans :-
+
     Telemetry refers to collecting, transmitting, and analyzing metrics, logs, traces, and events from your application to monitor its health, performance, and usage.
 
         In Node.js, telemetry is used to:
@@ -1164,6 +1214,7 @@ Ans :-
 
 Q. How can we do the security in Nodejs
 Ans :-
+
     .Security in Node.js: What You Need to Protect
 
     | Area                 | Examples                                  
@@ -1211,6 +1262,7 @@ Ans :-
 
 Q. What is SSL/TLS?
 Ans:-
+
     .SSL (Secure Sockets Layer) and TLS (Transport Layer Security) are cryptographic protocols used to:
 
         .Encrypt communication between the client (browser/app) and the server.
@@ -1270,6 +1322,7 @@ Ans :-
 
 Q. Different ways to handle error handling in nodejs?
 Ans :-
+
         1.Synchronous Error Handling (try-catch)
         2.Asynchronous Error Handling (Promises)
         3.Async/Await with try-catch
@@ -1298,6 +1351,7 @@ Ans :-
 
 Q. Where do you store a token?
 Ans :-
+
         .In a Frontend Application :-
                 .In cookies (on the browser)
                 .Local Storage(window.localStorage)
@@ -1339,6 +1393,7 @@ Ans :-
 
 Q. What is Restful API and what is the rule to create it?
 Ans :-
+
     .REST (Representational State Transfer):-
         .REST is an architectural style for designing networked applications, especially web services. It defines a set of rules and constraints to create scalable and stateless services using HTTP.
 
@@ -1370,6 +1425,7 @@ Ans :-
 
 Q. Rest API endpoint :-  Ex. of Cart
 Ans :-
+
         .Get current user's cart --> GET	/api/v1/cart
         .Add item to cart	     --> POST	/api/v1/cart/items
         .Update item quantity	 --> PUT	/api/v1/cart/items/:itemId
@@ -1381,6 +1437,7 @@ Ans :-
 
 Q. What boilerplate or additional setup do you include when starting a React application?
 Ans:-
+
     .they’re usually testing your:-
 
             .Architectural thinking
@@ -1424,6 +1481,7 @@ Ans:-
 
 Q. Child Process in nodeJs? :- Real world example :- auto update features
 Ans :-
+
     .A child process allows Node.js to:
         .Run external scripts or system commands (like Python, shell commands).
         .Handle heavy CPU tasks without blocking the main thread.
@@ -1469,6 +1527,7 @@ Ans :-
 
 Q. Clustering :-
 Ans :-
+
     .Clustering allows Node.js to run multiple instances (workers) of your app across different CPU cores, improving performance and concurrency.
 
     .Why Clustering?
@@ -1491,6 +1550,7 @@ Ans :-
 
 Q. Worker-threads :-
 Ans :-
+
     .The worker_threads module enables multi-threading in Node.js, allowing you to run JavaScript code in parallel within the same process — great for CPU-heavy tasks that would otherwise block the main thread.
 
     .Key Features:
@@ -1512,6 +1572,7 @@ Ans :-
             
 Q. To upload file/image :-
 Ans:-
+
     To handling image/file uploads
 
         .multer
@@ -1527,6 +1588,7 @@ Ans:-
 
 Q.Difference between Monolithic and Microservices Architectures
 Ans :-
+
     .Monolithic Architecture:
         .All components of an application are combined into a single, unified codebase.
         .Easy to develop initially but can become complex and hard to maintain as the app grows.
@@ -1541,6 +1603,7 @@ Ans :-
 
 Q. How does Node.js handle memory management?
 Ans :-
+
     .Node.js uses V8 JavaScript engine for memory management.
 
     .V8 manages memory allocation for objects, strings, and closures on the heap.
@@ -1553,6 +1616,7 @@ Ans :-
 
 Q. How would you scale an API to handle millions of requests per second?
 Ans:-
+
     .Key strategies to scale an API:
 
     1.Load Balancing:
@@ -1586,6 +1650,7 @@ Ans:-
 ---------------------------------------------------------------------------------------------------
 1. Redis :-
 Ans :-
+
     .Redis (Remote Dictionary Server) is an open-source, in-memory data structure store used as a database, cache, and message broker.
     .It stores data in memory, allowing very fast read and write operations.
     .Supports data structures like strings, hashes, lists, sets, sorted sets, bitmaps, hyperloglogs, and streams.
@@ -1596,6 +1661,7 @@ Ans :-
 
 2. Docker :-
 Ans :-
+
     .Docker is a platform that allows us to create, deploy, and run applications inside containers. 
     .Containers are lightweight, portable, and consistent environments that package our application along with all its dependencies (libraries, tools, configurations), so it can run anywhere without compatibility issues.
 
