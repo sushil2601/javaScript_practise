@@ -2130,6 +2130,7 @@ Ans:-
     Use reverse proxy (NGINX/PM2) for production.
 
 Q5. Benefits of MERN over other stacks?
+
 Ans:-
 
     Single language (JS) → Faster development.
