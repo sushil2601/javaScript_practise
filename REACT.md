@@ -17,29 +17,26 @@ npm run dev
 --------------------------------------------------------------------------------------------------
 
 Q. what is React ?
-Ans :-  .React is an open source javaScipt library.
-        .is used for building user interface(UI).
-        .simplifies the creation of SPA by using reusable components.
+Ans :- 
+
+      .React is a JavaScript library developed by Facebook for building user interfaces.
+      .It uses a component-based architecture.
+      .Works with a virtual DOM for fast rendering.
 
 Q.key features of React.
 Ans :-  
-        -> Virtual DOM :- React utilizes a virtual representation of the DOM , allowing efficient updates by minimizing direct manipulation of actual DOM , resulting in improved performance.
-
-        -> Component based architecture :- React structures user interfaces as modular,reusable components promoting a more maintainable and scalar appraoch to building applications.
-
-        -> Resusability and composition :- React enables the creation of reusable components that can be composed together .
-
-        -> JSX :- JSX is the syntax extension for javaScript used in React , allowing developers to write HTML-Like code within javaScript enhancing readability and maintanability.
-
-        -> Declarative approach :- React have a declarative programming style where developers focus on 'WHAT' the UI should look like and react handles the 'HOW' behind the scenes.This simplify the code.
-
-        -> React Hooks :- Hooks are functions that enables functional component to manage state and lifecycle features providing a more concise and expressive way to handle component logic.
+        
+        .Declarative UI
+        .Component-based
+        .Virtual DOM
+        .One-way data binding
+        .Strong community support
 
 Q.What is Virtual DOM ?
 Ans :-  
-        Vitual DOM :- is a light weight copy of the Real DOM.
 
-        React uses a virtual DOM to efficiently update the UI without re-renders the entire page,which helps improve performance and make the application more responsive.Minimize direct DOM manipulations (which are slow).
+        .A lightweight copy of the real DOM.
+        .React updates the Virtual DOM first, compares it with the previous version (diffing), and updates only the changed parts in the real DOM (reconciliation).
 
         Why Do We Need the Virtual DOM?
 
@@ -247,8 +244,11 @@ Ans :-
 
 Q. JSX ?
 Ans:- 
-        .JSX stands for javaScript XML
-        .JSX is used by react to write Html-like code
+
+        .JSX stands for javaScript XML.
+        .It allows writing HTML-like syntax inside JavaScript.
+        .JSX is used by react to write Html-like code.
+
         .JSX is converted to javaScript using Babel because browser understand javaScript not JSX
         .Behind the scene babel converted JSX back to React.createElement
         .It enhanced developer productivity
@@ -645,7 +645,13 @@ Ans :-
 
 Q. What are React Hook?
 Ans:- 
-    .React Hooks are inbuilt functions provided by React that allow functional components to use state and life cycle features.
+
+    .Functions that let you use state and lifecycle methods in functional components.
+        Common hooks:
+            useState → for state
+            useEffect → for side effects
+            useContext → for context API
+            useReducer → for complex state logic
 
     .Before Hooks, class components lifecycle methods were used to maintain state in react application.
 
