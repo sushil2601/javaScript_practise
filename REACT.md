@@ -543,6 +543,15 @@ Ans :-
 
     .It allows developers to create isolated DOM trees that don't clash with the main document's styles or scripts.
 
+
+Q. Compoound component
+
+Ans :-
+
+    .A compound component is a design pattern in react where multiple components work together as a unit.
+
+    .The parent component manages state and logic, and child component consumes that state via context or props.
+
 <!-- Routing -->
 
 Q. What is routing and Router in React?
@@ -608,21 +617,31 @@ Ans :-
 
     .without exact default behaviour :- match /about, /about/team , /about/contact
 
+Q. Difference b/w switch and Routes
+
+Ans :-
+
+    .Switch(v5) and Routes(v6) both ensures only one route renders. 
+    .Switch required exact to avoid over-matching.
+    .Routes has exact matching built-in.
+
+    .Routes uses elements instead of component and supports nested routes with outlet.
+
 Q.What is BrowserRouter?
 
 Ans:-
 
-    .It uses HTML5 history API (pushState, replaceState) to manage routing.
-    .Keeps your app in sync with the URL.
-    .Ideal when your server is configured to handle routing (e.g., Node.js server).
+   .uses the HTML5 history api(pushState,popState) to keep the UI in sync with browser's URL
+   .It create central routing context that all child components can access.
 
 Q. What is HashRouter?
 
 Ans :-
 
     .Uses the hash (#) part of the URL to manage routing (e.g., www.example.com/#/home).
-    .No server setup needed – works well with static hosts like GitHub Pages.
-    .Not ideal for SEO, but easy to set up.
+    .doesn't need server configuration because everything after '#' is handled by the browser, not sent to the server.
+
+    .Best for :- static file hoisting(Github,s3,netlify)
 
 Q. Link,NavLink,Outlets
 
@@ -642,13 +661,17 @@ Ans:-
         .Used for nested routes.
         .Renders the child route inside a parent layout component.
 
-Q. URLSearchParams():- 
+Q. URLSearchParams(), useNavigates(), useLocations()
 
 Ans:-
 
     .URLSearchParams() is used to read and manipulate URL query parameters.
 
     .Useful in React apps for routing, filters, pagination, auth tokens, etc.
+
+    .useNavigates() :- navigate programmatically.
+
+    .useLocations() :- get current URL info.
 
 Q. useParams() :-
 
@@ -666,6 +689,23 @@ Ans :-
     .We load fake page,until we get actual data from API.
     .Display a skeleton UI that matches the shape of your real content.
     .Replace it with real content once loading is complete.
+
+Q. Types of build in react?
+
+ans :-
+
+    1. Development build(npm start/npm dev)
+    2. Production  build(npm run build)
+    3. Tets build  (npm test)
+    4. staging build :- deployed on staging server for QA/testing before release.
+
+    5. custom build(Env-based) :-
+            .env.development
+            .env.production
+            .env.staging
+
+        Ex:- "build : staging" : vite build --mode staging"
+                                 npm run build : staging
 
 
 <!-- Hook -->
@@ -2137,6 +2177,27 @@ Ans:-
     JSON end-to-end.
     Large ecosystem + community.
     Scalable with microservices.
+
+Q. Application Architecture
+
+Ans :-
+
+    .Presentation layer(frontend/client)
+
+    .Business logic layer(backend/Api)
+
+    .Data layer (Database & Storage)
+
+Q. MVC 
+
+Ans:-  .stands for model view controller
+       .It is a software architecture pattern that separates an application into three layers making it modular,maintainable and scable.
+
+       .model :- Data & Bussiness logic
+       .View  :- user Interface
+       .Controller :- Request handler
+
+       .uses :- .separation of concerns, easier maintainance, paraller development
 
 
 ---------------------------------------------------------------------------------------------------

@@ -2,8 +2,171 @@
 
 CodePen, JSFiddle, CodeSandbox, and JS Bin,Programiz,JavaScript playground
 
+Q. What is javaScript ?
+
+Ans :-
+
+    .JavaScript is a high-level, interpreted programming language used to make web pages interactive.
+    .It is single-threaded, dynamically typed, and follows the ECMAScript standard.
+
+Q. What are primitive data types in JavaScript?
+
+Ans :-
+
+    String
+    Number
+    BigInt
+    Boolean
+    Undefined
+    Null
+    Symbol
+
+Q. How javaScript works?
+
+Ans :-
+
+    .Everything in js happens inside in execution context.
+
+    .When Js Engine runs the code, Execution context is created.
+
+    .An execution context is the environment in which javaScript code is evaluated and executed.It contains everything the engine needs to execute a block of code.
+
+    .Execution context is created in two phase
+        1. memory/variable environment
+        2. code execution
+
+    .memory/variable environment :- 
+          .This is the place where all the variables and fns are stored in key-value pair
+          .Allocated memory to all variables and fn before even code start execution
+
+    .code execution :- This is the place where code is executed one line at a time.
+
+    .call stack :- 
+                .This is the data structure which maintain the order of execution context.
+                .After completion of the execution context, it will completly remove from all the stacks.
+
+Q. Window :- 
+
+Ans :-
+
+    .is a global object in browser environment.Created by JS engine along with execution context.
+    .Whenever we create variable and fn in global space, JS engine attached those varibale and fn with global object.
+
+Q. Null and undefined :-
+
+Ans :-
+
+      .Null :- It indicate the absence of an object. console.log(typeof null); //"object"
+
+      .undefined :- Indicate the absence of a variable. console.log(typeof undefined); //"undefined"
+
+Q NaN :- not a number. When result of an arithmetic oprn cannot be expressed as a number.
+
+Q. for-of and for-in loop
+
+Ans :-
+
+    .for-of :- 
+            .is used to loop through the value of an object like arrays, strings
+            .It allows you to access each value directly without having to use an index
+
+    .for-in :-
+            .is used to loop through the property of an object.
+            .It allows you to iterate over the keys of an object and access the values associated by using keys as the index.
+
+Q. Synchronus vs Asynchronous
+
+Ans :-
+
+    .Synchronous :- code are executed one after another in a sequential manner.
+
+    .Asynchronous :- code are executed independently of each other.
+
+Q. Array :-
+
+Ans :-
+
+      .is a data type that allows us to store multiplr values in a single variables.
+      .are dynamic
+
+      Ex :- let arr1 = [1,2,3]
+            let arr2 = new Array(1,2,3)
+        
+      clone :- array.slice(0), [...array], [].concat(array), Array.from(array)
+
+      Array Methods :-
+
+        .forEach :- used to perform some operation on each element of an array without creating a new array.
+
+        .map     :- used to perform modification on each element of an array and create a new array.
+
+        .filter  :- used to get an array of element that satisfies a condition.
+
+        .Reduce  :- reduce array to a single value. Take two arguments acc and curVal.
+
+
+        .find    :- get the first element that satisfy the condition.
+
+        .some    :- returns true if any item matches condition.
+
+        .every   :- returns true if all item match condition.
+
+        .sort    :- It sorts the element of an array and return the sorted array. Modify the original array
+
+        .slice   :- return a portion of an array into a new array without modifying the original array.
+
+            Ex :- array.slice(start,end); start -> index to start from , end -> index to stop(exclusive)
+
+            .If end is omitted, slice continues to the end of the array.
+
+            .Use :- .copy part of an array .clone whole array
+
+        .splice :-  modifying the original array by adding,removing or replacing elements.
+
+Q. Objects :-
+
+Ans :-
+      .An Object is a data type that allows you to store key-value pairs.
+      .is a collection of key-values pairs, where keys are strings or symbols, and values can be any data-type.
+
+      Ex :- let person = {
+                name : "sushil",
+                age  : 30,
+                isDeveloper : true
+            }
+
+      .create objects :-
+            .Using Object literal
+            .Using new Object()
+                Ex:- const car = new Object();
+                     car.brand = "Toyota"
+
+            .Using constructor function
+                Ex :- function person(name,age){
+                          this.name = name;
+                          this.age  = age;
+                      }
+
+                      const user = new person('sushil',30);
+
+        .Accessing object properties :- 
+                    1. Dot notation :- Ex:- clg(person.name)    //sushil
+                    2. Bracket notation Ex:- clg(person['age']) //30
+
+        .Modifying and addding properties :-
+                    person.age = 31
+                    person.city = "Delhi"
+
+                    delete person.city; // delete city name
+
+        .Object.keys(obj)  --> Returns array of property name(keys)
+        .Object.values(obj) -> Returns array of property value.
+        .Object.entries(obj)-> Return array of [keys,value] pairs.
+        .Object.assign()    -> copies properties from one object to another.
+        .hasOwnProperty()   -> checks if objects has the given property.
 
 Q. what is event loop?
+
 Ans:- 
 
   The JavaScript Event Loop is a core part of the JavaScript runtime that enables asynchronous behavior while still being single-threaded.
@@ -12,6 +175,7 @@ Ans:-
     The event loop continuously monitors the call stack and the callback queue. It pushes tasks from the queue to the stack when the stack is empty, allowing asynchronous operations to execute in a non-blocking way.
 
 Key Concepts
+
 1. Call Stack
 JavaScript executes code synchronously.
 
@@ -78,19 +242,12 @@ Output:
 3
 2
 
-Diagram Summary
 
-JS Code → Call Stack → (if async) → Web APIs
-                            ↓
-                    Callback/Microtask Queue
-                            ↓
-                      Event Loop Checks
-                            ↓
-                  Pushes to Call Stack if empty
 Types of Queues
-Queue	    Example APIs	                      Priority
-Microtask	Promises, queueMicrotask	          High
-Macrotask	setTimeout, setInterval, DOM Events	  Lower
+
+Queue	           Example APIs	                         Priority
+Microtask	      Promises, queueMicrotask	              High
+Macrotask	      setTimeout, setInterval, DOM Events	    Lower
 
 Why is this Important?
 Helps you write non-blocking code
@@ -177,7 +334,7 @@ Executes code immediately, so startup is fast.
 
   Example: let x = 2 + 3 → Bytecode instructions like LoadLiteral, Add, Store
 
-3. Profiler
+3. Optimizationn
 Tracks how often functions run ("hot" code).
 
 Collects type feedback.
@@ -231,6 +388,7 @@ Uses algorithms like mark-and-sweep.
 V8 uses generational GC to manage memory efficiently.
 
 Q. Different way to write async function.
+
 Ans :-
 
     1. async function fetchData() {
@@ -255,6 +413,7 @@ Ans :-
 
 
 Q. Error handling in javaScript
+
 Ans :-
 
       1. Using Try...Catch.
@@ -263,6 +422,7 @@ Ans :-
       4. Throwing Custom Errors
 
 Q. Q. What is a Callback in JavaScript?
+
 Ans:-
 
     .A callback is a function passed as an argument to another function, which is then executed after the completion of that function's task.
@@ -284,6 +444,7 @@ Ans:-
   .Hard to maintain (changes break flow)
 
 Q. Promise :-
+
 Ans :-
 
       . Promise is an object that represents the eventual completion (or failure) of an asynchronous operation.
@@ -312,6 +473,7 @@ Ans :-
                     .catch(err => console.log(err));   // for error
 
 Q. Asyn/Await :-
+
   Ans:-
 
       .async and await are syntactic sugar over Promises for writing cleaner, synchronous-looking async code.
@@ -338,11 +500,261 @@ Q. Asyn/Await :-
             }
             fetchData();
 
-Q. What is the purpose of the "use strict" statement in JavaScript?
+Q. Higher Order Function
+
 Ans:-
 
-  .enables strict mode in JavaScript.
-  .Makes code safer and less error-prone.
+    .A higher order function is a function that takes another function as an argument and returrn function.
+
+    .This makes function in js first-class citizen.
+
+    Ex:- Map.filter,reduce
+
+    .Benefits :-
+              .Code resusability
+              .Cleaner code
+              .functional programming
+
+Q. Closures :-
+
+Ans :-
+
+    .A closures is the combination of a function bundled together with reference to  it's surrounding state(lexical environment).
+
+    .In Js, closures are created every time a function is created, at function creation time.
+
+    .It allow to access variables and scope from outer function, even outer function has finished it's execution.
+
+    .Uses :-
+            .In currying
+            .Memoization
+            .setTimeout
+            .Fn like once
+
+    Disadv :-
+            .over consumption of memory, because a closure is formed.
+            .Memory leak can if closures is not handled properly.
+
+    function outer() {
+      let count = 0;
+      return function inner() {
+        count++;
+        return count;
+      }
+    }
+    const counter = outer();
+    console.log(counter()); // 1
+    console.log(counter()); // 2
+
+
+    .Garbage collector :- is a program in the browser or the js engine, which kind of freed the unutilized memory.
+
+
+Q. Lexical environment :-
+
+Ans :-
+
+    .is a local memory along with the lexical environment of it's parent.
+
+    .Whenever execution context is created, a lexical environment is also created.
+
+    .It stores the variables and function that are defined in the current scope and all of the outer scope.
+
+    .Lexical env. of global parent is null because it's has no parent.
+
+Q. Currying :-
+
+Ans :-
+
+    .Currying is a technique of transforming a function that takes multiple arguments into a sequence of functions that each take a single argument.
+
+    .Ex:-
+        function add(a){
+          return function(b){
+            return a+b
+          }
+        }
+
+        console.log(add(2)(3))
+
+    .Benefits :-
+          .Reusability
+          .Function composition
+          .Declarative code
+
+Q. Hoisting :-
+
+Ans :-
+
+      .Hoisting is a javaScript behaviour where functions and variables declarations are moved to the top of their respective scope during compilation phase.
+
+      .let and const are hoisted but very diffently tha var.
+
+      .let and const are stored in different memory space than global and cannot access this memory before initialization.
+
+Q. Temporal dead zone :-
+
+Ans :-
+
+    .It is the time since when let and const variable was hoisted and till it initialze some value.Time b/w that is known as TDZ.
+
+Q. this :-
+
+Ans :-
+
+    .In JavaScript, this refers to the object that is currently executing the function.
+
+    .It's value depends on how the function is called, not where it’s defined.
+
+    .In global context, this points to window object
+
+    .Inside an Object Method :- When a function is called as a method of an object,this refers to that object.
+
+    .Function :-
+                .In non-strict mode: this → global object (window)
+
+                .In strict mode ('use strict'): this → undefined
+
+    .Inside constructor :- The newly created object
+
+    .In an event handler :-The Dom element that triggered the event.
+
+    .Arrow Functions :- Arrow functions do not have their own this.They inherit this from the surrounding (lexical) scope.
+
+          Ex:- const user = {
+                name: "Sushil",
+                greet: () => {
+                  console.log(this.name);
+                }
+              };
+
+              user.greet();  // undefined
+
+Q. Call, Apply, Bind
+
+Ans :-
+
+    .call :- 
+            .helps us to change the value of this inside a function with whatever value you want.
+
+            .It takes argument as comma separated
+
+    .apply :-
+            .is similar to the call function. It take argument as array of argument
+
+    .bind  :-
+            .is a function that helps us to create another function that we can execute later with the new context of this that is provided.
+
+Q.  What are some new features in ES6?
+
+Ans :-
+
+      Arrow functions
+      Template literals
+      Destructuring
+      Spread/rest operators
+      Classes
+      Modules
+      Promises
+      Default parameters
+
+Q. Spread/rest operator :-
+
+Ans :-
+
+    .spread :- 
+            .Expands (or spreads) the elements of an array or object into individual items.
+            .Used mainly to copy, combine, or pass values.
+
+            Ex:- 
+                const numbers = [1, 2, 3];
+                const moreNumbers = [...numbers, 4, 5];
+
+                const user = { name: "Sushil", age: 25 };
+                const updatedUser = { ...user, city: "Pune" }; //{ name: "Sushil", age: 25, city: "Pune" }
+
+                const obj3 = Object.assign({...obj1,...obj2})
+
+    .rest :- 
+            .Collects multiple elements into a single array (the opposite of spread).
+            .Used mainly in function parameters or destructuring.
+
+            Ex:- 
+                function sum(...nums) {
+                  return nums.reduce((total, n) => total + n, 0);
+                }
+
+                console.log(sum(1, 2, 3, 4)); // 10
+
+    .destructuring :- Extracting values from arrays/objects into variables.
+
+            Ex :- 
+              const user = { name: "Alice", age: 25 };
+              const { name, age } = user;
+              console.log(name, age);
+
+    .arguments :- 
+                .is an array like object accessible inside fn that contains the values of the arguments passed to to that fns.
+
+                .rest parameter replaced arguments.
+
+Q. Arrow function :-
+
+Ans :-
+
+    .is simpler and shorter way for defining fns in js
+
+    .Benefits :-
+          .used to reduced the code size
+          .wherever we don't want to declare function we can use arrow fn. Ex:- map, filter, reduce
+          .whenever we want to declare function expression we can use arrow function.
+
+Q. What is benefits using arrow function over tranditional function.
+
+Ans :-
+
+      .Lexical this Binding :- Arrow functions don’t have their own this — they inherit it from the parent scope.
+This makes them perfect for callbacks or methods inside classes/components.
+
+      .Shorter and Cleaner Syntax :- Arrow functions are more concise, especially for one-liners.
+
+      .If the function body has only one expression, the value is automatically returned (no need for return).
+
+Q. What is the difference between == and ===?
+
+Ans :-
+
+    ==  abstract equality (performs type coercion)
+    === strict equality (no type coercion)
+
+    0 == '0'   // true
+    0 === '0'  // false
+
+Q. Explain prototypal inheritance.
+
+Ans :-
+
+      Objects in JavaScript inherit directly from other objects via the prototype chain.
+
+      function Person(name) {
+        this.name = name;
+      }
+      Person.prototype.greet = function() {
+        return `Hello, ${this.name}`;
+      };
+
+      const john = new Person("John");
+      console.log(john.greet()); // Hello, John
+
+Q. What is proto and prototype
+
+Ans :-
+
+
+
+Q. What is the purpose of the "use strict" statement in JavaScript?
+
+Ans:-
 
   .Prevents use of undeclared variables.
   .Disallows duplicate property names in objects.
@@ -471,11 +883,6 @@ Ans:-
     .Function Factories – Create multiple functions with their own private state.
     .Callback Functions – Useful in event handlers, timers, and asynchronous code.
 
-Q. Can you access DOM in nodejs?
-Ans:-
-
-  No, you cannot directly access the DOM in Node.js. Node.js is a runtime environment for running JavaScript outside of web browsers, and it does not have a built-in DOM implementation
-
 Q. What is the difference b/w an event object and a custom event in javaScript?
 Ans :-
 
@@ -589,19 +996,16 @@ Ans :-
       console.log(this.fName + ''+this.lName+''+'lives in'+city1+'and'+city2);
     }
 
-Q. Event Bubbling
+Q. What is event bubbling and capturing?
+
 Ans :-
 
-  .The event starts from the deepest target element and bubbles up to its ancestors (parent elements).
-  .Events trigger on the target first, then propagate upwards to the document root.
-  .Default event propagation mode in browsers.
+    Bubbling: Event propagates from child to parent.
 
-Q. Event Capturing
-Ans :-
+    Capturing: Event propagates from parent to child.
 
-  .The event starts from the outermost ancestor (document) and captures down to the target element.
-  .Events trigger first on ancestors, then on the target.
-  .Less commonly used, but can be enabled with addEventListener(type, listener, true) (third parameter true enables capturing).
+    element.addEventListener("click", handler, true);  // Capturing
+    element.addEventListener("click", handler, false); // Bubbling
 
 Q. Event Delegation
 Ans :-
@@ -609,6 +1013,105 @@ Ans :-
   .A technique of attaching a single event listener to a parent element instead of multiple listeners to child elements.
   .Takes advantage of event bubbling to handle events from child elements via the parent.
   .Improves performance and simplifies code, especially for dynamic elements.
+
+Q. Debouncing :- 
+
+Ans :-
+
+    .is a programming pattern, that limits the rate at which a function gets invoked.
+
+    .It ensures that a function is executed only after a certain amount of time has passed since the last time it was executed
+
+    Ex:- search box, Debouncing solve this by waiting until the user stops typing say for 300ms, before making just one api call.
+
+Q. Throttling :-
+
+Ans :-
+
+    .is a technique that limits the number of times a function can execute over time.
+
+    .It ensures that a function is called at most once in a specified time interval, no matter how many times the event is triggered
+
+    .Ex: - gaming
+
+Q. DOM :- Document Object Model
+
+Ans :-
+
+    .The Document Object Model (DOM) is a programming interface for HTML and XML documents. It represents the page so programs can manipulate structure, style, and content.
+
+    .Selector methods :-
+              .getElementById()
+              .getElementsByClassName()
+              .getElementsByTagName()
+              .querySelector()        :- Selects first matching element using CSS selectors.
+              .querySelectorAll()
+
+    .append  :- add to end
+    .prepend :- add to start
+
+Q. Web Storage :-
+
+Ans :-
+
+      .is used to store data locally within the browsers.
+
+  .local storage :- .data stored in local storage is accessible across multiple tabs.
+                    .data stored in local storage persists even when the browser is closed and reopened.
+
+  .session storage :- .data stored in session storage is specific to a particular browsing session and is accesssible only within the same window.
+                      .data stored in sesssion storage is cleared when browser window or tab is cleared.
+
+Q. cookies :-
+
+Ans :-
+
+      .cookies are small piece of data that are stored in the user's web browser
+
+Q. Difference b/w cookies and web storage
+
+Ans :-
+
+      .cookies :- .cookies have a small storage capacity of upto 4kb per domain.
+                  .cookies are automatically sent with every request
+                  .accesssible on both client-side and server-side
+
+      .web storage :- .web storage have a large storage capacity of upto 5-10 MB per domain.
+                      .data stored in web storage is not automatically sent with each request.
+                      .accessible only on client-side.
+
+Q. eval() :- is a built-in function that evaluates a string as a js code and dynamically execute it.
+
+Q. Implicit and Explicit conversion
+
+Ans :-
+
+    .Implicit conversion(Type coersion) :- automatic conversion of one data type to another data type by js engine.
+
+    .Explicit conversion(Type casting)  :- manually converting from one data types to another
+
+            Ex:- value.toString(). Object.toString()
+
+Q. Block scope, function scope, global scope, scope
+
+Ans :-
+
+      .scope :- is the current context of execution in which values and expressions are visible
+
+      .Global scope :- variables declared globally have global scope. Ex:- var have global scope
+
+      .Function scope :- variable defined inside a function are not accessible from outside the function. Ex:- var
+
+      .Block scope :- variables defined inside a {} , blocked cannot be accessed from outside the block. Ex:- let,const
+
+Q. Difference b/w jsx and html
+
+Ans :-
+
+      .JSX :- javaScript xml, used to write html-like code in react. can write js expression using {}.
+
+      .HTML :- .is used to structure content on web page.It is static and interpreted by browsers.
+               .cannot embeded logic directly, need to use external script.
 
 Q. Exmaple of memoization --> fibonacci  
 Ans :-

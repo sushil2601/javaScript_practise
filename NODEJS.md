@@ -1423,6 +1423,24 @@ Ans :-
             12. Idempotency
                 .Ensure PUT, DELETE, and GET requests are idempotent (multiple identical requests should result in the same state).
 
+Q. What is API and Rest API?
+Ans :-
+
+    .API :-
+        .API stands for Application Programming Interface.
+
+        .It is a set of rules and protocols that allows one software application to communicate with another.
+
+    .Rest API :-
+        .REST stands for Representational State Transfer.
+        .A REST API is a specific type of API that follows certain rules and principles for communication over the web (HTTP).
+        
+        .The client (e.g., frontend) requests data, and the server (e.g., backend) provides it.
+        .Each request is independent; the server doesn’t remember previous requests.
+        .HTTP Methods - Used to perform actions on data.
+        .Data is usually sent/received in JSON format.
+
+
 Q. Rest API endpoint :-  Ex. of Cart
 Ans :-
 
@@ -1646,6 +1664,72 @@ Ans:-
 
     9.Monitoring and Auto-Scaling:
         .Use monitoring tools to track performance and auto-scale based on demand.
+
+Q. difference b/w javaScript event loop and nodejs event loop
+
+Ans :-
+
+    .javaScript event loop :-
+
+        .In javaScript, the event loop is controlled by the browser’s runtime environment (like Chrome’s V8 + Web APIs).
+
+        How It Works:-
+
+            Call Stack — executes code line by line.
+
+            Web APIs — handle async tasks like fetch, setTimeout, DOM events.
+
+            Callback Queue — stores callback functions that are ready to be executed.
+
+            Microtask Queue — for Promises (.then, catch, finally).
+
+    .Node.js Event Loop :-
+
+        .Node.js also uses an event loop (from libuv, a C++ library).
+        .it’s more complex than the browser’s loop because it handles file system, network, and OS-level tasks.
+
+        .Phases of Node.js Event Loop:
+
+            Timers Phase → executes callbacks from setTimeout() and setInterval().
+
+            Pending Callbacks Phase → executes I/O callbacks deferred from the previous cycle.
+
+            Idle / Prepare Phase → used internally by Node.
+
+            Poll Phase → retrieves new I/O events (most work happens here).
+
+            Check Phase → executes callbacks from setImmediate().
+
+            Close Callbacks Phase → executes close event callbacks (e.g., socket close).
+
+        .Between each phase, Node processes microtasks (like Promises).
+
+        Ex:- 
+            setTimeout(() => console.log("timeout"), 0);
+            setImmediate(() => console.log("immediate"));
+            Promise.resolve().then(() => console.log("promise"));
+
+            o/p :- 
+                promise
+                timeout
+                immediate
+
+Q. Monolithic Architecture and Microservices Architecture
+
+Ans :-
+
+    .Monolithic Architecture :-
+        .A monolithic application is built as a single, unified unit — all modules (UI, business logic, database access, etc.) are part of one codebase and run as a single service.
+
+        .Disadv :- 
+                    .Difficult Deployment :- small change, like fixing one button or bug, you must rebuild and redeploy the entire application.
+
+                    .Hard to Maintain and Test :- Unit testing and debugging take more time because everything is interconnected.
+
+    .Microservice Architecture :-
+        .In microservices, the application is split into independent services, each responsible for a specific function.
+        
+        .Each service runs in its own process, has its own database, and communicates with others via APIs (usually REST or message queues).
 
 ---------------------------------------------------------------------------------------------------
 1. Redis :-
