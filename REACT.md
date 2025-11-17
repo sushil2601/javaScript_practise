@@ -37,9 +37,9 @@ Ans :-
 Q.Advantages of React.
 
 Ans :- 
-       
-        .Simple to build single page applications(by using components).
+
         .React is a cross paltform and open source.
+        .Simple to build single page applications(by using components).
         .Lightweight and very fast.
         .Testing is easy.
 
@@ -135,22 +135,12 @@ Ans :-
                     .The process of updating the real DOM based on changes in the virtual DOM.
 
 
-Q. Difference b/w Virtaul DOM and Real DOM 
-
-Ans :- 
-
-        Virtual DOM	                                Real DOM
-
-    	    In memory	                                In browser (on-screen)
-        	Fast updates (diff + patch)	                Slow if updated frequently
-            Used by React                               Used by Angular
-
 Q. Difference b/w DOM and Virtual DOM.
 
 Ans :- 
 
         DOM                                                       Virtaul DOM
-
+    .In browser (on-screen)                                   .In memory
     .is actual representation of actual page.                 .is light weight copy of the DOM.
     .Re-renders the entire page when updates occur.           .Re-renders the changed parts only
     .can be slower, especially with frequent update.          .Optimized for faster rendering.
@@ -180,7 +170,7 @@ Ans:-
 
     .Functional Component :-
 
-                ->A functional component is just a plain javaScript pure functions that accepts props as an argument and return react element(JSX).
+                ->A functional component is just a plain javaScript functions that accepts props as an argument and return react element(JSX).
 
                 ->statless components as they simply accept the data and display them.
 
@@ -202,18 +192,9 @@ Q.“In React, everything is a component.” Explain.
 
 Ans:-
 
-    .A component is a small, reusable piece of UI.
-    .It’s like a building block of your application.
+    .In React, the UI is broken down into small, independent, reusable pieces called components.
 
-    .In React, every part of the UI (button, navbar, form, etc.) is made using components.
-    .we can break the UI into multiple independent components.
-
-Q. Why is it necessary to start component names with a capital letter?
-
-Ans:-
-
-    .React treats lowercase names as HTML tags (like <div>, <p>).
-    .Always start your component names with a capital letter (like Header, App, MyButton, etc.).
+    .Every button, form, header, or even a full page is a component. React builds the entire application by composing these components together, making the UI modular, manageable, and easy to maintain.
 
 Q. How would you prevent a component from rendering in React?
 
@@ -221,14 +202,6 @@ Ans:-
 
     .Use conditional rendering.
         .We decide when to show or hide a component 
-
-Q. Why React uses className over class attribute?
-
-Ans:-
-
-    .JavaScript, class is a reserved keyword (used for creating classes).
-    .Since JSX is JavaScript, using class would cause errors.
-    .So, React uses className instead of class to avoid conflicts.
 
 Q. SPA (Single Page Application).
 
@@ -251,18 +224,6 @@ Ans :-
     .Challenges:
         .SEO Issues — Search engines can't easily index JavaScript-rendered content
         .Solution:-   Use SSR (Server Side Rendering) or frameworks like Next.js
-
-Q. SPA(Single Page Application) vs MPA(Multi Page Application)
-
-Ans :- 
-
-  Feature	               SPA (Single Page App)	       MPA (Multi Page App)
- Page reloads	        No (uses dynamic updates via JS)	Yes (full reload per page)
- Performance	        Faster after first load	            Slower due to repeated full-page loads
- User experience	    Seamless and responsive	            Sometimes flickers or reloads
- Routing	            Handled on the client	            Handled on the server
- Initial load time	    Slightly higher	                    Usually lower
-
 
 Q.Difference b/w declarative and imperative appraoch
 
@@ -316,26 +277,7 @@ Ans :-
 
 Q.How React App load and display the components in browser?
 
-Ans:- 
 
-    1.index.html
-        .A basic HTML file with a single <div id="root"></div>.
-        .This is the mounting point for the entire React app.
-
-    2.index.js
-        .This is the entry point of the React application.
-        .It uses ReactDOM to render the <App /> component inside the #root div of index.html.
-
-    3.App.js
-        .This is the root React component.
-        .Acts as a container for all other components (child components).
-        .It organizes and renders the overall layout and structure of the UI.
-
-    4.Child Components
-        .These are custom components created by us.
-        .They are used inside App.js to build different parts of the UI (like Header, Footer, Sidebar, etc).
-
-    .React takes over the empty HTML page and builds your UI by rendering components dynamically.
 
 Q. Difference b/w React and Angular
 
@@ -354,12 +296,6 @@ Ans :-
                 .Angular uses a real DOM.
                 .Angular is bigger because it is a complete framework.
                 .Angular is a complete framework , therefore it provide built-in support for features like routing, forms , validation and HTTP requests.
-
-Q. What are stateful and state management terms?
-
-Ans :- 
-
-    Stateful and state management means,when a user performs some actions on the UI then the react application should be able to update and re-render that data or state on the UI.
 
 Q. Props
 
@@ -387,33 +323,6 @@ Ans:-
     Ownership	    Passed from parent to child	        Managed inside component
     Usage	        Communication between components	Store component data
 
-Q. What happens when you call setState?
-
-Ans:-
-
-    setState is used to update the state of a component and trigger a re-render.
-
-Q. What are stateless components?
-
-Ans:-
-
-    If the behaviour of a component is independent of its state then it can be a stateless component. 
-
-Q.What are stateful components?
-
-Ans:-
-
-    If the behaviour of a component is dependent on the state of the component then it can be termed as stateful component. These stateful components are either function components with hooks or class components.
-
-Q. Does React re-render all components and sub components every time setState is called?
-
-Ans:-
-
-    .No,
-    .When you call setState(), React only re-renders the component where the state changed.
-    .It also re-renders its child components — but only if necessary (based on props/state changes).
-    .React uses a Virtual DOM to detect what actually changed, and updates only the parts of the UI that need to change.
-
 Q.What are Default Props?
 
 Ans:-
@@ -426,18 +335,11 @@ Q. Is React a library or a Framework and why?
 
 Ans:-
 
-    .React is a JavaScript library, not a framework.
-    .Focuses only on the "View" layer of an application (in MVC pattern).
-    .Doesn't include built-in tools for:
-        .Routing
-        .State management
-        .HTTP requests
-        .Form handling
-        (You need external libraries like React Router, Redux, Axios, etc.)
-
-    .It’s declarative and helps in building interactive UIs.
-    .Gives flexibility to choose your tools and structure.
-    .Lightweight compared to a full-featured framework like Angular.
+    .React is a JavaScript library, not a framework, because it focuses only on the view layer. 
+    
+    .React gives us component rendering, state, and lifecycle management, but it does not provide built-in solutions for routing, form handling, HTTP services, or global state management. 
+    
+    .These are added separately using libraries like React Router, Redux, Axios, etc.
 
 Q. What are nested component in react?
 
@@ -449,7 +351,7 @@ Q. What are children props
 
 Ans :- 
 
-        .In React, children props are a special type of props that enables components to receive and render other components or elements.By passing components as children.
+        .In React, children props is a props that enables components to receive and render other components.By passing components as children.
 
         .To access the children passed to a components,we use the props.children property.
 
@@ -535,15 +437,6 @@ Ans :-
         .Using useRef and forwardRef()
         .Using Redux and Zustand
 
-Q. What is Shadow DOM?
-
-Ans :-
-
-    .The Shadow DOM is a web standard that enables encapsulation of HTML, CSS, and JavaScript in custom elements (Web Components). 
-
-    .It allows developers to create isolated DOM trees that don't clash with the main document's styles or scripts.
-
-
 Q. Compoound component
 
 Ans :-
@@ -566,16 +459,6 @@ Ans :-
         .React Router is a library that helps implement routing in React apps.
         .It lets you define routes that map URLs to specific components.
         .This makes your app feel like a multi-page site, even though it's a single-page app.
-
-Q. How to implement Routing in React?
-
-Ans :-
-
-        .Install React Router
-        .Import Router Components
-        .Wrap App with <BrowserRouter>
-        .Create Navigation (Optional)
-        .Define Routes in App
 
 Q. What is Routes and Route component in React Routing?
 
@@ -820,35 +703,11 @@ Note :- .Lifecycle methods are mostly used in class components
 
         .In modern React, we use Hooks (useEffect, useState, etc.) for lifecycle logic
 
-Q. What are constructors in class components? when to use them
-
-Ans:-
-
-    constructor is a special method that is called when an instance of the class is created.
-
-    Costructor is used for initializing the component's state or performing any setup that is needed before the component is rendered.
-
-Q. What is the role of super keyword in constructor?
-
-Ans :- 
-
-        .super keyword is used in the constructor of a class component to call the constructor of the parent class.
-
-        .This is necessary to ensure that the initialization logic of the parent class is executed.
-
 Q. What is the role of render() method in component life cycle?
 
 Ans :- 
     
     .Render() method returns the react elements that will be rendered to the DOM.
-
-Q. How the state can be maintained in a class component?
-
-Ans :-
-
-    .this.setState() method is used to update the state.
-
-    .this.state property is used to render the updated state in DOM.
 
 Q. What is the role of useContext() hooks?
 
@@ -914,15 +773,6 @@ Ans :-
     .It can be simpler to implement for small forms.
 
     .It donot offer the same level of control over the form data as controlled components.
-
-Q. Characteristics of controlled components
-
-Ans :- 
-
-    .State control
-    .Event Handling
-    .State Update
-    .Re-rendering
 
 Q.How to handled forms in React?
 
@@ -1106,93 +956,70 @@ Ans :-
 
    .Parent provides a callback function to child and then child component can then invoke this callback to pass data back to the parent.
 
-Q. How to Know If There’s a Performance Issue
+Q. How to Know If There’s a Performance Issue in react applications
 
 Ans:-
 
-    .Symptoms in the UI :-
+    .Performance issue :-
+    ----------------------
 
-        .App feels slow or laggy
+                1.Slow Initial Page Load
+                    .Users notice issues like
+                        .Blank screen for a long time
+                        .“Loading…” appears too long
+                        .App feels heavy when first opened
 
-        .Delayed rendering after user interaction
+                2.UI Lag / Delayed Interactions
+                    .If the user clicks or types and the UI reacts slowly
+                        .Button clicks take time to update
+                        .Typing in input fields feels slow
 
-        .Large bundle sizes
+                3.Scroll Jank
+                    .Users experience:
+                        .Page freezes when dragging or scrolling
 
-        .High CPU usage during re-renders
+                4.Slow Navigation Between Screens
+                        .Moving from one page to another takes long
+                        .Components load late
+                        .Data fetches delay the UI
+                
+                5.High CPU / Battery Drain
+                    .Device heating
+                    .Battery draining quickly
+                    .Browser tabs slowing down
 
-        .Scroll jank (choppy or delayed scrolling)
+                6.Memory Leaks
+                    .App becomes slower over time
+                    .Browser lag increases
+                    .Tab crashes or freezes
 
-        .Frequent re-rendering of components without need
 
-    .Tools & Techniques to Detect Performance Problems :-
+    .To Measure and Diagnose Performance Issues in a React App
+                1.Chrome DevTools - Performance Tab
+                    .By using this we can measure here
 
-        .React Developer Tools (Profiler Tab) :- Ideal for: Component-level performance analysis
+                        .Component slowness
+                        .Re-rendering time
+                        .Long tasks blocking the main thread
+                
+                2.React DevTools – Profiler
+                    .This shows which React components cause slow re-renders.
 
-            Use the "Profiler" tab to:
+                        .Components re-rendering too often
+                        .Components taking too long to render
+                        .Props/state causing unnecessary updates
 
-                .Record renders
+                3.Network Tab
+                    .To diagnose API-related performance issues.
+                        .Large API responses
+                        .Slow API calls
+                        .Files blocking rendering
+                        .Unnecessary API calls on every render (common mistake)
 
-                .See which components re-render
+                4.Bundle Analyzer (Webpack or Vite)
+                    .This helps detect heavy bundles.
 
-                .See how long each render takes
-
-                .Spot unnecessary re-renders
-
-        .Chrome DevTools (Performance Tab) :-
-
-            .Record a timeline trace during user interaction.
-
-            Look for:
-
-                .Long tasks (>50ms)
-
-                .Excessive scripting or layout time
-
-                .Recalculating styles
-
-                .Paint bottlenecks
-
-            .Ideal for: Browser-level bottlenecks (not just React)
-
-        .Use console.log to Track Renders (Basic Debugging)
-
-        .Install why-did-you-render Package :- npm install @welldone-software/why-did-you-render
-
-            .In development mode, it detects unnecessary re-renders.
-
-        .Bundle Analyzer :- npm install --save-dev webpack-bundle-analyzer
-
-            .Large bundles slow down app load and performance.
-
-            .Use webpack-bundle-analyzer to inspect your bundle size.
-    
-        .Grafana is an open-source data visualization and monitoring tool, similar to Kibana.
-        
-            .It is used to analyze, query, and visualize metrics and logs.
-
-            .Visualization focus -->Time-series, graphs, alerts	-->Logs, metrics, security, dashboards
-
-            .Use Case in React or Frontend Projects
-
-                .Grafana is not used inside React apps, but it monitors and analyzes:
-
-                    .Performance of backend APIs
-
-                    .CPU, memory, disk usage of your servers
-
-                    .Response times, error rates, latency
-
-                    .Application logs (with Loki)
-
-                Example:-
-
-                If your React app is deployed on a cloud server:
-
-                    .Grafana can show how many users are hitting the app
-
-                    .How fast the backend responds
-
-                    .How much memory/CPU it's using
+                5.Graphana
 
 
 Q What is Memoization?
@@ -1214,7 +1041,7 @@ Q. useMemo
 
 Ans :-
 
-    .The useMemo hook is used in React to optimize performance by memoizing (caching) the result of an expensive computation so that it does not re-run on every render unless necessary.
+    .The useMemo hook is used to optimize performance by memoizing the result of an expensive computation so that it does not re-run on every render unless necessary.
 
     .it is used inside the functional component to memoize the result of expensive computation.
 
@@ -1308,6 +1135,8 @@ Q. purpose of shouldComponentUpdate method
 Ans :- 
 
     .is a lifecycle method that determines if a component should re-render.Developer can use it to optimize performance by preventing unnecessary renders.
+
+    .It replaced by React.memo() in functional component.
 
 Q. Difference b/w useMemo and react.Memo
 
@@ -1594,17 +1423,6 @@ Ans :-
 
     .React DevTools is a browser extension that allows you to inspect the react components tree, view props and state and debug React app efficiently.
 
-Q. What is package.json and package-lock.json?
-
-Ans :-
-    
-    .package.json :-
-                    We have information about generic version of installed package.
-
-
-    .package-lock.json :-
-                        We have information about the specific or exact version of installed package
-
 Q. React19 features 
 
 Ans :-
@@ -1701,9 +1519,9 @@ Q. peventDefault().
 
 Ans :-
 
-    .event.preventDefault() is a method that stops the default behavior of an event from happening.
-    .Forms: Prevent form from submitting and reloading the page.
-    .Links: Prevent <a> tags from navigating to another page.
+    .It prevents the browser from performing its default action for the triggered event.
+
+    .Prevent page refresh on form submit , Prevent anchor tag navigation
 
 Q. What are event handler?
 
@@ -1735,7 +1553,7 @@ Q. What is event object?
 
 Ans :-
 
-    .The event object is automatically passed to event handler functions. It contains all the details about what happened during the event (like a click or key press).
+    .The event object is a special JavaScript object that is automatically created and passed to event handlers whenever an event occurs (like click, submit, keypress, mouseover, etc.).
 
     .It Includes:
         .Type of event → (e.g., 'click', 'submit', 'keydown')
@@ -1744,12 +1562,6 @@ Ans :-
             .preventDefault() → Stops default behavior (like form submission)
             .stopPropagation() → Prevents the event from bubbling up
 
-Q. What is the purpose of the "key" prop in ReactJS?
-
-Ans:-
-
-    .key helps React identify which items have changed, been added, or removed in a list.
-    .It makes rendering more efficient by tracking elements uniquely.
 
 Q. What is the impact of indexes as keys?
 
